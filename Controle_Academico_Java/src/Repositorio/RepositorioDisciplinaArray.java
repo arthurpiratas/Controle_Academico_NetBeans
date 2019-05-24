@@ -103,7 +103,8 @@ public class RepositorioDisciplinaArray implements IRepositorioDisciplina{
 		ArrayList<Disciplina> listaDisciplina = new ArrayList<Disciplina>();
 		
 		for (int i = 0; i < index; i++) {
-			listaDisciplina.add(this.listaDisciplina[i]); 
+              
+		listaDisciplina.add(this.listaDisciplina[i]); 
 		}
 		
 		return listaDisciplina;

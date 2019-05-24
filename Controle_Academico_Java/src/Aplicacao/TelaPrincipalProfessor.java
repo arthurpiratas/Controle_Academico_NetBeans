@@ -25,6 +25,7 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         this.professorUser = professorUser;
         this.fachada = fachada;
         initComponents();
+        jtNomeprof.setText(professorUser.getNome());
     }
 
     /**
@@ -37,6 +38,8 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtNomeprof = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmConsultas = new javax.swing.JMenu();
         jmiTurma = new javax.swing.JMenuItem();
@@ -52,16 +55,11 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
+        jtNomeprof.setEnabled(false);
+        jScrollPane1.setViewportView(jtNomeprof);
+
+        jDesktopPane1.add(jScrollPane1);
+        jScrollPane1.setBounds(645, 11, 115, 30);
 
         getContentPane().add(jDesktopPane1);
         jDesktopPane1.setBounds(0, 0, 770, 450);
@@ -150,6 +148,7 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu jmAcoes;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenuItem jmiAtividades;
@@ -157,5 +156,6 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiEntraTurma;
     private javax.swing.JMenuItem jmiNotas;
     private javax.swing.JMenuItem jmiTurma;
+    private javax.swing.JTextPane jtNomeprof;
     // End of variables declaration//GEN-END:variables
 }

@@ -232,7 +232,7 @@ public class Fachada {
 	}
 	
 	public boolean verificaTurmaExiste(String nome) {
-		return verificaTurmaExiste(nome);
+		return ctrturma.verificaTurmaExiste(nome);
 	}
 	
 	public void listaTurma() {

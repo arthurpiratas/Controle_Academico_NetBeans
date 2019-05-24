@@ -5,7 +5,7 @@
  */
 package Aplicacao;
 
-import Basicas.Aluno;
+import Basicas.Disciplina;
 import Negocio.Fachada;
 import javax.swing.JOptionPane;
 
@@ -13,18 +13,19 @@ import javax.swing.JOptionPane;
  *
  * @author Arthur
  */
-public class jofCadastroAluno extends javax.swing.JInternalFrame {
+public class jofCadastroDisciplina extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form jofCadastroAluno
+     * Creates new form jofCadastroDisciplina
      */
-    
-    Aluno aluno;
+    Disciplina disciplina; 
     Fachada fachada; 
-    
-    public jofCadastroAluno(Fachada fachada) {
+    public jofCadastroDisciplina(Fachada fachada) {
         this.fachada = fachada; 
+        
         initComponents();
+        
+        
     }
 
     /**
@@ -37,42 +38,30 @@ public class jofCadastroAluno extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jtNome = new javax.swing.JTextField();
-        jtPeriodo = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jtfData = new javax.swing.JFormattedTextField();
         jbNovo = new javax.swing.JButton();
         jbCriar = new javax.swing.JButton();
         jbLimpar = new javax.swing.JButton();
         jbFechar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jtUsuario = new javax.swing.JTextField();
-        jtSenha = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtEmenta = new javax.swing.JTextPane();
 
-        setTitle("Cadastro Aluno");
+        setTitle("Cadastro Disciplina");
+        setMaximumSize(new java.awt.Dimension(106, 34));
+        setMinimumSize(new java.awt.Dimension(106, 34));
+        setPreferredSize(new java.awt.Dimension(106, 34));
         getContentPane().setLayout(null);
         getContentPane().add(jtNome);
-        jtNome.setBounds(80, 10, 140, 30);
-        getContentPane().add(jtPeriodo);
-        jtPeriodo.setBounds(80, 50, 140, 30);
-
-        jLabel1.setText("Senha");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 170, 80, 20);
+        jtNome.setBounds(70, 10, 150, 30);
 
         jLabel2.setText("Nome");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 10, 80, 20);
 
-        jLabel3.setText("Periodo");
+        jLabel3.setText("Ementa");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(10, 50, 80, 20);
-
-        jtfData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        getContentPane().add(jtfData);
-        jtfData.setBounds(80, 90, 140, 30);
 
         jbNovo.setText("Novo");
         jbNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -112,75 +101,55 @@ public class jofCadastroAluno extends javax.swing.JInternalFrame {
         getContentPane().add(jbFechar);
         jbFechar.setBounds(130, 270, 90, 30);
 
-        jLabel4.setText("Data");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 90, 80, 20);
+        jScrollPane1.setViewportView(jtEmenta);
 
-        jLabel5.setText("Usuário");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 130, 80, 20);
-        getContentPane().add(jtUsuario);
-        jtUsuario.setBounds(80, 130, 140, 30);
-        getContentPane().add(jtSenha);
-        jtSenha.setBounds(80, 170, 140, 30);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(70, 60, 150, 150);
 
-        setBounds(0, 0, 257, 341);
+        setBounds(0, 0, 248, 338);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         // TODO add your handling code here:
         String nome = new String();
-        int periodo;
-        String usuario = new String();
-        String senha = new String();
-        
-        
-        
+        String ementa = new String();
+
         try{
-          periodo = Integer.parseInt(jtPeriodo.getText());
-          nome = jtNome.getText();
-          usuario = jtUsuario.getText();
-          senha = jtSenha.getText();
-          if(!(fachada.verificaAlunoExisteNome(nome)) && !(fachada.verificaLoginAlunoExiste(usuario))){
-              if(senha.length() > 0){
-                  aluno = new Aluno(fachada.retornaProximoIDAluno(), nome, null, periodo, usuario, senha, fachada.retornaMatricula(String.valueOf(periodo)));
-                  jbCriar.setEnabled(true);
-                  jbLimpar.setEnabled(true);
-              }else{
-                  JOptionPane.showMessageDialog(rootPane, "Senha Não pode ser vazia");
-              }
-          }else{
-              JOptionPane.showMessageDialog(rootPane, "Nome ou Login Já cadastrados");
-          }
+            nome = jtNome.getText();
+            ementa = jtEmenta.getText();
+            if(!(fachada.verificaDisciplinaExiste(nome))){
+                if(ementa.length() > 0){
+                    disciplina = new Disciplina(fachada.retornaProximoCodigoDisciplina(), nome, ementa);
+                    jbCriar.setEnabled(true);
+                    jbLimpar.setEnabled(true);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Ementa não pode ser vazia");
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Disciplina já cadastrada");
+            }
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(rootPane, "Erro " + e);
         }
-        
-        
+
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarActionPerformed
         // TODO add your handling code here:
-        fachada.insereAluno(aluno);
-        JOptionPane.showMessageDialog(rootPane, "Aluno Cadastrado, sua matricula é: " + aluno.getMatricula());
-        aluno = null; 
+        fachada.insereDisciplina(disciplina);
+        JOptionPane.showMessageDialog(rootPane, "Disciplina "+ disciplina.getNome() + "criada com sucesso");
+        disciplina = null;
         jtNome.setText("");
-        jtPeriodo.setText("");
-        jtSenha.setText("");
-        jtUsuario.setText("");
-        jtfData.setText("");
+        jtEmenta.setText("");
         jbCriar.setEnabled(false);
         jbLimpar.setEnabled(false);
     }//GEN-LAST:event_jbCriarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
-        aluno = null;
+        disciplina = null;
         jtNome.setText("");
-        jtPeriodo.setText("");
-        jtSenha.setText("");
-        jtUsuario.setText("");
-        jtfData.setText("");
+        jtEmenta.setText("");
         jbCriar.setEnabled(false);
         jbLimpar.setEnabled(false);
     }//GEN-LAST:event_jbLimparActionPerformed
@@ -192,19 +161,14 @@ public class jofCadastroAluno extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCriar;
     private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbNovo;
+    private javax.swing.JTextPane jtEmenta;
     private javax.swing.JTextField jtNome;
-    private javax.swing.JTextField jtPeriodo;
-    private javax.swing.JTextField jtSenha;
-    private javax.swing.JTextField jtUsuario;
-    private javax.swing.JFormattedTextField jtfData;
     // End of variables declaration//GEN-END:variables
 }

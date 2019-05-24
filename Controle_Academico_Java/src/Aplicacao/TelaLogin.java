@@ -7,6 +7,7 @@ package Aplicacao;
 
 import Basicas.Administrador;
 import Basicas.Aluno;
+import Basicas.Disciplina;
 import Basicas.Professor;
 import Negocio.Fachada;
 import javax.swing.JOptionPane;
@@ -40,10 +41,18 @@ public class TelaLogin extends javax.swing.JFrame {
             if(!(fachada.verificaADMExise(adm.getNome()))){
                 fachada.insereADM(adm);
             }
-            
+         Disciplina disciplina = new Disciplina(0, "Português", "Nada"); 
+         
+         if(!(fachada.verificaDisciplinaExiste(disciplina.getNome()))){
+                fachada.insereDisciplina(disciplina);
+            }
+         
+         
+         fachada.listaDisciplina();
          fachada.listaADM();   
          fachada.listaProfessor();
          fachada.listaAlunos();
+         fachada.listaTurma();
         initComponents();
         
     }
@@ -149,7 +158,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     TelaPrincipalAluno telaAluno = new TelaPrincipalAluno(aluno, fachada);
                     
                     telaAluno.setVisible(true);
-                    this.setVisible(false);
+                    this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Senha inválidos");
                 }
@@ -169,7 +178,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     Professor professor1 = fachada.retornaProfessorLogado(login, senha); 
                     TelaPrincipalProfessor telaProfessor = new TelaPrincipalProfessor(professor1, fachada);
                     telaProfessor.setVisible(true);
-                    this.setVisible(false);
+                    this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Senha inválidos");
                 }
@@ -188,7 +197,7 @@ public class TelaLogin extends javax.swing.JFrame {
                    Administrador admin = fachada.buscaADMLogin(login, senha);
                    TelaPrincipalAdm telaAdm = new TelaPrincipalAdm(admin, fachada);
                    telaAdm.setVisible(true);
-            this.setVisible(false);
+                   this.dispose();
                 }else{
                    JOptionPane.showMessageDialog(rootPane, "Senha inválidos");
                 }
@@ -205,7 +214,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSairMouseClicked
         // TODO add your handling code here:
-        this.dispose();
+        
+        System.exit(0);
     }//GEN-LAST:event_jbSairMouseClicked
 
     /**

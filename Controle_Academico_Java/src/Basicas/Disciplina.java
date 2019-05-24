@@ -32,6 +32,11 @@ public class Disciplina {
 	public void setEmenta(String ementa) {
 		this.ementa = ementa;
 	} 
+
+    @Override
+    public String toString() {
+        return getNome(); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	
 }

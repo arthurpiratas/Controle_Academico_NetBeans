@@ -35,7 +35,7 @@ public class ControleDisciplina {
 	}
 	
 	public ArrayList<Disciplina> retornaListaDisciplina(){
-		return retornaListaDisciplina();
+		return repDisciplina.retornaListaDisciplina();
 	}
 	
 	public int retornaProximoCodigoDisciplina() {

@@ -76,7 +76,7 @@ public class ControleProfessor {
 	}
 	
 	public ArrayList<Professor> retornaListaProfessor(){
-		return retornaListaProfessor();
+		return repProfessor.retornaListaProfessor();
 	}
 	
 	public int retornaProximoIdprofessor() {

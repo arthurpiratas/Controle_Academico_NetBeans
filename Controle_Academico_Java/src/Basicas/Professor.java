@@ -66,6 +66,11 @@ public class Professor extends Usuario{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	} 
+
+    @Override
+    public String toString() {
+        return getNome(); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	
 	

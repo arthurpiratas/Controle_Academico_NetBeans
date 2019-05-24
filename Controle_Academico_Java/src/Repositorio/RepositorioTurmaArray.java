@@ -73,7 +73,7 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
-			if(listaTurma[index].getNome().equals(nome)) {
+			if(listaTurma[i].getNome().equals(nome)) {
 				return true; 
 			}
 		}
@@ -86,9 +86,9 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
-			System.out.println("Codigo: " + listaTurma[i].getId() +" Nome: " + listaTurma[i].getNome() + " Quantidade: " + listaTurma[i].getQtdAlunoTurma() + " Código disciplina: " + listaTurma[i].getDisciplina() + " Professor: " + listaTurma[i].getProfessor());
+			System.out.println("Codigo: " + listaTurma[i].getId() +" Nome: " + listaTurma[i].getNome() + " Quantidade: " + listaTurma[i].getQtdAlunoTurma() + " Cï¿½digo disciplina: " + listaTurma[i].getDisciplina() + " Professor: " + listaTurma[i].getProfessor());
 			for (int j = 0; j < listaTurma[i].getQtdAlunoTurma(); j++) {
-				System.out.println("Matrícula: " + listaTurma[i].getAlunoTurma()[j]);
+				System.out.println("Matrï¿½cula: " + listaTurma[i].getAlunoTurma()[j]);
 			}
 		}
 		
@@ -104,7 +104,7 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 
 	
 	
-	// Verificação se uma turma possui professores ou disciplina em caso de exclusão de um professor ou disciplina que estão em uma turma
+	// Verificaï¿½ï¿½o se uma turma possui professores ou disciplina em caso de exclusï¿½o de um professor ou disciplina que estï¿½o em uma turma
 
 	@Override
 	public boolean verificaDesciplinaPossuiTurma(Disciplina disciplina) {

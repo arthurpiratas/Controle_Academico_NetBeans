@@ -26,6 +26,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         this.admUser = admUser;
         this.fachada = fachada;
         initComponents();
+        jtNomeAdm.setText(admUser.getNome());
     }
 
     /**
@@ -38,6 +39,8 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpPrincipalAdm = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtNomeAdm = new javax.swing.JTextPane();
         jmbTelaAdm = new javax.swing.JMenuBar();
         jmCadastro = new javax.swing.JMenu();
         jmiCadAluno = new javax.swing.JMenuItem();
@@ -64,21 +67,21 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout jdpPrincipalAdmLayout = new javax.swing.GroupLayout(jdpPrincipalAdm);
-        jdpPrincipalAdm.setLayout(jdpPrincipalAdmLayout);
-        jdpPrincipalAdmLayout.setHorizontalGroup(
-            jdpPrincipalAdmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
-        );
-        jdpPrincipalAdmLayout.setVerticalGroup(
-            jdpPrincipalAdmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
+        jtNomeAdm.setEnabled(false);
+        jScrollPane1.setViewportView(jtNomeAdm);
+
+        jdpPrincipalAdm.add(jScrollPane1);
+        jScrollPane1.setBounds(610, 11, 120, 30);
 
         getContentPane().add(jdpPrincipalAdm);
         jdpPrincipalAdm.setBounds(0, 0, 740, 440);
 
         jmCadastro.setText("Cadastro");
+        jmCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCadastroActionPerformed(evt);
+            }
+        });
 
         jmiCadAluno.setText("Cadastro Aluno");
         jmiCadAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -97,12 +100,27 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jmCadastro.add(jmiCadProf);
 
         jmiCadDisc.setText("Cadastro Disciplina");
+        jmiCadDisc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadDiscActionPerformed(evt);
+            }
+        });
         jmCadastro.add(jmiCadDisc);
 
         jmiCadTurma.setText("Cadastro Turma");
+        jmiCadTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadTurmaActionPerformed(evt);
+            }
+        });
         jmCadastro.add(jmiCadTurma);
 
         jmiCadAdm.setText("Cadastro ADM");
+        jmiCadAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadAdmActionPerformed(evt);
+            }
+        });
         jmCadastro.add(jmiCadAdm);
 
         jmbTelaAdm.add(jmCadastro);
@@ -192,6 +210,32 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jmiCadAlunoActionPerformed
 
+    private void jmCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadastroActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jmCadastroActionPerformed
+
+    private void jmiCadDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadDiscActionPerformed
+        // TODO add your handling code here:
+        jofCadastroDisciplina telaCadDisciplina = new jofCadastroDisciplina(fachada);
+        jdpPrincipalAdm.add(telaCadDisciplina);
+        telaCadDisciplina.setVisible(true);
+    }//GEN-LAST:event_jmiCadDiscActionPerformed
+
+    private void jmiCadTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadTurmaActionPerformed
+        // TODO add your handling code here:
+        jofCadastroTurma telaCadastroTurma = new jofCadastroTurma(fachada);
+        jdpPrincipalAdm.add(telaCadastroTurma);
+        telaCadastroTurma.setVisible(true);
+    }//GEN-LAST:event_jmiCadTurmaActionPerformed
+
+    private void jmiCadAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadAdmActionPerformed
+        // TODO add your handling code here:
+        jofCadastroAdm telaCadastroAdm = new jofCadastroAdm(fachada);
+        jdpPrincipalAdm.add(telaCadastroAdm);
+        telaCadastroAdm.setVisible(true);
+    }//GEN-LAST:event_jmiCadAdmActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,6 +273,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDesktopPane jdpPrincipalAdm;
     private javax.swing.JMenu jmCadastro;
     private javax.swing.JMenu jmConsultas;
@@ -249,5 +294,6 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiManuDisc;
     private javax.swing.JMenuItem jmiManuProf;
     private javax.swing.JMenuItem jmiManuTurma;
+    private javax.swing.JTextPane jtNomeAdm;
     // End of variables declaration//GEN-END:variables
 }

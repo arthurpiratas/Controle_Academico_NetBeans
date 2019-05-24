@@ -29,6 +29,8 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         this.fachada = fachada;
         
         initComponents();
+        
+        jtNomeAluno.setText(alunoUser.getNome());
     }
 
     /**
@@ -41,10 +43,8 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jtUsuario = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jtNomeAluno = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmConsultas = new javax.swing.JMenu();
         jmiNotas = new javax.swing.JMenuItem();
@@ -63,23 +63,11 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jDesktopPane1.add(jtUsuario);
-        jtUsuario.setBounds(308, 64, 97, 20);
-
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jDesktopPane1.add(jButton1);
-        jButton1.setBounds(310, 150, 73, 23);
-
-        jTextPane1.setEditable(false);
-        jScrollPane1.setViewportView(jTextPane1);
+        jtNomeAluno.setEnabled(false);
+        jScrollPane1.setViewportView(jtNomeAluno);
 
         jDesktopPane1.add(jScrollPane1);
-        jScrollPane1.setBounds(470, 70, 200, 70);
+        jScrollPane1.setBounds(590, 10, 150, 30);
 
         getContentPane().add(jDesktopPane1);
         jDesktopPane1.setBounds(0, 0, 750, 410);
@@ -132,13 +120,6 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        jtUsuario.setText(alunoUser.getNome());
-        this.jTextPane1.setText(alunoUser.getNome());
-        fachada.listaAlunos();
-    }//GEN-LAST:event_jButton1MouseClicked
-
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
         TelaLogin telalogin = new TelaLogin();
@@ -184,12 +165,10 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JMenu jmAlteracoes;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenu jmEnvio;
@@ -200,6 +179,6 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiMatricula;
     private javax.swing.JMenuItem jmiNotas;
     private javax.swing.JMenuItem jmiTurmas;
-    private javax.swing.JTextField jtUsuario;
+    private javax.swing.JTextPane jtNomeAluno;
     // End of variables declaration//GEN-END:variables
 }
