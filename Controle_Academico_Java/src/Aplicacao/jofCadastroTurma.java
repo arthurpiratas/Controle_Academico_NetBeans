@@ -167,6 +167,8 @@ public class jofCadastroTurma extends javax.swing.JInternalFrame {
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
         turma = null;
+        jtNome.setText("");
+        jtCapdaTurma.setText("");
         jbCriar.setEnabled(false);
         jbLimpar.setEnabled(false);
     }//GEN-LAST:event_jbLimparActionPerformed
@@ -212,6 +214,8 @@ public class jofCadastroTurma extends javax.swing.JInternalFrame {
         fachada.insereTurma(turma);
         JOptionPane.showMessageDialog(rootPane, "Turma Cadastrado");
         turma = null;
+        jtNome.setText("");
+        jtCapdaTurma.setText("");
         jbCriar.setEnabled(false);
         jbLimpar.setEnabled(false);
     }//GEN-LAST:event_jbCriarActionPerformed

@@ -136,6 +136,11 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jmConsultas.add(jmiConsDisc);
 
         jmiConsTurma.setText("Turma");
+        jmiConsTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsTurmaActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiConsTurma);
 
         jmiConsProf.setText("Professor");
@@ -206,6 +211,9 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
     private void jmiCnsuAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCnsuAdmActionPerformed
         // TODO add your handling code here:
+        jofConsultaAMD telaConsultaAdm = new jofConsultaAMD(fachada, 1);
+        jdpPrincipalAdm.add(telaConsultaAdm);
+        telaConsultaAdm.setVisible(true);
     }//GEN-LAST:event_jmiCnsuAdmActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
@@ -273,6 +281,13 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         telaConsultaProfessor.setVisible(true);
         
     }//GEN-LAST:event_jmiConsProfActionPerformed
+
+    private void jmiConsTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsTurmaActionPerformed
+        // TODO add your handling code here:
+        jofConsultaTurma telaConsultaTurma = new jofConsultaTurma(fachada, 1);
+        jdpPrincipalAdm.add(telaConsultaTurma); 
+        telaConsultaTurma.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jmiConsTurmaActionPerformed
 
     /**
      * @param args the command line arguments

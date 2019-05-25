@@ -96,11 +96,7 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 		
 	}
 
-	@Override
-	public Turma[] retornaListaTurma() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 	
@@ -153,6 +149,21 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 				removeTurma(listaTurma[i].getNome());
 			}
 		}
+	}
+        
+        
+        @Override
+	public ArrayList<Turma> retornaListaTurma() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Turma> listaTurmas = new ArrayList<Turma>(); 
+		
+			for (int i = 0; i < index; i++) {
+                            listaTurmas.add(this.listaTurma[i]);	
+				
+			}
+		
+		return listaTurmas;
 	}
 	
 	

@@ -298,4 +298,8 @@ public class Fachada {
 	public boolean verificaAlunoMatriculadoTurma(int idTurma, Aluno aluno) {
 		return ctrturma.verificaAlunoMatriculadoTurma(idTurma, aluno);
 	}
+        
+        public ArrayList<Turma> retornaListaTurma() {
+                return ctrturma.retornaListaTurma();
+        }
 }

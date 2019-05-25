@@ -131,5 +131,9 @@ public class ControleTurma {
 	public boolean verificaAlunoMatriculadoTurma(int idTurma, Aluno aluno) {
 		return repTurma.verificaAlunoMatriculadoTurma(idTurma, aluno);
 	}
+        
+        public ArrayList<Turma> retornaListaTurma() {
+                return repTurma.retornaListaTurma();
+        }
 	
 }
