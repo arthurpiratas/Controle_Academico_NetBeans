@@ -239,12 +239,12 @@ public class Fachada {
 		ctrturma.listaTurma();
 	}
 	
-	public boolean verificaDesciplinaPossuiTurma(Disciplina disciplina) {
-		return ctrturma.verificaDesciplinaPossuiTurma(disciplina);
+	public boolean verificaDesciplinaPossuiTurma(int codigo) {
+		return ctrturma.verificaDesciplinaPossuiTurma(codigo);
 	}
 	
-	public boolean verificaProfessorPossuiTurma(Professor professor) {
-		return ctrturma.verificaProfessorPossuiTurma(professor);
+	public boolean verificaProfessorPossuiTurma(int idProfessor) {
+		return ctrturma.verificaProfessorPossuiTurma(idProfessor);
 	}
 	
 	public void excluiTurmaPorDisciplina(int codigo) {

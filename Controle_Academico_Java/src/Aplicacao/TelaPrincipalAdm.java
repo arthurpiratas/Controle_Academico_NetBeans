@@ -128,15 +128,30 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jmConsultas.setText("Consultas");
 
         jmiConsDisc.setText("Disciplina");
+        jmiConsDisc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsDiscActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiConsDisc);
 
         jmiConsTurma.setText("Turma");
         jmConsultas.add(jmiConsTurma);
 
         jmiConsProf.setText("Professor");
+        jmiConsProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsProfActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiConsProf);
 
         jmiConsuAluno.setText("Aluno");
+        jmiConsuAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsuAlunoActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiConsuAluno);
 
         jmiCnsuAdm.setText("Adm");
@@ -235,6 +250,29 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jdpPrincipalAdm.add(telaCadastroAdm);
         telaCadastroAdm.setVisible(true);
     }//GEN-LAST:event_jmiCadAdmActionPerformed
+
+    private void jmiConsuAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsuAlunoActionPerformed
+        // TODO add your handling code here:
+        jofConsultaAluno telaConsultaAluno = new jofConsultaAluno(fachada, 1);
+        jdpPrincipalAdm.add(telaConsultaAluno);
+        telaConsultaAluno.setVisible(true);
+    }//GEN-LAST:event_jmiConsuAlunoActionPerformed
+
+    private void jmiConsDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsDiscActionPerformed
+        // TODO add your handling code here:
+        jofConsultaDisciplina telaConsultaDisciplina = new jofConsultaDisciplina(fachada, 1);
+        jdpPrincipalAdm.add(telaConsultaDisciplina); 
+        telaConsultaDisciplina.setVisible(true);
+    }//GEN-LAST:event_jmiConsDiscActionPerformed
+
+    private void jmiConsProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsProfActionPerformed
+        // TODO add your handling code here:
+        
+        jofConsultaProfessor telaConsultaProfessor = new jofConsultaProfessor(fachada, 1);
+        jdpPrincipalAdm.add(telaConsultaProfessor);
+        telaConsultaProfessor.setVisible(true);
+        
+    }//GEN-LAST:event_jmiConsProfActionPerformed
 
     /**
      * @param args the command line arguments

@@ -20,8 +20,8 @@ public interface IRepositorioTurma {
 	public ArrayList<Turma> retornaListaTurmaAluno(Aluno aluno);
 	public ArrayList<Turma> retornaListaTurmaProfessor(Professor professor);
 	public ArrayList<Turma> retornaListaTurmaSemProfessor();
-	public boolean verificaDesciplinaPossuiTurma(Disciplina disciplina); 
-	public boolean verificaProfessorPossuiTurma(Professor professor); 
+	public boolean verificaDesciplinaPossuiTurma(int codigo); 
+	public boolean verificaProfessorPossuiTurma(int idProfessor); 
 	public void excluiTurmaPorDisciplina(int codigo); 
 	public void excluiTurmaPorProfessor(int idProfessor); 
 	public ArrayList<Turma> RetornaDisponibilidadeTurmasAluno();

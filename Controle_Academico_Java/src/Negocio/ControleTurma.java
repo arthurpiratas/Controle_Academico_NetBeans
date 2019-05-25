@@ -37,12 +37,12 @@ public class ControleTurma {
 		repTurma.listaTurma();
 	}
 	
-	public boolean verificaDesciplinaPossuiTurma(Disciplina disciplina) {
-		return repTurma.verificaDesciplinaPossuiTurma(disciplina);
+	public boolean verificaDesciplinaPossuiTurma(int codigo) {
+		return repTurma.verificaDesciplinaPossuiTurma(codigo);
 	}
 	
-	public boolean verificaProfessorPossuiTurma(Professor professor) {
-		return repTurma.verificaProfessorPossuiTurma(professor); 
+	public boolean verificaProfessorPossuiTurma(int idProfessor) {
+		return repTurma.verificaProfessorPossuiTurma(idProfessor); 
 	}
 	
 	public void excluiTurmaPorDisciplina(int codigo) {

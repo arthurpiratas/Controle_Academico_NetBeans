@@ -188,12 +188,12 @@ public class jofCadastroTurma extends javax.swing.JInternalFrame {
             if(!(fachada.verificaTurmaExiste(nome))){
                 Disciplina disc = (Disciplina) cbDisciplina.getSelectedItem();
                 if(jrPreencher.isSelected()){
-                    turma = new Turma(fachada.retornaProximoIdTurma(), nome, quantidade, disc.getcodigo());
+                    Professor prof = (Professor) cbProfessor.getSelectedItem();
+                    turma = new Turma(fachada.retornaProximoIdTurma(), nome, prof.getId(), quantidade, disc.getcodigo());
                     jbCriar.setEnabled(true);
                     jbLimpar.setEnabled(true);
                 }else if(jrNaoPreencher.isSelected()){
-                    Professor prof = (Professor) cbProfessor.getSelectedItem();
-                    turma = new Turma(fachada.retornaProximoIdTurma(), nome, prof.getId(), quantidade, disc.getcodigo());
+                    turma = new Turma(fachada.retornaProximoIdTurma(), nome, quantidade, disc.getcodigo());
                     jbCriar.setEnabled(true);
                     jbLimpar.setEnabled(true);
                 }else{
