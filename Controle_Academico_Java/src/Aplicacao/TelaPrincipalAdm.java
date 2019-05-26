@@ -188,6 +188,11 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jmManutencao.add(jmiManuAluno);
 
         jmiManuTurma.setText("Turma");
+        jmiManuTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManuTurmaActionPerformed(evt);
+            }
+        });
         jmManutencao.add(jmiManuTurma);
 
         jmiManuDisc.setText("Disciplina");
@@ -336,6 +341,13 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jdpPrincipalAdm.add(telaConsultaAdm);
         telaConsultaAdm.setVisible(true);
     }//GEN-LAST:event_jmiManuAdmActionPerformed
+
+    private void jmiManuTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuTurmaActionPerformed
+        // TODO add your handling code here:
+        jofConsultaTurma telaConsultaTurma = new jofConsultaTurma(fachada, 2);
+        jdpPrincipalAdm.add(telaConsultaTurma); 
+        telaConsultaTurma.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jmiManuTurmaActionPerformed
 
     /**
      * @param args the command line arguments
