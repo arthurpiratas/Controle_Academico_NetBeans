@@ -57,12 +57,10 @@ public class ControleProfessor {
 	
 	public boolean verificaLoginProfessorExiste(String login) {
 		
-		if(repProfessor.verifiaProfessorLogin(login)) {
-				return true;
+		return repProfessor.verifiaProfessorLogin(login);
+				
 						
-		}
 		
-		return false; 
 	}
 	
 	public Professor retornaProfessorLogado(String login, String senha) {

@@ -3,6 +3,7 @@ package Repositorio;
 import java.util.ArrayList;
 
 import Basicas.Aluno;
+import javax.swing.JOptionPane;
 
 public class RepositorioAlunoArray implements IRepositorioAluno{
 	
@@ -35,6 +36,7 @@ public class RepositorioAlunoArray implements IRepositorioAluno{
 	public void alteraAluno(Aluno aluno) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
+                    
 			if(listaAluno[i].getId() == aluno.getId()) {
 				listaAluno[i] = aluno; 
 			}

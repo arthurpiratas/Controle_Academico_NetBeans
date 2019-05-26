@@ -23,11 +23,25 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
     Fachada fachada; 
     
     private DefaultTableModel dtmDisciplina;
+    private Disciplina disciplinaAux;  
     
     public jofConsultaDisciplina(Fachada fachada, int tipoTela) {
         initComponents();
         this.fachada = fachada; 
-       dtmDisciplina  = (DefaultTableModel) jtDisciplina.getModel();
+        dtmDisciplina  = (DefaultTableModel) jtDisciplina.getModel();
+        disciplinaAux = null;
+        
+        if(tipoTela == 1){
+            jpAlteraDisciplina.setEnabled(false);
+            jpAlteraDisciplina.setVisible(false);
+            jtaEmenta.setEditable(false);
+            this.title = "Consulta Disiciplinas";
+        }else{
+            jpConsultaDisciplina.setEnabled(false);
+            jpConsultaDisciplina.setVisible(false);
+            jtaEmenta.setEditable(true);
+            this.title = "Altera Disiciplinas";
+        }
         
         for (Disciplina disciplina : fachada.retornaListaDisciplina()) {
             Object[] dados = {disciplina.getcodigo(), disciplina.getNome()};
@@ -45,33 +59,95 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgNome = new javax.swing.ButtonGroup();
         jpAlteraDisciplina = new javax.swing.JPanel();
+        jbSair2 = new javax.swing.JButton();
+        jbAtualizar2 = new javax.swing.JButton();
+        jbLimpar = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jtNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jtCodigo = new javax.swing.JTextField();
+        jrNaoAltera = new javax.swing.JRadioButton();
+        jrAltera = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtDisciplina = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtaEmenta = new javax.swing.JTextArea();
         jpConsultaDisciplina = new javax.swing.JPanel();
         jbExcluirAluno = new javax.swing.JButton();
         jbSair = new javax.swing.JButton();
         jbAtualizar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtaEmenta = new javax.swing.JTextArea();
 
         setTitle("Consulta Disciplina");
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout jpAlteraDisciplinaLayout = new javax.swing.GroupLayout(jpAlteraDisciplina);
-        jpAlteraDisciplina.setLayout(jpAlteraDisciplinaLayout);
-        jpAlteraDisciplinaLayout.setHorizontalGroup(
-            jpAlteraDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
-        );
-        jpAlteraDisciplinaLayout.setVerticalGroup(
-            jpAlteraDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
+        jpAlteraDisciplina.setLayout(null);
+
+        jbSair2.setText("Sair");
+        jbSair2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSair2ActionPerformed(evt);
+            }
+        });
+        jpAlteraDisciplina.add(jbSair2);
+        jbSair2.setBounds(450, 73, 100, 30);
+
+        jbAtualizar2.setText("Atualizar");
+        jbAtualizar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAtualizar2ActionPerformed(evt);
+            }
+        });
+        jpAlteraDisciplina.add(jbAtualizar2);
+        jbAtualizar2.setBounds(450, 20, 100, 30);
+
+        jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
+        jpAlteraDisciplina.add(jbLimpar);
+        jbLimpar.setBounds(310, 20, 110, 30);
+
+        jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
+        jpAlteraDisciplina.add(jbAlterar);
+        jbAlterar.setBounds(310, 70, 110, 30);
+
+        jLabel1.setText("Código");
+        jpAlteraDisciplina.add(jLabel1);
+        jLabel1.setBounds(10, 20, 70, 14);
+        jpAlteraDisciplina.add(jtNome);
+        jtNome.setBounds(70, 60, 100, 30);
+
+        jLabel2.setText("Nome");
+        jpAlteraDisciplina.add(jLabel2);
+        jLabel2.setBounds(10, 70, 50, 14);
+
+        jtCodigo.setEditable(false);
+        jpAlteraDisciplina.add(jtCodigo);
+        jtCodigo.setBounds(70, 10, 100, 30);
+
+        btgNome.add(jrNaoAltera);
+        jrNaoAltera.setText("Ñ Altera Nome");
+        jpAlteraDisciplina.add(jrNaoAltera);
+        jrNaoAltera.setBounds(190, 60, 110, 23);
+
+        btgNome.add(jrAltera);
+        jrAltera.setText("Altera Nome");
+        jpAlteraDisciplina.add(jrAltera);
+        jrAltera.setBounds(190, 20, 100, 23);
 
         getContentPane().add(jpAlteraDisciplina);
-        jpAlteraDisciplina.setBounds(20, 10, 540, 50);
+        jpAlteraDisciplina.setBounds(0, 10, 560, 110);
 
         jtDisciplina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,27 +181,17 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 130, 310, 200);
-
-        jtaEmenta.setEditable(false);
-        jtaEmenta.setColumns(20);
-        jtaEmenta.setRows(5);
-        jScrollPane1.setViewportView(jtaEmenta);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(336, 130, 230, 200);
+        jPanel2.setBounds(0, 200, 320, 210);
 
         jbExcluirAluno.setText("Exclui Disciplina");
         jbExcluirAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -169,13 +235,21 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
                     .addComponent(jbAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbExcluirAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(273, 273, 273))
         );
 
         getContentPane().add(jpConsultaDisciplina);
-        jpConsultaDisciplina.setBounds(20, 70, 527, 45);
+        jpConsultaDisciplina.setBounds(10, 130, 527, 50);
 
-        setBounds(0, 0, 586, 368);
+        jtaEmenta.setEditable(false);
+        jtaEmenta.setColumns(20);
+        jtaEmenta.setRows(5);
+        jScrollPane1.setViewportView(jtaEmenta);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(330, 200, 230, 210);
+
+        setBounds(0, 0, 586, 461);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbExcluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirAlunoActionPerformed
@@ -223,9 +297,10 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         
         if(jtDisciplina.getSelectedRow() != -1){
             if(fachada.verificaDisciplinaExiste(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 1).toString())){
-                Disciplina disciplinaAUX = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
-                jtaEmenta.setText(disciplinaAUX.getEmenta());
-                
+                disciplinaAux = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
+                jtaEmenta.setText(disciplinaAux.getEmenta());
+                jtCodigo.setText(String.valueOf(disciplinaAux.getcodigo()));
+                jtNome.setText(disciplinaAux.getNome());
             }
         }
         
@@ -236,34 +311,102 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         
         if(jtDisciplina.getSelectedRow() != -1){
             if(fachada.verificaDisciplinaExiste(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 1).toString())){
-                Disciplina disciplinaAUX = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
-                jtaEmenta.setText(disciplinaAUX.getEmenta());
+                disciplinaAux = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
+                jtaEmenta.setText(disciplinaAux.getEmenta());
+                jtCodigo.setText(String.valueOf(disciplinaAux.getcodigo()));
+                jtNome.setText(disciplinaAux.getNome());
                 
             }
         }
         
     }//GEN-LAST:event_jtDisciplinaMouseClicked
 
+    private void jbSair2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSair2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbSair2ActionPerformed
+
+    private void jbAtualizar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAtualizar2ActionPerformed
+        // TODO add your handling code here:
+        limpaTabela();
+        limpaCampos();
+        disciplinaAux = null;
+        for (Disciplina disciplina : fachada.retornaListaDisciplina()) {
+            Object[] dados = {disciplina.getcodigo(), disciplina.getNome()};
+            dtmDisciplina.addRow(dados);
+        }
+    }//GEN-LAST:event_jbAtualizar2ActionPerformed
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        // TODO add your handling code here:
+        limpaCampos();
+
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+
+        if(jtDisciplina.getSelectedRow() != -1 && disciplinaAux != null ){
+            disciplinaAux.setEmenta(jtaEmenta.getText());
+            if(jrAltera.isSelected()){
+                if(!(fachada.verificaDisciplinaExiste(jtNome.getText()))){
+                    disciplinaAux.setNome(jtNome.getText());
+                    fachada.alteraDisciplina(disciplinaAux);
+                    limpaTabela();
+                    JOptionPane.showMessageDialog(rootPane, "Disciplina Alterado, favor Atualizar a Tabela!!!");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Nome já existe!!");
+                }
+            }else if(jrNaoAltera.isSelected()){
+                fachada.alteraDisciplina(disciplinaAux);
+                limpaTabela();
+                JOptionPane.showMessageDialog(rootPane, "Disciplina Alterado, favor Atualizar a Tabela!!!");
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Selecione uma opção");
+            }
+            limpaCampos();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
+        }
+
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
     public void limpaTabela(){
         
-        if (dtmDisciplina.getRowCount() > 0){
-            for (int i=0;i<=dtmDisciplina.getRowCount();i++){
+        if (dtmDisciplina.getRowCount() >= 0){
+            for (int i=dtmDisciplina.getRowCount();i >0;i--){
                 dtmDisciplina.removeRow(0);
             }            
         }
     }
     
+    public void limpaCampos(){
+        jtCodigo.setText("");
+        jtNome.setText("");
+        jtaEmenta.setText("");
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgNome;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbAtualizar;
+    private javax.swing.JButton jbAtualizar2;
     private javax.swing.JButton jbExcluirAluno;
+    private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSair;
+    private javax.swing.JButton jbSair2;
     private javax.swing.JPanel jpAlteraDisciplina;
     private javax.swing.JPanel jpConsultaDisciplina;
+    private javax.swing.JRadioButton jrAltera;
+    private javax.swing.JRadioButton jrNaoAltera;
+    private javax.swing.JTextField jtCodigo;
     private javax.swing.JTable jtDisciplina;
+    private javax.swing.JTextField jtNome;
     private javax.swing.JTextArea jtaEmenta;
     // End of variables declaration//GEN-END:variables
 }

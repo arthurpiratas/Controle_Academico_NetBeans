@@ -74,7 +74,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jScrollPane1.setBounds(610, 11, 120, 30);
 
         getContentPane().add(jdpPrincipalAdm);
-        jdpPrincipalAdm.setBounds(0, 0, 740, 440);
+        jdpPrincipalAdm.setBounds(0, 0, 760, 480);
 
         jmCadastro.setText("Cadastro");
         jmCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -172,18 +172,38 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jmManutencao.setText("Manutenção");
 
         jmiManuProf.setText("Professor");
+        jmiManuProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManuProfActionPerformed(evt);
+            }
+        });
         jmManutencao.add(jmiManuProf);
 
         jmiManuAluno.setText("Aluno");
+        jmiManuAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManuAlunoActionPerformed(evt);
+            }
+        });
         jmManutencao.add(jmiManuAluno);
 
         jmiManuTurma.setText("Turma");
         jmManutencao.add(jmiManuTurma);
 
         jmiManuDisc.setText("Disciplina");
+        jmiManuDisc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManuDiscActionPerformed(evt);
+            }
+        });
         jmManutencao.add(jmiManuDisc);
 
         jmiManuAdm.setText("Adm");
+        jmiManuAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiManuAdmActionPerformed(evt);
+            }
+        });
         jmManutencao.add(jmiManuAdm);
 
         jmbTelaAdm.add(jmManutencao);
@@ -198,7 +218,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
         setJMenuBar(jmbTelaAdm);
 
-        setSize(new java.awt.Dimension(762, 499));
+        setSize(new java.awt.Dimension(778, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -288,6 +308,34 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jdpPrincipalAdm.add(telaConsultaTurma); 
         telaConsultaTurma.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jmiConsTurmaActionPerformed
+
+    private void jmiManuProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuProfActionPerformed
+        // TODO add your handling code here:
+        jofConsultaProfessor telaConsultaProfessor = new jofConsultaProfessor(fachada, 2);
+        jdpPrincipalAdm.add(telaConsultaProfessor);
+        telaConsultaProfessor.setVisible(true);
+    }//GEN-LAST:event_jmiManuProfActionPerformed
+
+    private void jmiManuAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuAlunoActionPerformed
+        // TODO add your handling code here:
+        jofConsultaAluno tleaAlteraAluno =  new jofConsultaAluno(fachada, 2);
+        jdpPrincipalAdm.add(tleaAlteraAluno);
+        tleaAlteraAluno.setVisible(true);
+    }//GEN-LAST:event_jmiManuAlunoActionPerformed
+
+    private void jmiManuDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuDiscActionPerformed
+        // TODO add your handling code here:
+        jofConsultaDisciplina telaConsultaDisciplina = new jofConsultaDisciplina(fachada, 2);
+        jdpPrincipalAdm.add(telaConsultaDisciplina); 
+        telaConsultaDisciplina.setVisible(true);
+    }//GEN-LAST:event_jmiManuDiscActionPerformed
+
+    private void jmiManuAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuAdmActionPerformed
+        // TODO add your handling code here:
+        jofConsultaAMD telaConsultaAdm = new jofConsultaAMD(fachada, 2);
+        jdpPrincipalAdm.add(telaConsultaAdm);
+        telaConsultaAdm.setVisible(true);
+    }//GEN-LAST:event_jmiManuAdmActionPerformed
 
     /**
      * @param args the command line arguments

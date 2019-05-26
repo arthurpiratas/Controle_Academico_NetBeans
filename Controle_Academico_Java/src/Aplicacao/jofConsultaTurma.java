@@ -197,8 +197,8 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
     
     public void limpaTabela(){
         
-        if (dtmTurmas.getRowCount() > 0){
-            for (int i=0;i<=dtmTurmas.getRowCount();i++){
+        if (dtmTurmas.getRowCount() >= 0){
+            for (int i=dtmTurmas.getRowCount();i > 0;i--){
                 dtmTurmas.removeRow(0);
             }            
         }
