@@ -14,5 +14,6 @@ public interface IRepositorioDisciplina {
 	public void listaDisciplinas(); 
 	public ArrayList<Disciplina> retornaListaDisciplina(); 
 	public int retornaProximoID();
+        public Disciplina buscaDisciplina(String  nome);
 	
 }

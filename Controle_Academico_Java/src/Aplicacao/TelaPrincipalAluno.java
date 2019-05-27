@@ -42,18 +42,15 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jdpAlunos = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtNomeAluno = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmConsultas = new javax.swing.JMenu();
         jmiNotas = new javax.swing.JMenuItem();
         jmiTurmas = new javax.swing.JMenuItem();
-        jmiAtividades = new javax.swing.JMenuItem();
         jmMatricula = new javax.swing.JMenu();
         jmiMatricula = new javax.swing.JMenuItem();
-        jmAlteracoes = new javax.swing.JMenu();
-        jmiAlteracoes = new javax.swing.JMenuItem();
         jmEnvio = new javax.swing.JMenu();
         jmiEnvio = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -63,41 +60,46 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jtNomeAluno.setEnabled(false);
+        jtNomeAluno.setEditable(false);
         jScrollPane1.setViewportView(jtNomeAluno);
 
-        jDesktopPane1.add(jScrollPane1);
-        jScrollPane1.setBounds(590, 10, 150, 30);
+        jdpAlunos.add(jScrollPane1);
+        jScrollPane1.setBounds(630, 10, 150, 30);
 
-        getContentPane().add(jDesktopPane1);
-        jDesktopPane1.setBounds(0, 0, 750, 410);
+        getContentPane().add(jdpAlunos);
+        jdpAlunos.setBounds(0, 0, 790, 470);
 
         jmConsultas.setText("Consultas");
 
-        jmiNotas.setText("Notas");
+        jmiNotas.setText("Notas e Atividades");
+        jmiNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiNotasActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiNotas);
 
         jmiTurmas.setText("Turmas");
+        jmiTurmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTurmasActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiTurmas);
-
-        jmiAtividades.setText("Atividades");
-        jmConsultas.add(jmiAtividades);
 
         jMenuBar1.add(jmConsultas);
 
         jmMatricula.setText("Matricula");
 
         jmiMatricula.setText("Turma");
+        jmiMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMatriculaActionPerformed(evt);
+            }
+        });
         jmMatricula.add(jmiMatricula);
 
         jMenuBar1.add(jmMatricula);
-
-        jmAlteracoes.setText("Alterações");
-
-        jmiAlteracoes.setText("Turma");
-        jmAlteracoes.add(jmiAlteracoes);
-
-        jMenuBar1.add(jmAlteracoes);
 
         jmEnvio.setText("Envio");
 
@@ -116,7 +118,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(768, 466));
+        setSize(new java.awt.Dimension(810, 536));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,6 +129,28 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         telalogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jmiTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTurmasActionPerformed
+        // TODO add your handling code here:
+        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(fachada, alunoUser, 1);
+        jdpAlunos.add(consultaNotas);
+        consultaNotas.setVisible(true);
+        
+    }//GEN-LAST:event_jmiTurmasActionPerformed
+
+    private void jmiNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNotasActionPerformed
+        // TODO add your handling code here:
+        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(fachada, alunoUser, 3);
+        jdpAlunos.add(consultaNotas);
+        consultaNotas.setVisible(true);
+    }//GEN-LAST:event_jmiNotasActionPerformed
+
+    private void jmiMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMatriculaActionPerformed
+        // TODO add your handling code here:
+        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(fachada, alunoUser, 2);
+        jdpAlunos.add(consultaNotas);
+        consultaNotas.setVisible(true);
+    }//GEN-LAST:event_jmiMatriculaActionPerformed
    
     /**
      * @param args the command line arguments
@@ -165,16 +189,13 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenu jmAlteracoes;
+    private javax.swing.JDesktopPane jdpAlunos;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenu jmEnvio;
     private javax.swing.JMenu jmMatricula;
-    private javax.swing.JMenuItem jmiAlteracoes;
-    private javax.swing.JMenuItem jmiAtividades;
     private javax.swing.JMenuItem jmiEnvio;
     private javax.swing.JMenuItem jmiMatricula;
     private javax.swing.JMenuItem jmiNotas;

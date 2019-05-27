@@ -2,24 +2,26 @@ package Basicas;
 
 public class Rendimento_Escolar {
 	
-	private Turma turma; 
-	private Aluno aluno; 
-	private int nota1; 
-	private int nota2; 
+	private int turmaID; 
+	private int alunoID; 
+	private float nota1; 
+	private float nota2; 
 	private String trabalhos[]; 
 	private float notasTrabalhos[];
+        private float media;
+        private String status;
 	
 	
-	public Rendimento_Escolar(Turma turma, Aluno aluno, int nota1, int nota2) {
+	public Rendimento_Escolar(int turma, int aluno, int nota1, int nota2) {
 		 
-		this.turma = turma;
-		this.aluno = aluno;
+		this.turmaID = turma;
+		this.alunoID = aluno;
 		this.nota1 = nota1;
 		this.nota2 = nota2;
 		this.trabalhos = new String[4];
 		
 		for (int i = 0; i < trabalhos.length; i++) {
-			this.trabalhos[i] = " "; 
+			this.trabalhos[i] = ""; 
 		}
 		
 		this.notasTrabalhos = new float[4];
@@ -30,16 +32,18 @@ public class Rendimento_Escolar {
 		
 	}
 	
-	public Rendimento_Escolar(Turma turma, Aluno aluno) {
+	public Rendimento_Escolar(int turma, int aluno) {
 		 
-		this.turma = turma;
-		this.aluno = aluno;
-		this.nota1 = 0;
-		this.nota2 = 0;
+		this.turmaID = turma;
+		this.alunoID = aluno;
+		this.nota1 = 0.0f;
+		this.nota2 = 0.0f;
+                this.media = 0.0f;
+                this.status = "Matriculado";
 		this.trabalhos = new String[4];
 		
 		for (int i = 0; i < trabalhos.length; i++) {
-			this.trabalhos[i] = " "; 
+			this.trabalhos[i] = ""; 
 		}
 		
 		this.notasTrabalhos = new float[4];
@@ -50,47 +54,53 @@ public class Rendimento_Escolar {
 		
 	}
 
-	public Rendimento_Escolar(Turma turma, Aluno aluno, int nota1, int nota2, String[] trabalhos,
-			float[] notasTrabalhos) {
-		 
-		this.turma = turma;
-		this.aluno = aluno;
-		this.nota1 = nota1;
-		this.nota2 = nota2;
-		this.trabalhos = trabalhos;
-		this.notasTrabalhos = notasTrabalhos;
+	
+	public int getTurma() {
+		return turmaID;
 	}
 
-	public Turma getTurma() {
-		return turma;
+	public void setTurma(int turma) {
+		this.turmaID = turma;
 	}
 
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	public int getAluno() {
+		return alunoID;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public void setAluno(int aluno) {
+		this.alunoID = aluno;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public int getNota1() {
+	public float getNota1() {
 		return nota1;
 	}
 
-	public void setNota1(int nota1) {
+	public void setNota1(float nota1) {
 		this.nota1 = nota1;
 	}
 
-	public int getNota2() {
+	public float getNota2() {
 		return nota2;
 	}
 
-	public void setNota2(int nota2) {
+	public void setNota2(float nota2) {
 		this.nota2 = nota2;
+	}
+        
+        public float getMedia() {
+		return media;
+	}
+
+	public void setMedia(float media) {
+		this.media = media;
+	}
+        
+        public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String[] getTrabalhos() {

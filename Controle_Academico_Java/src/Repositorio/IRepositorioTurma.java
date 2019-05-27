@@ -29,6 +29,8 @@ public interface IRepositorioTurma {
 	public ArrayList<Aluno> retornaAlunoNaTurma(ControleAluno ctrAluno, int idTurma); 
 	public int retornaProximoID();
 	public boolean verificaAlunoMatriculadoTurma (int idTurma, Aluno aluno);
+        public ArrayList<Turma> RetornaTurmaDisponivelParaAluno(Aluno aluno);
+        public Turma buscaTurma(String  nome);
         
 	
 	

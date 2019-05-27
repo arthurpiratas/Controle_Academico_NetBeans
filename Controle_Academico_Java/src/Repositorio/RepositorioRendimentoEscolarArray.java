@@ -35,17 +35,17 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	public void alteraRendimento(Rendimento_Escolar rendimentoEscolar) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getAluno().getMatricula() == rendimentoEscolar.getAluno().getMatricula() && listaRendimentoEscola[i].getTurma().getId() == rendimentoEscolar.getTurma().getId()) {
+			if(listaRendimentoEscola[i].getAluno() == rendimentoEscolar.getAluno() && listaRendimentoEscola[i].getTurma() == rendimentoEscolar.getTurma()) {
 				listaRendimentoEscola[i] = rendimentoEscolar; 
 			}
 		}
 	}
 
 	@Override
-	public void removeRendimento(Aluno aluno, Turma turma) {
+	public void removeRendimento(int aluno, int turma) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getAluno().getMatricula() == aluno.getMatricula() && listaRendimentoEscola[i].getTurma().getId() == turma.getId()) {
+			if(listaRendimentoEscola[i].getAluno() == aluno && listaRendimentoEscola[i].getTurma() == turma) {
 					
 				listaRendimentoEscola[i] = listaRendimentoEscola[index-1]; 
 				index -= 1;
@@ -55,12 +55,12 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	}
 
 	@Override
-	public Rendimento_Escolar buscaRendimento_Escolar(Aluno aluno, Turma turma) {
+	public Rendimento_Escolar buscaRendimento_Escolar(int aluno, int turma) {
 		// TODO Auto-generated method stub
 		Rendimento_Escolar rendimentoEscolar = null; 
 		
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getAluno().getMatricula() == aluno.getMatricula() && listaRendimentoEscola[i].getTurma().getId() == turma.getId()) {
+			if(listaRendimentoEscola[i].getAluno() == aluno && listaRendimentoEscola[i].getTurma() == turma) {
 				rendimentoEscolar =  listaRendimentoEscola[i]; 
 				
 			}
@@ -70,11 +70,11 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	}
 
 	@Override
-	public boolean verificaRendimento_Escolar(Aluno aluno, Turma turma) {
+	public boolean verificaRendimento_Escolar(int aluno, int turma) {
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getAluno().getMatricula() == aluno.getMatricula() && listaRendimentoEscola[i].getTurma().getId() == turma.getId()) {
+			if(listaRendimentoEscola[i].getAluno()  == aluno && listaRendimentoEscola[i].getTurma() == turma) {
 				return true; 
 				
 			}
@@ -84,12 +84,12 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	}
 
 	@Override
-	public void listaRendimento_EscolarAluno(Aluno aluno) {
+	public void listaRendimento_EscolarAluno(int aluno) {
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getAluno().getMatricula().equals(aluno.getMatricula())) {
-				System.out.println("Nome" + listaRendimentoEscola[i].getAluno().getNome() + "Nota 1" + listaRendimentoEscola[i].getNota1());
+			if(listaRendimentoEscola[i].getAluno() == aluno) {
+				System.out.println("Nome" + listaRendimentoEscola[i].getAluno() + "Nota 1" + listaRendimentoEscola[i].getNota1());
 				
 			}
 		}
@@ -97,11 +97,11 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	}
 
 	@Override
-	public void listaRendimento_EscolarTurma(Turma turma) {
+	public void listaRendimento_EscolarTurma(int turma) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getTurma().getNome().equals(turma.getNome())) {
-				System.out.println("Nome" + listaRendimentoEscola[i].getAluno().getNome() + "Nota 1" + listaRendimentoEscola[i].getNota1());
+			if(listaRendimentoEscola[i].getTurma() == turma) {
+				System.out.println("Nome" + listaRendimentoEscola[i].getAluno() + "Nota 1" + listaRendimentoEscola[i].getNota1());
 				
 			}
 		}
@@ -109,23 +109,23 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	}
 
 	@Override
-	public Rendimento_Escolar[] retornaListaRendimento_EscolarAluno(Aluno aluno) {
+	public Rendimento_Escolar[] retornaListaRendimento_EscolarAluno(int aluno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Rendimento_Escolar[] retornaListaRendimento_EscolarTurma(Aluno turma) {
+	public Rendimento_Escolar[] retornaListaRendimento_EscolarTurma(int turma) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean verificaRendimentoEscolarPossuiAluno(Aluno aluno) {
+	public boolean verificaRendimentoEscolarPossuiAluno(int aluno) {
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getAluno().getId() == aluno.getId()) {
+			if(listaRendimentoEscola[i].getAluno() == aluno) {
 				return true; 
 			}
 		}
@@ -134,11 +134,11 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 	}
 
 	@Override
-	public boolean verificaRendimentoEscolarPossuiTurma(Turma turma) {
+	public boolean verificaRendimentoEscolarPossuiTurma(int turma) {
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
-			if(listaRendimentoEscola[i].getTurma().getId() == turma.getId()) {
+			if(listaRendimentoEscola[i].getTurma()  == turma) {
 				return true; 
 			}
 		}

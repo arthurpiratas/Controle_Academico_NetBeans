@@ -18,31 +18,31 @@ public class ControleRendimentoEscolar {
 		repRendimentoEscolar.alteraRendimento(rendimentoEscolar);
 	}
 	
-	public void removeRendimentoEscolar(Aluno aluno, Turma turma) {
+	public void removeRendimentoEscolar(int aluno, int turma) {
 		repRendimentoEscolar.removeRendimento(aluno, turma);
 	}
 	
-	public Rendimento_Escolar buscaRendimentoEscolar(Aluno aluno, Turma turma) {
+	public Rendimento_Escolar buscaRendimentoEscolar(int aluno, int turma) {
 		return repRendimentoEscolar.buscaRendimento_Escolar(aluno, turma);
 	}
 	
-	public boolean verificaRendimentoEscolaExiste(Aluno aluno, Turma turma) {
+	public boolean verificaRendimentoEscolaExiste(int aluno, int turma) {
 		return repRendimentoEscolar.verificaRendimento_Escolar(aluno, turma); 
 	}
 	
-	public void listaRendimentoEscolarAluno(Aluno aluno) {
+	public void listaRendimentoEscolarAluno(int aluno) {
 		repRendimentoEscolar.listaRendimento_EscolarAluno(aluno);
 	}
 	
-	public void listaRendimentoEscolarTurma(Turma turma) {
+	public void listaRendimentoEscolarTurma(int turma) {
 		repRendimentoEscolar.listaRendimento_EscolarTurma(turma);
 	}
 	
-	public boolean verificaRendimentoEscolarPossuiAluno(Aluno aluno) {
+	public boolean verificaRendimentoEscolarPossuiAluno(int aluno) {
 		return repRendimentoEscolar.verificaRendimentoEscolarPossuiAluno(aluno); 
 	}
 	
-	public boolean verificaRendimentoEscolarPossuiTurma(Turma turma) {
+	public boolean verificaRendimentoEscolarPossuiTurma(int turma) {
 		return repRendimentoEscolar.verificaRendimentoEscolarPossuiTurma(turma);
 	}
 

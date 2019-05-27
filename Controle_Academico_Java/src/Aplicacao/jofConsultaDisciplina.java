@@ -31,6 +31,8 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         dtmDisciplina  = (DefaultTableModel) jtDisciplina.getModel();
         disciplinaAux = null;
         
+        limpaTabela();
+        
         if(tipoTela == 1){
             jpAlteraDisciplina.setEnabled(false);
             jpAlteraDisciplina.setVisible(false);

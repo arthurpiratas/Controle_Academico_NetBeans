@@ -9,6 +9,7 @@ import Basicas.Administrador;
 import Basicas.Aluno;
 import Basicas.Disciplina;
 import Basicas.Professor;
+import Basicas.Turma;
 import Negocio.Fachada;
 import javax.swing.JOptionPane;
 
@@ -24,30 +25,52 @@ public class TelaLogin extends javax.swing.JFrame {
     
     
     Fachada fachada;  
+    int i = 0;
     
     public TelaLogin() {
         fachada = Fachada.getInstance();
-        Aluno aluno1 = new Aluno(12346, "Arthur", null, 2, "arthur1", "1234", "123456");
-        if(!(fachada.verificaAlunoExiste(aluno1.getMatricula()))){
-                fachada.insereAluno(aluno1);
-         }
-        Professor professor = new Professor(0, "joão", "Professor Matemática", null, "joao1", "1234"); 
-            
-            if(!(fachada.verificaProfessorExiste(professor.getNome()))){
-                fachada.insereProfessor(professor);
-            }
-        Administrador adm = new Administrador(0, "pedro", null, "pedro1", "1234");
-
-            if(!(fachada.verificaADMExise(adm.getNome()))){
-                fachada.insereADM(adm);
-            }
-         Disciplina disciplina = new Disciplina(0, "Português", "Nada"); 
-         
-         if(!(fachada.verificaDisciplinaExiste(disciplina.getNome()))){
-                fachada.insereDisciplina(disciplina);
-            }
-         
-         
+        
+        if(!(fachada.verificaADMExise("pedro"))){
+            Aluno aluno1 = new Aluno(12346, "Arthur", null, 2, "arthur1", "1234", "223456");
+            Aluno aluno2 = new Aluno(12347, "Ana", null, 1, "ana1", "1234", "123456");
+            Professor professor = new Professor(0, "joão", "Matemática", null, "joao1", "1234"); 
+            Professor professor2 = new Professor(1, "Caio", "Geografia", null, "joao2", "1234");
+            Administrador adm = new Administrador(0, "pedro", null, "pedro1", "1234");
+            Disciplina disciplina = new Disciplina(0, "Português", "Nada");
+            Disciplina disciplina2 = new Disciplina(1, "Inglês", "Sabe");
+            Disciplina disciplina3 = new Disciplina(2, "Francês", "Três");
+            Turma turma = new Turma(0, "TM01", 2, 0);
+            Turma turma2 = new Turma(1, "TM02", 50, 1);
+            Turma turma3 = new Turma(2, "TM03", 10, 2);
+            Turma turma4 = new Turma(3, "TM04", 1, 2, 0);
+            Turma turma5 = new Turma(4, "TM05", 0, 10, 0);
+            Turma turma6 = new Turma(5, "TM06", 0, 50, 2);
+            Turma turma7 = new Turma(6, "TM07", 1, 1, 1);
+            Turma turma8 = new Turma(7, "TM08", 0, 25, 1);
+            fachada.insereAluno(aluno1);
+            fachada.insereAluno(aluno2);
+            fachada.insereProfessor(professor);
+            fachada.insereProfessor(professor2);
+            fachada.insereADM(adm);
+            fachada.insereDisciplina(disciplina);
+            fachada.insereDisciplina(disciplina2);
+            fachada.insereDisciplina(disciplina3);
+            fachada.insereTurma(turma);
+            fachada.insereTurma(turma2);
+            fachada.insereTurma(turma3);
+            fachada.insereTurma(turma4);
+            fachada.insereTurma(turma5);
+            fachada.insereTurma(turma6);
+            fachada.insereTurma(turma7);
+            fachada.insereTurma(turma8);
+            fachada.insereAlunoEmTurma(turma7, aluno1);
+            fachada.insereAlunoEmTurma(turma5, aluno1);
+            fachada.insereAlunoEmTurma(turma4, aluno1);
+            fachada.insereAlunoEmTurma(turma6, aluno2);
+            fachada.insereAlunoEmTurma(turma5, aluno2);
+            fachada.insereAlunoEmTurma(turma4, aluno2);
+            i++;
+        }
          fachada.listaDisciplina();
          fachada.listaADM();   
          fachada.listaProfessor();
@@ -154,7 +177,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 if(fachada.verificaLoginAluno(login, senha)){
                     aluno = fachada.retornaAlunoLogado(login, senha);
                     
-                    JOptionPane.showMessageDialog(rootPane, "Aluno: " + aluno.getNome() + "Logado");
+                    JOptionPane.showMessageDialog(rootPane, "Aluno: " + aluno.getNome() + " logado");
                     TelaPrincipalAluno telaAluno = new TelaPrincipalAluno(aluno, fachada);
                     
                     telaAluno.setVisible(true);

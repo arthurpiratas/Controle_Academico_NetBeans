@@ -82,7 +82,7 @@
     <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+    <Container class="javax.swing.JDesktopPane" name="jdpProfessor">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="0" width="770" height="450"/>
@@ -99,7 +99,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="645" y="11" width="115" height="30"/>
+              <AbsoluteConstraints x="620" y="11" width="140" height="30"/>
             </Constraint>
           </Constraints>
 
@@ -107,7 +107,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="jtNomeprof">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

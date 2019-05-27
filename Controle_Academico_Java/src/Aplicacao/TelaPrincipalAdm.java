@@ -67,11 +67,11 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jtNomeAdm.setEnabled(false);
+        jtNomeAdm.setEditable(false);
         jScrollPane1.setViewportView(jtNomeAdm);
 
         jdpPrincipalAdm.add(jScrollPane1);
-        jScrollPane1.setBounds(610, 11, 120, 30);
+        jScrollPane1.setBounds(610, 10, 140, 30);
 
         getContentPane().add(jdpPrincipalAdm);
         jdpPrincipalAdm.setBounds(0, 0, 760, 480);

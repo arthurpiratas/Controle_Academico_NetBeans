@@ -32,6 +32,8 @@ public class jofConsultaProfessor extends javax.swing.JInternalFrame {
         professorAUX = null;
         
         
+        limpaTabela();
+        
         for (Professor professor : fachada.retornaListaProfessor()) {
             Object[] dados = {professor.getId(), professor.getNome(), professor.getCargo(), professor.getDataDeNascimento(), professor.getNomeUsuario()};
             dtmProfessor.addRow(dados);

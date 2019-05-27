@@ -28,6 +28,10 @@ public class ControleTurma {
 	public Turma buscaTurma(int id) {
 		return repTurma.buscaTurma(id); 
 	}
+        
+        public Turma buscaTurma(String  nome) {
+                return repTurma.buscaTurma(nome);
+        }
 	
 	public boolean verificaTurmaExiste(String nome) {
 		return repTurma.verificaTurmaExise(nome);  
@@ -134,6 +138,10 @@ public class ControleTurma {
         
         public ArrayList<Turma> retornaListaTurma() {
                 return repTurma.retornaListaTurma();
+        }
+        
+        public ArrayList<Turma> RetornaTurmaDisponivelParaAluno(Aluno aluno){
+               return repTurma.RetornaTurmaDisponivelParaAluno(aluno);
         }
 	
 }

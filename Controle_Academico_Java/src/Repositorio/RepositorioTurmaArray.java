@@ -67,6 +67,21 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 		
 		return turma;
 	}
+        
+        @Override
+	public Turma buscaTurma(String  nome) {
+		// TODO Auto-generated method stub
+		
+		Turma turma = null; 
+		
+		for (int i = 0; i < index; i++) {
+			if(listaTurma[i].getNome().equals(nome)) {
+				turma = listaTurma[i]; 
+			}
+		}
+		
+		return turma;
+	}
 
 	@Override
 	public boolean verificaTurmaExise(String nome) {
@@ -196,6 +211,25 @@ public class RepositorioTurmaArray implements IRepositorioTurma{
 				listaTurma.add(this.listaTurma[i]); 
 			}
 		}
+		
+		return listaTurma;
+	}
+        
+        @Override
+        public ArrayList<Turma> RetornaTurmaDisponivelParaAluno(Aluno aluno) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Turma> listaTurma = new ArrayList<Turma>();
+		
+		for (int i = 0; i < index; i++) {
+			if(this.listaTurma[i].getQtdAlunoTurma() < this.listaTurma[i].getCapacidadeDaTurma()) {
+                            if(!(verificaAlunoMatriculadoTurma(this.listaTurma[i].getId(), aluno))){
+                                if(this.listaTurma[i].getProfessor() != -1){
+                                    listaTurma.add(this.listaTurma[i]);
+                                }
+                            }
+                        }
+                    }
 		
 		return listaTurma;
 	}

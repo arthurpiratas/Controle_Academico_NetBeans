@@ -31,6 +31,9 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
         alunoAUX = null;
         
         dtmAlunos = (DefaultTableModel) jtAluno.getModel();
+        
+        limpaTabela();
+        
         for (Aluno aluno : fachada.retornaListaAluno()) {
             Object[] dados = {aluno.getMatricula(), aluno.getNome(), aluno.getDataDeNascimento(), aluno.getNomeUsuario(), aluno.getPerido()};
             dtmAlunos.addRow(dados);

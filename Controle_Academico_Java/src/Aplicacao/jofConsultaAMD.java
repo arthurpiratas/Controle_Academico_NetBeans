@@ -29,6 +29,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
         this.fachada = fachada; 
         dtmADM = (DefaultTableModel) jtADM.getModel();
         admAux = null; 
+        limpaTabela();
         
         for (Administrador adm : fachada.retornaListaAdm()) {
             Object[] dados = {adm.getId(), adm.getNome(), adm.getDataDeNascimento(), adm.getNomeUsuario()};

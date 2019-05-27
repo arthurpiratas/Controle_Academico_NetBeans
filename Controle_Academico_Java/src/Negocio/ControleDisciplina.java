@@ -25,6 +25,10 @@ public class ControleDisciplina {
 	public Disciplina buscaDisciplina(int codigo) {
 		return repDisciplina.buscaDisciplina(codigo); 
 	}
+        
+        public Disciplina buscaDisciplina(String nome) {
+		return repDisciplina.buscaDisciplina(nome); 
+	}
 	
 	public boolean verificaDisciplinaExiste(String nome) {
 		return repDisciplina.verificaDisciplinaExise(nome); 

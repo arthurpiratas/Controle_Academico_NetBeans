@@ -146,6 +146,10 @@ public class Fachada {
 	public Disciplina buscaDisciplina(int codigo) {
 		return ctrDisciplina.buscaDisciplina(codigo);
 	}
+        
+        public Disciplina buscaDisciplina(String nome) {
+                 return  ctrDisciplina.buscaDisciplina(nome);
+        }
 	
 	public boolean verificaDisciplinaExiste(String nome) {
 		return ctrDisciplina.verificaDisciplinaExiste(nome);
@@ -230,7 +234,11 @@ public class Fachada {
 	public Turma buscaTurma(int id) {
 		return ctrturma.buscaTurma(id);
 	}
-	
+        
+        public Turma buscaTurma(String  nome) {
+                return ctrturma.buscaTurma(nome);
+        }
+        	
 	public boolean verificaTurmaExiste(String nome) {
 		return ctrturma.verificaTurmaExiste(nome);
 	}
@@ -301,5 +309,9 @@ public class Fachada {
         
         public ArrayList<Turma> retornaListaTurma() {
                 return ctrturma.retornaListaTurma();
+        }
+        
+        public ArrayList<Turma> RetornaTurmaDisponivelParaAluno(Aluno aluno){
+                return ctrturma.RetornaTurmaDisponivelParaAluno(aluno);
         }
 }

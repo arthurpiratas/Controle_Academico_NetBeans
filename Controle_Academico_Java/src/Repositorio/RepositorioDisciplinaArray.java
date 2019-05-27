@@ -54,9 +54,26 @@ public class RepositorioDisciplinaArray implements IRepositorioDisciplina{
 		
 		
 	}
+        
+        @Override
+	public Disciplina buscaDisciplina(String  nome) {
+		// TODO Auto-generated method stub
+		
+		Disciplina disciplina = null; 
+		
+		for (int i = 0; i < index; i++) {
+			if(listaDisciplina[i].getNome().equals(nome)) {
+				disciplina =  listaDisciplina[i];
+				
+			}
+		}
+		
+		return disciplina;
+	}
+        
 
 	@Override
-	public Disciplina buscaDisciplina(int codigo) {
+	public Disciplina buscaDisciplina(int  codigo) {
 		// TODO Auto-generated method stub
 		
 		Disciplina disciplina = null; 
@@ -125,5 +142,7 @@ public class RepositorioDisciplinaArray implements IRepositorioDisciplina{
 		
 		return cont; 
 	}
+
+    
 
 }

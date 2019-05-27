@@ -36,6 +36,8 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
         
         dtmTurmas = (DefaultTableModel) jtTurmas.getModel();
         
+        limpaTabela();
+        
         turmaAUX = null;
         
         for (Turma turma : fachada.retornaListaTurma()) {
