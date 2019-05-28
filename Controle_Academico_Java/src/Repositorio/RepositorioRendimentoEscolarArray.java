@@ -3,6 +3,7 @@ package Repositorio;
 import Basicas.Aluno;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import java.util.ArrayList;
 
 public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento_Escolar{
 	
@@ -89,8 +90,11 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 		
 		for (int i = 0; i < index; i++) {
 			if(listaRendimentoEscola[i].getAluno() == aluno) {
-				System.out.println("Nome" + listaRendimentoEscola[i].getAluno() + "Nota 1" + listaRendimentoEscola[i].getNota1());
-				
+				System.out.println("Nome" + listaRendimentoEscola[i].getAluno() + "Nota 1 " + listaRendimentoEscola[i].getNota1());
+				for (int j = 0; j < 4; j++) {
+                                System.out.println("Trabalho" + listaRendimentoEscola[i].getTrabalhos()[j]);
+                                System.out.println("Trabalho" + listaRendimentoEscola[i].getNotasTrabalhos()[j]);
+                            }
 			}
 		}
 		
@@ -101,8 +105,8 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
 			if(listaRendimentoEscola[i].getTurma() == turma) {
-				System.out.println("Nome" + listaRendimentoEscola[i].getAluno() + "Nota 1" + listaRendimentoEscola[i].getNota1());
-				
+                            System.out.println("Nome" + listaRendimentoEscola[i].getAluno() + "Nota 1" + listaRendimentoEscola[i].getNota1());
+                            
 			}
 		}
 		
@@ -159,5 +163,32 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 		// TODO Auto-generated method stub
 		
 	}
+
+    @Override
+    public ArrayList<Rendimento_Escolar> retornaListaRendimentoTurma(int turma) {
+        ArrayList<Rendimento_Escolar>  listaRendimentoTurma = new ArrayList<Rendimento_Escolar>();
+        
+        
+        for (int i = 0; i < index; i++) {
+		if(listaRendimentoEscola[i].getTurma()  == turma) {
+			listaRendimentoTurma.add(listaRendimentoEscola[i]);
+		}
+	}
+        
+        return listaRendimentoTurma;
+    }
+
+    @Override
+    public ArrayList<Rendimento_Escolar> retornaListaRendimentoAluno(int aluno) {
+        ArrayList<Rendimento_Escolar>  listaRendimentoAluno = new ArrayList<Rendimento_Escolar>();
+        
+        for (int i = 0; i < index; i++) {
+		if(listaRendimentoEscola[i].getAluno()== aluno) {
+			listaRendimentoAluno.add(listaRendimentoEscola[i]);
+		}
+	}
+        
+        return listaRendimentoAluno;
+    }
 
 }

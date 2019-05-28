@@ -9,6 +9,7 @@ import Basicas.Administrador;
 import Basicas.Aluno;
 import Basicas.Disciplina;
 import Basicas.Professor;
+import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
 import Negocio.Fachada;
 import javax.swing.JOptionPane;
@@ -25,7 +26,7 @@ public class TelaLogin extends javax.swing.JFrame {
     
     
     Fachada fachada;  
-    int i = 0;
+    
     
     public TelaLogin() {
         fachada = Fachada.getInstance();
@@ -69,13 +70,23 @@ public class TelaLogin extends javax.swing.JFrame {
             fachada.insereAlunoEmTurma(turma6, aluno2);
             fachada.insereAlunoEmTurma(turma5, aluno2);
             fachada.insereAlunoEmTurma(turma4, aluno2);
-            i++;
+            Rendimento_Escolar rendEsco= new Rendimento_Escolar(turma7.getId(), aluno1.getId());
+            fachada.insereRendimentoEscola(rendEsco);
+            fachada.listaRendimentoEscolarAluno(aluno1.getId());
+            Rendimento_Escolar rendEsco2 = fachada.buscaRendimentoEscolar(aluno1.getId(), turma7.getId());
+            rendEsco2.setNota1(9.5f);
+            fachada.alteraRendimentoEscolar(rendEsco2);
+            fachada.insereAtividadeAluno(aluno1.getId(), turma7.getId(), 0, "aqui");
+            fachada.insereNotaAtividadeAluno(aluno1.getId(), turma7.getId(), 0, 7.5f);
+            fachada.listaRendimentoEscolarAluno(aluno1.getId());
+            
         }
-         fachada.listaDisciplina();
+         
+         /*fachada.listaDisciplina();
          fachada.listaADM();   
          fachada.listaProfessor();
          fachada.listaAlunos();
-         fachada.listaTurma();
+         fachada.listaTurma();*/
         initComponents();
         
     }

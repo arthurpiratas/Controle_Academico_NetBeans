@@ -2,7 +2,8 @@ package Repositorio;
 
 import Basicas.Aluno;
 import Basicas.Turma;
-import Basicas.Rendimento_Escolar;;
+import Basicas.Rendimento_Escolar;import java.util.ArrayList;
+;
 
 public interface IRepositorioRendimento_Escolar {
 	
@@ -19,5 +20,8 @@ public interface IRepositorioRendimento_Escolar {
 	public boolean verificaRendimentoEscolarPossuiTurma(int turma); 
 	public void removeRendimentoEscolarPorAluno(String matricula); 
 	public void removeRendimentoEscolarPorTurma(String nome); 
+        public ArrayList<Rendimento_Escolar> retornaListaRendimentoTurma(int turma);
+        public ArrayList<Rendimento_Escolar> retornaListaRendimentoAluno(int aluno);
+        
 
 }

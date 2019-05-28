@@ -43,7 +43,7 @@ public class Rendimento_Escolar {
 		this.trabalhos = new String[4];
 		
 		for (int i = 0; i < trabalhos.length; i++) {
-			this.trabalhos[i] = ""; 
+			this.trabalhos[i] = "Não Entregue"; 
 		}
 		
 		this.notasTrabalhos = new float[4];

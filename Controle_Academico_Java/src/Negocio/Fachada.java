@@ -314,4 +314,58 @@ public class Fachada {
         public ArrayList<Turma> RetornaTurmaDisponivelParaAluno(Aluno aluno){
                 return ctrturma.RetornaTurmaDisponivelParaAluno(aluno);
         }
+        
+        public void insereRendimentoEscola(Rendimento_Escolar rendimentoEscolar) {
+                ctrRendimentoEscolar.insereRendimentoEscola(rendimentoEscolar);
+        }
+        
+        public Rendimento_Escolar buscaRendimentoEscolar(int aluno, int turma) {
+                return ctrRendimentoEscolar.buscaRendimentoEscolar(aluno, turma);
+        }
+        
+        public void alteraRendimentoEscolar(Rendimento_Escolar rendimentoEscolar) {
+                ctrRendimentoEscolar.alteraRendimentoEscolar(rendimentoEscolar);
+        }
+        
+        public void removeRendimentoEscolar(int aluno, int turma) {
+                ctrRendimentoEscolar.removeRendimentoEscolar(aluno, turma);
+        }
+        
+        public boolean verificaRendimentoEscolaExiste(int aluno, int turma) {
+                return ctrRendimentoEscolar.verificaRendimentoEscolaExiste(aluno, turma);
+        }
+        
+        public void listaRendimentoEscolarAluno(int aluno) {
+                ctrRendimentoEscolar.listaRendimentoEscolarAluno(aluno);
+        }
+        
+        public void listaRendimentoEscolarTurma(int turma) {
+                ctrRendimentoEscolar.listaRendimentoEscolarTurma(turma);
+        }
+        
+        public boolean verificaRendimentoEscolarPossuiAluno(int aluno) {
+                return ctrRendimentoEscolar.verificaRendimentoEscolarPossuiAluno(aluno);
+        }
+        
+        public boolean verificaRendimentoEscolarPossuiTurma(int turma) {
+                return  ctrRendimentoEscolar.verificaRendimentoEscolarPossuiTurma(turma);
+        }
+        
+        public ArrayList<Rendimento_Escolar> retornaListaRendimentoTurma(int turma){
+                return ctrRendimentoEscolar.retornaListaRendimentoTurma(turma); 
+        }
+        
+        public ArrayList<Rendimento_Escolar> retornaListaRendimentoAluno(int aluno){
+                return ctrRendimentoEscolar.retornaListaRendimentoAluno(aluno);
+        }
+        
+        public void insereAtividadeAluno(int idAluno, int idTurma, int atividade, String atividadeTxt){
+                ctrRendimentoEscolar.insereAtividadeAluno(idAluno, idTurma, atividade, atividadeTxt);
+        }
+        
+         public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota){
+                ctrRendimentoEscolar.insereNotaAtividadeAluno(idAluno, idTurma, atividade, nota);
+         }
+        
+        
 }

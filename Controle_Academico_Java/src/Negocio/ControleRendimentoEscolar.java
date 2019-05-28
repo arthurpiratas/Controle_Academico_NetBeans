@@ -5,6 +5,7 @@ import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
 import Repositorio.IRepositorioRendimento_Escolar;
 import Repositorio.RepositorioRendimentoEscolarArray;
+import java.util.ArrayList;
 
 public class ControleRendimentoEscolar {
 	
@@ -45,5 +46,40 @@ public class ControleRendimentoEscolar {
 	public boolean verificaRendimentoEscolarPossuiTurma(int turma) {
 		return repRendimentoEscolar.verificaRendimentoEscolarPossuiTurma(turma);
 	}
+        
+        public ArrayList<Rendimento_Escolar> retornaListaRendimentoTurma(int turma){
+                return repRendimentoEscolar.retornaListaRendimentoTurma(turma);
+        }
+        public ArrayList<Rendimento_Escolar> retornaListaRendimentoAluno(int aluno){
+            return repRendimentoEscolar.retornaListaRendimentoAluno(aluno); 
+        }
+        
+        public void insereAtividadeAluno(int idAluno, int idTurma, int atividade, String atividadeTxt){
+            
+            Rendimento_Escolar rendimentoAluno = repRendimentoEscolar.buscaRendimento_Escolar(idAluno, idTurma); 
+            String[] atividades = rendimentoAluno.getTrabalhos();
+            
+            
+            if(rendimentoAluno.getTrabalhos()[atividade].equals("Não Entregue")){
+                atividades[atividade] = atividadeTxt;
+                rendimentoAluno.setTrabalhos(atividades);
+                repRendimentoEscolar.alteraRendimento(rendimentoAluno);
+            }
+            
+        }
+        
+        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota){
+            
+            Rendimento_Escolar rendimentoAluno = repRendimentoEscolar.buscaRendimento_Escolar(idAluno, idTurma); 
+            float atividades[] = rendimentoAluno.getNotasTrabalhos();
+            
+            if(!(rendimentoAluno.getTrabalhos()[atividade].equals("Não Entregue"))){
+                atividades[atividade] = nota;
+                rendimentoAluno.setNotasTrabalhos(atividades);
+                repRendimentoEscolar.alteraRendimento(rendimentoAluno);
+            }
+            
+        }
+        
 
 }
