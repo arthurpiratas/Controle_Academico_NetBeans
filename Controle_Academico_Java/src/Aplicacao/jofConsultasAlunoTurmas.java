@@ -7,6 +7,7 @@ package Aplicacao;
 
 import Basicas.Aluno;
 import Basicas.Disciplina;
+import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
 import Negocio.Fachada;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
     private Fachada fachada;
     private Aluno aluno;
     private DefaultTableModel dtmTurmas;
+    int tipoTela = 0; 
     
     public jofConsultasAlunoTurmas(Fachada fachada, Aluno aluno, int TipoDeTela) {
         initComponents();
@@ -40,6 +42,7 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             jpMatriculaTurma1.setVisible(false);
             jpNotas.setEnabled(false);
             jpNotas.setVisible(false);
+            this.title = "Consultas Aluno";
             
             for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
@@ -52,6 +55,7 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             jpConsultaTurmas.setVisible(false);
             jpNotas.setEnabled(false);
             jpNotas.setVisible(false);
+            this.title = "Matrículas";
             
             for (Turma turma : fachada.RetornaTurmaDisponivelParaAluno(aluno)) {
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Não Matriculado"};
@@ -63,6 +67,8 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             jpConsultaTurmas.setVisible(false);
             jpMatriculaTurma1.setEnabled(false);
             jpMatriculaTurma1.setVisible(false); 
+            
+            this.title = "Consulta Notas";
             
             for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
@@ -97,22 +103,23 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         jpNotas = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jtnotaAtv3 = new javax.swing.JTextField();
+        jtMedia = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jtnotaAtv1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jtnotaAtv2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jtSituacao = new javax.swing.JTextField();
+        jtnota1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jtnota2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jtnotaAtv4 = new javax.swing.JTextField();
         jbSair3 = new javax.swing.JButton();
 
+        setTitle("Consultas Aluno ");
         getContentPane().setLayout(null);
 
         jpTabela.setLayout(null);
@@ -229,33 +236,36 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         jpNotas.add(jLabel1);
         jLabel1.setBounds(630, 10, 70, 14);
 
-        jLabel2.setText("Atividade 3");
+        jLabel2.setText("Atividade 2");
         jpNotas.add(jLabel2);
         jLabel2.setBounds(130, 10, 70, 14);
 
-        jTextField1.setEditable(false);
-        jpNotas.add(jTextField1);
-        jTextField1.setBounds(240, 40, 70, 30);
+        jtnotaAtv3.setEditable(false);
+        jtnotaAtv3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jpNotas.add(jtnotaAtv3);
+        jtnotaAtv3.setBounds(230, 40, 80, 30);
 
-        jTextField2.setEditable(false);
-        jpNotas.add(jTextField2);
-        jTextField2.setBounds(630, 40, 70, 30);
+        jtMedia.setEditable(false);
+        jpNotas.add(jtMedia);
+        jtMedia.setBounds(630, 40, 70, 30);
 
         jLabel3.setText("Situação ");
         jpNotas.add(jLabel3);
         jLabel3.setBounds(220, 90, 70, 14);
 
-        jTextField3.setEditable(false);
-        jpNotas.add(jTextField3);
-        jTextField3.setBounds(20, 40, 70, 30);
+        jtnotaAtv1.setEditable(false);
+        jtnotaAtv1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jpNotas.add(jtnotaAtv1);
+        jtnotaAtv1.setBounds(10, 40, 80, 30);
 
-        jLabel4.setText("Atividade 2");
+        jLabel4.setText("Atividade 3");
         jpNotas.add(jLabel4);
         jLabel4.setBounds(240, 10, 70, 14);
 
-        jTextField4.setEditable(false);
-        jpNotas.add(jTextField4);
-        jTextField4.setBounds(130, 40, 70, 30);
+        jtnotaAtv2.setEditable(false);
+        jtnotaAtv2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jpNotas.add(jtnotaAtv2);
+        jtnotaAtv2.setBounds(120, 40, 80, 30);
 
         jLabel5.setText("Atividade 4");
         jpNotas.add(jLabel5);
@@ -265,29 +275,30 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         jpNotas.add(jLabel6);
         jLabel6.setBounds(460, 10, 70, 14);
 
-        jTextField5.setEditable(false);
-        jpNotas.add(jTextField5);
-        jTextField5.setBounds(290, 90, 110, 20);
+        jtSituacao.setEditable(false);
+        jpNotas.add(jtSituacao);
+        jtSituacao.setBounds(290, 90, 110, 30);
 
-        jTextField6.setEditable(false);
-        jpNotas.add(jTextField6);
-        jTextField6.setBounds(450, 40, 70, 30);
+        jtnota1.setEditable(false);
+        jpNotas.add(jtnota1);
+        jtnota1.setBounds(450, 40, 70, 30);
 
         jLabel7.setText("Nota 2 ");
         jpNotas.add(jLabel7);
         jLabel7.setBounds(540, 10, 70, 14);
 
-        jTextField7.setEditable(false);
-        jpNotas.add(jTextField7);
-        jTextField7.setBounds(540, 40, 70, 30);
+        jtnota2.setEditable(false);
+        jpNotas.add(jtnota2);
+        jtnota2.setBounds(540, 40, 70, 30);
 
         jLabel8.setText("Atividade 1");
         jpNotas.add(jLabel8);
         jLabel8.setBounds(20, 10, 70, 14);
 
-        jTextField8.setEditable(false);
-        jpNotas.add(jTextField8);
-        jTextField8.setBounds(350, 40, 70, 30);
+        jtnotaAtv4.setEditable(false);
+        jtnotaAtv4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jpNotas.add(jtnotaAtv4);
+        jtnotaAtv4.setBounds(340, 40, 80, 30);
 
         jbSair3.setText("Sair");
         jbSair3.addActionListener(new java.awt.event.ActionListener() {
@@ -345,7 +356,20 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             if(fachada.verificaDisciplinaExiste(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString())){
                 Disciplina disciplina = fachada.buscaDisciplina(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString());
                 jtEmenta.setText(disciplina.getEmenta());
-                
+                try{
+                    limpaCampos();
+                    Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId());
+                    jtnotaAtv1.setText(rendEsco.getTrabalhos()[0].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[0]));
+                    jtnotaAtv2.setText(rendEsco.getTrabalhos()[1].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[1]));
+                    jtnotaAtv3.setText(rendEsco.getTrabalhos()[2].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[2]));
+                    jtnotaAtv4.setText(rendEsco.getTrabalhos()[3].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[3]));
+                    jtnota1.setText(String.valueOf(rendEsco.getNota1()));
+                    jtnota2.setText(String.valueOf(rendEsco.getNota2()));
+                    jtMedia.setText(String.valueOf(rendEsco.getMedia()));
+                    jtSituacao.setText(rendEsco.getStatus());
+                }catch(NullPointerException e){
+                    
+                }
             }
         }
     }//GEN-LAST:event_jtTurmaKeyReleased
@@ -356,6 +380,20 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             if(fachada.verificaDisciplinaExiste(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString())){
                 Disciplina disciplina = fachada.buscaDisciplina(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString());
                 jtEmenta.setText(disciplina.getEmenta());
+                try{
+                    limpaCampos();
+                    Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId());
+                    jtnotaAtv1.setText(rendEsco.getTrabalhos()[0].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[0]));
+                    jtnotaAtv2.setText(rendEsco.getTrabalhos()[1].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[1]));
+                    jtnotaAtv3.setText(rendEsco.getTrabalhos()[2].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[2]));
+                    jtnotaAtv4.setText(rendEsco.getTrabalhos()[3].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[3]));
+                    jtnota1.setText(String.valueOf(rendEsco.getNota1()));
+                    jtnota2.setText(String.valueOf(rendEsco.getNota2()));
+                    jtMedia.setText(String.valueOf(rendEsco.getMedia()));
+                    jtSituacao.setText(rendEsco.getStatus());
+                }catch(NullPointerException e){
+                    
+                }
                 
             }
         }
@@ -366,7 +404,10 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         if(jtTurma.getSelectedRow() != -1){
             Turma turma =  fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString());
             fachada.insereAlunoEmTurma(turma, aluno);
-            dtmTurmas.removeRow(jtTurma.getSelectedRow());
+            Rendimento_Escolar rendEsco = new Rendimento_Escolar(turma.getId(), aluno.getId());
+            fachada.insereRendimentoEscola(rendEsco);
+            JOptionPane.showMessageDialog(rootPane, "Matrícula realizada!");
+            dtmTurmas.removeRow(jtTurma.getSelectedRow()); 
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma Turma!");
         }
@@ -377,13 +418,27 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         if(jtTurma.getSelectedRow() != -1){
             Turma turma = fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString());
             fachada.removeAlunoEmTurma(turma, aluno);
+            fachada.removeRendimentoEscolar(aluno.getId(), turma.getId());
+            JOptionPane.showMessageDialog(rootPane, "Matrícula Excluida!");
             dtmTurmas.removeRow(jtTurma.getSelectedRow());
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma Turma!");
         }
     }//GEN-LAST:event_jbExcluiMatriculaActionPerformed
-
-    public void limpaTabela(){
+    
+    
+    private void limpaCampos(){
+        jtnotaAtv1.setText("");
+        jtnotaAtv2.setText("");
+        jtnotaAtv3.setText("");
+        jtnotaAtv4.setText("");
+        jtnota1.setText("");
+        jtnota2.setText("");
+        jtMedia.setText("");
+        jtSituacao.setText("");
+    }
+    
+    private void limpaTabela(){
         
         if (dtmTurmas.getRowCount() >= 0){
             for (int i=dtmTurmas.getRowCount();i > 0;i--){
@@ -406,14 +461,6 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JButton jbAtualizar;
     private javax.swing.JButton jbAtualizar2;
     private javax.swing.JButton jbExcluiMatricula;
@@ -426,6 +473,14 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpNotas;
     private javax.swing.JPanel jpTabela;
     private javax.swing.JTextArea jtEmenta;
+    private javax.swing.JTextField jtMedia;
+    private javax.swing.JTextField jtSituacao;
     private javax.swing.JTable jtTurma;
+    private javax.swing.JTextField jtnota1;
+    private javax.swing.JTextField jtnota2;
+    private javax.swing.JTextField jtnotaAtv1;
+    private javax.swing.JTextField jtnotaAtv2;
+    private javax.swing.JTextField jtnotaAtv3;
+    private javax.swing.JTextField jtnotaAtv4;
     // End of variables declaration//GEN-END:variables
 }

@@ -371,7 +371,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtADMMouseClicked
     
     
-    public void limpaTabela(){
+    private void limpaTabela(){
         
         if (dtmADM.getRowCount() >= 0){
             for (int i=dtmADM.getRowCount();i > 0;i--){
@@ -380,7 +380,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
         }
     }
     
-    public void limpaCampos(){
+    private void limpaCampos(){
         admAux = null; 
         jtData.setText("");
         jtID.setText("");

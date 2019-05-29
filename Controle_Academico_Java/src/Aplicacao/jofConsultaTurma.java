@@ -382,7 +382,7 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtTurmasMouseClicked
     
     
-    public void limpaTabela(){
+    private void limpaTabela(){
         
         if (dtmTurmas.getRowCount() >= 0){
             for (int i=dtmTurmas.getRowCount();i > 0;i--){
@@ -391,7 +391,7 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
         }
     }
     
-    public void limpaCampos(){
+    private void limpaCampos(){
         turmaAUX = null; 
         jtAlunosTurma.setText("");
         jtDisciplina.setText("");

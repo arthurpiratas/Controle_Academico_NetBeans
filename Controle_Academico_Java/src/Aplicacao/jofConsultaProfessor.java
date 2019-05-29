@@ -301,7 +301,7 @@ public class jofConsultaProfessor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAtualizar2ActionPerformed
     
     
-    public void limpaCampos(){
+    private void limpaCampos(){
             professorAUX = null; 
             jtID.setText("");
             jtNome.setText("");
@@ -365,7 +365,7 @@ public class jofConsultaProfessor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtprofessorKeyReleased
 
-    public void limpaTabela(){
+    private void limpaTabela(){
         
         if (dtmProfessor.getRowCount() >= 0){
             for (int i=dtmProfessor.getRowCount();i > 0;i--){

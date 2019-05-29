@@ -70,15 +70,22 @@ public class TelaLogin extends javax.swing.JFrame {
             fachada.insereAlunoEmTurma(turma6, aluno2);
             fachada.insereAlunoEmTurma(turma5, aluno2);
             fachada.insereAlunoEmTurma(turma4, aluno2);
-            Rendimento_Escolar rendEsco= new Rendimento_Escolar(turma7.getId(), aluno1.getId());
-            fachada.insereRendimentoEscola(rendEsco);
-            fachada.listaRendimentoEscolarAluno(aluno1.getId());
-            Rendimento_Escolar rendEsco2 = fachada.buscaRendimentoEscolar(aluno1.getId(), turma7.getId());
-            rendEsco2.setNota1(9.5f);
-            fachada.alteraRendimentoEscolar(rendEsco2);
-            fachada.insereAtividadeAluno(aluno1.getId(), turma7.getId(), 0, "aqui");
-            fachada.insereNotaAtividadeAluno(aluno1.getId(), turma7.getId(), 0, 7.5f);
-            fachada.listaRendimentoEscolarAluno(aluno1.getId());
+            Rendimento_Escolar rend1 = new Rendimento_Escolar(turma7.getId(), aluno1.getId()); 
+            Rendimento_Escolar rend2 = new Rendimento_Escolar(turma5.getId(), aluno1.getId());
+            Rendimento_Escolar rend3 = new Rendimento_Escolar(turma4.getId(), aluno1.getId());
+            Rendimento_Escolar rend4 = new Rendimento_Escolar(turma6.getId(), aluno2.getId());
+            Rendimento_Escolar rend5 = new Rendimento_Escolar(turma5.getId(), aluno2.getId());
+            Rendimento_Escolar rend6 = new Rendimento_Escolar(turma4.getId(), aluno2.getId());
+            fachada.insereRendimentoEscola(rend1);
+            fachada.insereRendimentoEscola(rend2);
+            fachada.insereRendimentoEscola(rend3);
+            fachada.insereRendimentoEscola(rend4);
+            fachada.insereRendimentoEscola(rend5);
+            fachada.insereRendimentoEscola(rend6);
+            fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 2, "Fiz nada");
+            fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 2, 10.0f);
+            rend3.setNota2(10.0f);
+            fachada.alteraRendimentoEscolar(rend3);
             
         }
          

@@ -104,6 +104,11 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         jmEnvio.setText("Envio");
 
         jmiEnvio.setText("Atividades");
+        jmiEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEnvioActionPerformed(evt);
+            }
+        });
         jmEnvio.add(jmiEnvio);
 
         jMenuBar1.add(jmEnvio);
@@ -151,6 +156,13 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         jdpAlunos.add(consultaNotas);
         consultaNotas.setVisible(true);
     }//GEN-LAST:event_jmiMatriculaActionPerformed
+
+    private void jmiEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEnvioActionPerformed
+        // TODO add your handling code here:
+        jofEnvioAtividade enviaAtividade = new jofEnvioAtividade(fachada, alunoUser); 
+        jdpAlunos.add(enviaAtividade); 
+        enviaAtividade.setVisible(true);
+    }//GEN-LAST:event_jmiEnvioActionPerformed
    
     /**
      * @param args the command line arguments

@@ -298,7 +298,7 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
     
-    public void limpaTabela(){
+    private void limpaTabela(){
         
         if (dtmAlunos.getRowCount() >= 0){
             for (int i=dtmAlunos.getRowCount();i > 0;i--){
@@ -410,7 +410,7 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
             jtNomeUsuario.setText(alunoAUX.getNomeUsuario());
     }//GEN-LAST:event_jtAlunoMouseClicked
     
-    public void limpaCampos(){
+    private void limpaCampos(){
         
         alunoAUX = null;
         jtData.setText("");

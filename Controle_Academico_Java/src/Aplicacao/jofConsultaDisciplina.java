@@ -373,7 +373,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jbAlterarActionPerformed
 
-    public void limpaTabela(){
+    private void limpaTabela(){
         
         if (dtmDisciplina.getRowCount() >= 0){
             for (int i=dtmDisciplina.getRowCount();i >0;i--){
@@ -382,7 +382,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         }
     }
     
-    public void limpaCampos(){
+    private void limpaCampos(){
         jtCodigo.setText("");
         jtNome.setText("");
         jtaEmenta.setText("");
