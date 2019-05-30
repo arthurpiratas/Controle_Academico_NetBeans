@@ -44,10 +44,10 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jmConsultas = new javax.swing.JMenu();
         jmiTurma = new javax.swing.JMenuItem();
         jmiAtividades = new javax.swing.JMenuItem();
-        jmiNotas = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmAcoes = new javax.swing.JMenu();
-        jmiAvaliaTurma = new javax.swing.JMenuItem();
         jmiEntraTurma = new javax.swing.JMenuItem();
+        jmiDispensaTurma = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -72,18 +72,28 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jmiAtividades.setText("Atividades");
         jmConsultas.add(jmiAtividades);
 
-        jmiNotas.setText("Notas");
-        jmConsultas.add(jmiNotas);
+        jMenuItem1.setText("Status Turma");
+        jmConsultas.add(jMenuItem1);
 
         jMenuBar1.add(jmConsultas);
 
         jmAcoes.setText("Ações");
 
-        jmiAvaliaTurma.setText("Avaliar Turma");
-        jmAcoes.add(jmiAvaliaTurma);
-
         jmiEntraTurma.setText("Entrar em Turma");
+        jmiEntraTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEntraTurmaActionPerformed(evt);
+            }
+        });
         jmAcoes.add(jmiEntraTurma);
+
+        jmiDispensaTurma.setText("Dispensar Turma");
+        jmiDispensaTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDispensaTurmaActionPerformed(evt);
+            }
+        });
+        jmAcoes.add(jmiDispensaTurma);
 
         jMenuBar1.add(jmAcoes);
 
@@ -108,6 +118,20 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         telalogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jmiDispensaTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDispensaTurmaActionPerformed
+        // TODO add your handling code here:
+        jofConsultaTurmaDisponivel consultaTurmaProfessor = new jofConsultaTurmaDisponivel(fachada, professorUser, 2);
+        jdpProfessor.add(consultaTurmaProfessor); 
+        consultaTurmaProfessor.setVisible(true);
+    }//GEN-LAST:event_jmiDispensaTurmaActionPerformed
+
+    private void jmiEntraTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEntraTurmaActionPerformed
+        // TODO add your handling code here:
+        jofConsultaTurmaDisponivel consultaTurmaProfessor = new jofConsultaTurmaDisponivel(fachada, professorUser, 1);
+        jdpProfessor.add(consultaTurmaProfessor); 
+        consultaTurmaProfessor.setVisible(true);
+    }//GEN-LAST:event_jmiEntraTurmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,14 +171,14 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDesktopPane jdpProfessor;
     private javax.swing.JMenu jmAcoes;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenuItem jmiAtividades;
-    private javax.swing.JMenuItem jmiAvaliaTurma;
+    private javax.swing.JMenuItem jmiDispensaTurma;
     private javax.swing.JMenuItem jmiEntraTurma;
-    private javax.swing.JMenuItem jmiNotas;
     private javax.swing.JMenuItem jmiTurma;
     private javax.swing.JTextPane jtNomeprof;
     // End of variables declaration//GEN-END:variables

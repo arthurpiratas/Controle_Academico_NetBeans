@@ -363,9 +363,28 @@ public class Fachada {
                 ctrRendimentoEscolar.insereAtividadeAluno(idAluno, idTurma, atividade, atividadeTxt);
         }
         
-         public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota){
-                ctrRendimentoEscolar.insereNotaAtividadeAluno(idAluno, idTurma, atividade, nota);
-         }
+        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota){
+               ctrRendimentoEscolar.insereNotaAtividadeAluno(idAluno, idTurma, atividade, nota);
+        }
         
+        public int retornaQtdAlunosAprovados(int idTurma){
+               return ctrRendimentoEscolar.retornaQtdAlunosAprovados(idTurma); 
+        }
+        
+        public int retornaQtdAlunosFinal(int idTurma){
+               return ctrRendimentoEscolar.retornaQtdAlunosFinal(idTurma); 
+        }
+        
+        public int retornaQtdAlunosReprovados(int idTurma){
+               return ctrRendimentoEscolar.retornaQtdAlunosReprovados(idTurma);
+        }
+        
+        public String retornaSituacaoAluno(int idTurma, int IdAluno){
+                return ctrRendimentoEscolar.retornaSituacaoAluno(idTurma, IdAluno);
+        }
+        
+        public void calculaMediaAluno(int idTurma, int IdAluno){
+                ctrRendimentoEscolar.calculaMediaAluno(idTurma, IdAluno);
+        }
         
 }

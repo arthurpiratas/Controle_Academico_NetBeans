@@ -81,5 +81,90 @@ public class ControleRendimentoEscolar {
             
         }
         
+        public int retornaQtdAlunosAprovados(int idTurma){
+            
+            int cont = 0;
+            
+            
+            
+            for (Rendimento_Escolar renEsc : repRendimentoEscolar.retornaListaRendimento_EscolarTurma(idTurma)) {
+                if(renEsc.getMedia() >= 7){
+                    cont++;
+                }
+                
+            }
+            
+            return cont; 
+        }
+        
+        public int retornaQtdAlunosFinal(int idTurma){
+            
+            int cont = 0;
+            
+            
+            
+            for (Rendimento_Escolar renEsc : repRendimentoEscolar.retornaListaRendimento_EscolarTurma(idTurma)) {
+                if(renEsc.getMedia() >= 3  &&  renEsc.getMedia() < 7){
+                    cont++;
+                }
+                
+            }
+            
+            return cont; 
+        }
+        
+         public int retornaQtdAlunosReprovados(int idTurma){
+            
+            int cont = 0;
+            
+            
+            
+            for (Rendimento_Escolar renEsc : repRendimentoEscolar.retornaListaRendimento_EscolarTurma(idTurma)) {
+                if(renEsc.getMedia() < 3){
+                    cont++;
+                }
+                
+            }
+            
+            return cont; 
+        }
+         
+        public String retornaSituacaoAluno(int idTurma, int IdAluno){
+            
+            String estdo = new String();
+            
+            for (Rendimento_Escolar renEsc : repRendimentoEscolar.retornaListaRendimento_EscolarTurma(idTurma)) {
+                if(renEsc.getAluno() == IdAluno){
+                   if(renEsc.getMedia() >= 7){
+                       return "Aprovado";
+                   }else if(renEsc.getMedia() >= 3 && renEsc.getMedia() < 7){
+                       return "Final"; 
+                   }else{
+                       return "Reprovado";
+                   }
+                }
+                
+            }
+            
+            return estdo; 
+        }
+        
+        public void calculaMediaAluno(int idTurma, int IdAluno){
+            
+            for (Rendimento_Escolar renEsc : repRendimentoEscolar.retornaListaRendimento_EscolarTurma(idTurma)) {
+                if(renEsc.getAluno() == IdAluno){
+                    float nota1; 
+                    float nota2;
+                    float media;
+                    nota1 = (((renEsc.getNotasTrabalhos()[0] + renEsc.getNotasTrabalhos()[1])/2)*0.1f) + ((renEsc.getNota1())*0.9f);
+                    nota2 = (((renEsc.getNotasTrabalhos()[2] + renEsc.getNotasTrabalhos()[2])/2)*0.1f) + ((renEsc.getNota2())*0.9f);
+                    media = ((nota1+nota2)/2); 
+                    renEsc.setMedia(media);
+                    repRendimentoEscolar.alteraRendimento(renEsc);
+                }
+                
+            }
+        }
+        
 
 }

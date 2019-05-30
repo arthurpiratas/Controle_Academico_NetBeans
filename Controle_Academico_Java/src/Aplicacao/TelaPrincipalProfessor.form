@@ -19,9 +19,9 @@
                 <Property name="text" type="java.lang.String" value="Atividades"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmiNotas">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Notas"/>
+                <Property name="text" type="java.lang.String" value="Status Turma"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -31,15 +31,21 @@
             <Property name="text" type="java.lang.String" value="A&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmiAvaliaTurma">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Avaliar Turma"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiEntraTurma">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Entrar em Turma"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiEntraTurmaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiDispensaTurma">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dispensar Turma"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiDispensaTurmaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

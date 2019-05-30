@@ -149,7 +149,7 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jrbEnviar3);
-        jrbEnviar3.setBounds(200, 165, 55, 23);
+        jrbEnviar3.setBounds(200, 165, 80, 23);
 
         btgEnviar.add(jrbEnviar1);
         jrbEnviar1.setText("Enviar");
@@ -159,7 +159,7 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jrbEnviar1);
-        jrbEnviar1.setBounds(200, 15, 55, 23);
+        jrbEnviar1.setBounds(200, 15, 90, 23);
 
         jLabel3.setText("Atividade 4");
         getContentPane().add(jLabel3);
@@ -191,7 +191,7 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jrbEnviar4);
-        jrbEnviar4.setBounds(420, 165, 55, 23);
+        jrbEnviar4.setBounds(420, 165, 80, 23);
 
         btgEnviar.add(jrbEnviar2);
         jrbEnviar2.setText("Enviar");
@@ -201,7 +201,7 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jrbEnviar2);
-        jrbEnviar2.setBounds(420, 15, 55, 23);
+        jrbEnviar2.setBounds(420, 15, 100, 23);
 
         jbAtualizar.setText("Atualizar");
         jbAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -221,6 +221,7 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
         getContentPane().add(jbSair);
         jbSair.setBounds(530, 153, 110, 30);
 
+        jbEnviaAtividade.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jbEnviaAtividade.setText("Enviar Atividade");
         jbEnviaAtividade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +229,7 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jbEnviaAtividade);
-        jbEnviaAtividade.setBounds(10, 110, 111, 30);
+        jbEnviaAtividade.setBounds(10, 110, 107, 30);
 
         setBounds(0, 0, 677, 512);
     }// </editor-fold>//GEN-END:initComponents
@@ -318,14 +319,17 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
                         jtAtv2.setEditable(false);
                         jrbEnviar2.setEnabled(false);
                     }
+                    
                     if(!(rendEsco.getTrabalhos()[2].equals("Não Entregue"))){
                         jtAtv3.setEditable(false);
                         jrbEnviar3.setEnabled(false);
                     }
+                    
                     if(!(rendEsco.getTrabalhos()[3].equals("Não Entregue"))){
                         jtAtv4.setEditable(false);
                         jrbEnviar4.setEnabled(false);
                     }
+                    
                     
             }catch(NullPointerException e){        
                 
@@ -401,6 +405,10 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
         jtAtv2.setEnabled(true);
         jtAtv3.setEnabled(true);
         jtAtv4.setEnabled(true);
+        jtAtv1.setEditable(true);
+        jtAtv2.setEditable(true);
+        jtAtv3.setEditable(true);
+        jtAtv4.setEditable(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
