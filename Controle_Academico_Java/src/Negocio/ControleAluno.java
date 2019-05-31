@@ -99,5 +99,9 @@ public class ControleAluno {
         public boolean verificaAlunoExisteNome(String nome) {
             return repAluno.verificaAlunoExisteNome(nome);
         }
+        
+        public Aluno buscaAluno(int idAluno) {
+            return repAluno.buscaAluno(idAluno); 
+        }
 
 }

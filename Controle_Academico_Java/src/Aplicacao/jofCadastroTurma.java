@@ -24,10 +24,10 @@ public class jofCadastroTurma extends javax.swing.JInternalFrame {
     Fachada fachada;
     Turma turma;
     
-    public jofCadastroTurma(Fachada fachada) {
+    public jofCadastroTurma() {
         initComponents();
         
-        this.fachada = fachada;
+        this.fachada = Fachada.getInstance();
         
         for (Disciplina dis : this.fachada.retornaListaDisciplina()) {
             cbDisciplina.addItem(dis);

@@ -29,10 +29,10 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
     private DefaultTableModel dtmTurmas;
     Turma turmaAUX; 
     
-    public jofConsultaTurma(Fachada fachada, int TipodeTela) {
+    public jofConsultaTurma(int TipodeTela) {
         initComponents();
         
-        this.fachada = fachada;
+        this.fachada = Fachada.getInstance();
         
         dtmTurmas = (DefaultTableModel) jtTurmas.getModel();
         

@@ -3,6 +3,7 @@ package Negocio;
 import java.util.ArrayList;
 
 import Basicas.*;
+import Excecoes.ExcecaoNota;
 
 public class Fachada {
 	
@@ -129,7 +130,11 @@ public class Fachada {
         
         public boolean verificaAlunoExisteNome(String nome) {
                 return ctrAluno.verificaAlunoExisteNome(nome);
-        }        
+        }
+
+        public Aluno buscaAluno(int idAluno) {
+                return ctrAluno.buscaAluno(idAluno); 
+        }
 	
 	public void insereDisciplina(Disciplina disciplina) {
 		ctrDisciplina.insereDisciplina(disciplina);
@@ -363,7 +368,7 @@ public class Fachada {
                 ctrRendimentoEscolar.insereAtividadeAluno(idAluno, idTurma, atividade, atividadeTxt);
         }
         
-        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota){
+        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota) throws ExcecaoNota{
                ctrRendimentoEscolar.insereNotaAtividadeAluno(idAluno, idTurma, atividade, nota);
         }
         

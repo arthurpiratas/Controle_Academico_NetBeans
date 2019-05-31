@@ -25,9 +25,9 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
     private DefaultTableModel dtmDisciplina;
     private Disciplina disciplinaAux;  
     
-    public jofConsultaDisciplina(Fachada fachada, int tipoTela) {
+    public jofConsultaDisciplina(int tipoTela) {
         initComponents();
-        this.fachada = fachada; 
+        this.fachada = Fachada.getInstance();
         dtmDisciplina  = (DefaultTableModel) jtDisciplina.getModel();
         disciplinaAux = null;
         

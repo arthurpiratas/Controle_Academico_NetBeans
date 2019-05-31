@@ -17,5 +17,6 @@ public interface IRepositorioAluno {
 	public int retornaProximoID();
 	public String retornaMatricula(String periodo);
         public boolean verificaAlunoExisteNome(String nome);
+        public Aluno buscaAluno(int idAluno);
 	
 }

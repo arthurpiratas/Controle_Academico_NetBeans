@@ -21,9 +21,9 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     private Professor professorUser; 
     Fachada fachada;
     
-    public TelaPrincipalProfessor(Professor professorUser, Fachada fachada) {
+    public TelaPrincipalProfessor(Professor professorUser) {
         this.professorUser = professorUser;
-        this.fachada = fachada;
+        this.fachada = Fachada.getInstance();
         initComponents();
         jtNomeprof.setText(professorUser.getNome());
     }
@@ -43,8 +43,8 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmConsultas = new javax.swing.JMenu();
         jmiTurma = new javax.swing.JMenuItem();
-        jmiAtividades = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiAtividadesNotas = new javax.swing.JMenuItem();
+        jmStatus = new javax.swing.JMenuItem();
         jmAcoes = new javax.swing.JMenu();
         jmiEntraTurma = new javax.swing.JMenuItem();
         jmiDispensaTurma = new javax.swing.JMenuItem();
@@ -59,21 +59,26 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtNomeprof);
 
         jdpProfessor.add(jScrollPane1);
-        jScrollPane1.setBounds(620, 11, 140, 30);
+        jScrollPane1.setBounds(680, 10, 140, 30);
 
         getContentPane().add(jdpProfessor);
-        jdpProfessor.setBounds(0, 0, 770, 450);
+        jdpProfessor.setBounds(0, 0, 830, 500);
 
         jmConsultas.setText("Consultas");
 
         jmiTurma.setText("Turmas");
         jmConsultas.add(jmiTurma);
 
-        jmiAtividades.setText("Atividades");
-        jmConsultas.add(jmiAtividades);
+        jmiAtividadesNotas.setText("Atividades e Notas");
+        jmiAtividadesNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAtividadesNotasActionPerformed(evt);
+            }
+        });
+        jmConsultas.add(jmiAtividadesNotas);
 
-        jMenuItem1.setText("Status Turma");
-        jmConsultas.add(jMenuItem1);
+        jmStatus.setText("Status Turma");
+        jmConsultas.add(jmStatus);
 
         jMenuBar1.add(jmConsultas);
 
@@ -107,7 +112,7 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(784, 513));
+        setSize(new java.awt.Dimension(850, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,17 +126,24 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
 
     private void jmiDispensaTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDispensaTurmaActionPerformed
         // TODO add your handling code here:
-        jofConsultaTurmaDisponivel consultaTurmaProfessor = new jofConsultaTurmaDisponivel(fachada, professorUser, 2);
+        jofConsultaTurmaDisponivel consultaTurmaProfessor = new jofConsultaTurmaDisponivel(professorUser, 2);
         jdpProfessor.add(consultaTurmaProfessor); 
         consultaTurmaProfessor.setVisible(true);
     }//GEN-LAST:event_jmiDispensaTurmaActionPerformed
 
     private void jmiEntraTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEntraTurmaActionPerformed
         // TODO add your handling code here:
-        jofConsultaTurmaDisponivel consultaTurmaProfessor = new jofConsultaTurmaDisponivel(fachada, professorUser, 1);
+        jofConsultaTurmaDisponivel consultaTurmaProfessor = new jofConsultaTurmaDisponivel(professorUser, 1);
         jdpProfessor.add(consultaTurmaProfessor); 
         consultaTurmaProfessor.setVisible(true);
     }//GEN-LAST:event_jmiEntraTurmaActionPerformed
+
+    private void jmiAtividadesNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAtividadesNotasActionPerformed
+        // TODO add your handling code here:
+        jofAtividadesProfessor telaAtividadeNota = new jofAtividadesProfessor(professorUser);
+        jdpProfessor.add(telaAtividadeNota);
+        telaAtividadeNota.setVisible(true);
+    }//GEN-LAST:event_jmiAtividadesNotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,12 +183,12 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDesktopPane jdpProfessor;
     private javax.swing.JMenu jmAcoes;
     private javax.swing.JMenu jmConsultas;
-    private javax.swing.JMenuItem jmiAtividades;
+    private javax.swing.JMenuItem jmStatus;
+    private javax.swing.JMenuItem jmiAtividadesNotas;
     private javax.swing.JMenuItem jmiDispensaTurma;
     private javax.swing.JMenuItem jmiEntraTurma;
     private javax.swing.JMenuItem jmiTurma;

@@ -11,7 +11,10 @@ import Basicas.Disciplina;
 import Basicas.Professor;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoNota;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,8 +86,18 @@ public class TelaLogin extends javax.swing.JFrame {
             fachada.insereRendimentoEscola(rend5);
             fachada.insereRendimentoEscola(rend6);
             fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 2, "Fiz nada");
-            fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 2, 10.0f);
-            rend3.setNota2(10.0f);
+            try {
+                fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 2, 10.0f);
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            try {
+                rend3.setNota2(10.0f);
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
             fachada.alteraRendimentoEscolar(rend3);
             
         }
@@ -196,7 +209,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     aluno = fachada.retornaAlunoLogado(login, senha);
                     
                     JOptionPane.showMessageDialog(rootPane, "Aluno: " + aluno.getNome() + " logado");
-                    TelaPrincipalAluno telaAluno = new TelaPrincipalAluno(aluno, fachada);
+                    TelaPrincipalAluno telaAluno = new TelaPrincipalAluno(aluno);
                     
                     telaAluno.setVisible(true);
                     this.dispose();
@@ -217,7 +230,7 @@ public class TelaLogin extends javax.swing.JFrame {
             if(fachada.verificaLoginProfessorExiste(login)){
                 if(fachada.verificaLoginProfessor(login, senha)){
                     Professor professor1 = fachada.retornaProfessorLogado(login, senha); 
-                    TelaPrincipalProfessor telaProfessor = new TelaPrincipalProfessor(professor1, fachada);
+                    TelaPrincipalProfessor telaProfessor = new TelaPrincipalProfessor(professor1);
                     telaProfessor.setVisible(true);
                     this.dispose();
                 }else{
@@ -236,7 +249,7 @@ public class TelaLogin extends javax.swing.JFrame {
             if(fachada.verificaLoginAdmExiste(login)){
                 if(fachada.verificaLoginAdm(login, senha)){
                    Administrador admin = fachada.buscaADMLogin(login, senha);
-                   TelaPrincipalAdm telaAdm = new TelaPrincipalAdm(admin, fachada);
+                   TelaPrincipalAdm telaAdm = new TelaPrincipalAdm(admin);
                    telaAdm.setVisible(true);
                    this.dispose();
                 }else{

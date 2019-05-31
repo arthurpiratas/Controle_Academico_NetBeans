@@ -22,8 +22,8 @@ public class jofCadastroAluno extends javax.swing.JInternalFrame {
     Aluno aluno;
     Fachada fachada; 
     
-    public jofCadastroAluno(Fachada fachada) {
-        this.fachada = fachada; 
+    public jofCadastroAluno() {
+        this.fachada = Fachada.getInstance();
         initComponents();
     }
 

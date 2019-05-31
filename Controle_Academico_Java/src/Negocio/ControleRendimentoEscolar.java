@@ -3,6 +3,7 @@ package Negocio;
 import Basicas.Aluno;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoNota;
 import Repositorio.IRepositorioRendimento_Escolar;
 import Repositorio.RepositorioRendimentoEscolarArray;
 import java.util.ArrayList;
@@ -68,15 +69,20 @@ public class ControleRendimentoEscolar {
             
         }
         
-        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota){
+        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota) throws ExcecaoNota{
             
             Rendimento_Escolar rendimentoAluno = repRendimentoEscolar.buscaRendimento_Escolar(idAluno, idTurma); 
             float atividades[] = rendimentoAluno.getNotasTrabalhos();
             
             if(!(rendimentoAluno.getTrabalhos()[atividade].equals("Não Entregue"))){
-                atividades[atividade] = nota;
-                rendimentoAluno.setNotasTrabalhos(atividades);
-                repRendimentoEscolar.alteraRendimento(rendimentoAluno);
+                if(nota < 0 || nota >10){
+                    throw  new ExcecaoNota();
+                }else{
+                    atividades[atividade] = nota;
+                    rendimentoAluno.setNotasTrabalhos(atividades);
+                    repRendimentoEscolar.alteraRendimento(rendimentoAluno);
+                }
+                
             }
             
         }

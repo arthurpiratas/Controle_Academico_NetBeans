@@ -1,4 +1,5 @@
 package Basicas;
+import Excecoes.ExcecaoNota;
 
 public class Rendimento_Escolar {
 	
@@ -38,7 +39,7 @@ public class Rendimento_Escolar {
 		this.alunoID = aluno;
 		this.nota1 = 0.0f;
 		this.nota2 = 0.0f;
-                this.media = 0.0f;
+                this.media = -1.0f;
                 this.status = "Matriculado";
 		this.trabalhos = new String[4];
 		
@@ -75,16 +76,28 @@ public class Rendimento_Escolar {
 		return nota1;
 	}
 
-	public void setNota1(float nota1) {
-		this.nota1 = nota1;
+	public void setNota1(float nota1) throws ExcecaoNota{
+		
+                if(nota1 < 0 || nota1 >10){
+                    throw  new ExcecaoNota();
+                }else{
+                    this.nota1 = nota1;
+                }
 	}
 
 	public float getNota2() {
 		return nota2;
 	}
 
-	public void setNota2(float nota2) {
-		this.nota2 = nota2;
+	public void setNota2(float nota2) throws ExcecaoNota{
+            
+            if(nota1 < 0 || nota1 >10){
+                throw  new ExcecaoNota();
+             }else{
+                this.nota2 = nota2;
+             }
+            
+            
 	}
         
         public float getMedia() {

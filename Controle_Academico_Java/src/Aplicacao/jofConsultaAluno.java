@@ -23,11 +23,11 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
     Fachada fachada; 
     private DefaultTableModel dtmAlunos;
     private Aluno alunoAUX;
-    public jofConsultaAluno(Fachada fachada, int tipoTela) {
+    public jofConsultaAluno(int tipoTela) {
         
         // De acordo com o tipo de tela, iremos definir 1 - consulta e 2 para alterar. 
         initComponents();
-        this.fachada = fachada;
+        this.fachada = Fachada.getInstance();
         alunoAUX = null;
         
         dtmAlunos = (DefaultTableModel) jtAluno.getModel();

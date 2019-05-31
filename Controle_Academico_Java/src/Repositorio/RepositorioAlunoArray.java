@@ -187,8 +187,17 @@ public class RepositorioAlunoArray implements IRepositorioAluno{
 		return matricula;
 	}
 
-
-
-	
+        @Override
+        public Aluno buscaAluno(int idAluno) {
+            Aluno aluno = null; 
+		
+		for (int i = 0; i < index; i++) {
+			if(listaAluno[i].getId() == idAluno) {
+				aluno = listaAluno[i]; 
+			}
+		}
+		
+		return aluno;
+        }
 
 }

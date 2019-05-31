@@ -20,8 +20,8 @@ public class jofCadastroProfessor extends javax.swing.JInternalFrame {
      */
     Professor professor;
     Fachada fachada; 
-    public jofCadastroProfessor(Fachada fachada) {
-        this.fachada = fachada; 
+    public jofCadastroProfessor() {
+        this.fachada = Fachada.getInstance();
         initComponents();
     }
 

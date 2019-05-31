@@ -24,10 +24,10 @@ public class jofConsultaProfessor extends javax.swing.JInternalFrame {
     private DefaultTableModel dtmProfessor;
     private Professor professorAUX; 
     
-    public jofConsultaProfessor(Fachada fachada, int tipoTela) {
+    public jofConsultaProfessor(int tipoTela) {
         initComponents();
         
-        this.fachada = fachada; 
+        this.fachada = Fachada.getInstance();
         dtmProfessor = (DefaultTableModel) jtprofessor.getModel();
         professorAUX = null;
         

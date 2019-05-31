@@ -24,11 +24,11 @@ public class jofCadastroAdm extends javax.swing.JInternalFrame {
     
     Fachada fachada; 
     Administrador adm;
-    public jofCadastroAdm(Fachada fachada) {
+    public jofCadastroAdm() {
         
         initComponents();
         
-        this.fachada = fachada; 
+        this.fachada = Fachada.getInstance();
         
     }
 

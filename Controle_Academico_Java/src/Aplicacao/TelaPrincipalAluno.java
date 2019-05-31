@@ -24,9 +24,9 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     Fachada fachada;
     
     
-    public TelaPrincipalAluno(Aluno alunoUser,Fachada fachada) {
+    public TelaPrincipalAluno(Aluno alunoUser) {
         this.alunoUser = alunoUser; 
-        this.fachada = fachada;
+        this.fachada = Fachada.getInstance();
         
         initComponents();
         
@@ -137,7 +137,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 
     private void jmiTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTurmasActionPerformed
         // TODO add your handling code here:
-        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(fachada, alunoUser, 1);
+        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(alunoUser, 1);
         jdpAlunos.add(consultaNotas);
         consultaNotas.setVisible(true);
         
@@ -145,21 +145,21 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 
     private void jmiNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNotasActionPerformed
         // TODO add your handling code here:
-        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(fachada, alunoUser, 3);
+        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(alunoUser, 3);
         jdpAlunos.add(consultaNotas);
         consultaNotas.setVisible(true);
     }//GEN-LAST:event_jmiNotasActionPerformed
 
     private void jmiMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMatriculaActionPerformed
         // TODO add your handling code here:
-        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(fachada, alunoUser, 2);
+        jofConsultasAlunoTurmas consultaNotas = new jofConsultasAlunoTurmas(alunoUser, 2);
         jdpAlunos.add(consultaNotas);
         consultaNotas.setVisible(true);
     }//GEN-LAST:event_jmiMatriculaActionPerformed
 
     private void jmiEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEnvioActionPerformed
         // TODO add your handling code here:
-        jofEnvioAtividade enviaAtividade = new jofEnvioAtividade(fachada, alunoUser); 
+        jofEnvioAtividade enviaAtividade = new jofEnvioAtividade(alunoUser); 
         jdpAlunos.add(enviaAtividade); 
         enviaAtividade.setVisible(true);
     }//GEN-LAST:event_jmiEnvioActionPerformed

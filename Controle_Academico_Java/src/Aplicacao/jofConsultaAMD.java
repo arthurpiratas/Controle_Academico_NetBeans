@@ -24,9 +24,9 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
     private DefaultTableModel dtmADM;
     private Administrador admAux; 
     
-    public jofConsultaAMD(Fachada fachada, int tipoDeTela) {
+    public jofConsultaAMD(int tipoDeTela) {
         initComponents();
-        this.fachada = fachada; 
+        this.fachada = Fachada.getInstance();
         dtmADM = (DefaultTableModel) jtADM.getModel();
         admAux = null; 
         limpaTabela();

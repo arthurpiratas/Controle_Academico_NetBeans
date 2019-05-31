@@ -27,10 +27,10 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
     private Aluno aluno;
     private DefaultTableModel dtmTurmas;
     
-    public jofEnvioAtividade(Fachada fachada, Aluno aluno) {
+    public jofEnvioAtividade(Aluno aluno) {
         initComponents();
         
-        this.fachada = fachada; 
+        this.fachada = Fachada.getInstance(); 
         this.aluno = aluno;
         
         dtmTurmas = (DefaultTableModel) jtTurma.getModel();

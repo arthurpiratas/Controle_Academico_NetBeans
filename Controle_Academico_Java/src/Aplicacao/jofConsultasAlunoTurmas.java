@@ -28,9 +28,9 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
     private DefaultTableModel dtmTurmas;
     int tipoTela = 0; 
     
-    public jofConsultasAlunoTurmas(Fachada fachada, Aluno aluno, int TipoDeTela) {
+    public jofConsultasAlunoTurmas(  Aluno aluno, int TipoDeTela) {
         initComponents();
-        this.fachada = fachada; 
+        this.fachada = Fachada.getInstance();
         this.aluno = aluno;
         
         dtmTurmas = (DefaultTableModel) jtTurma.getModel();

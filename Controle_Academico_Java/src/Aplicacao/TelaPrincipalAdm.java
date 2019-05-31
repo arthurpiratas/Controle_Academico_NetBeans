@@ -22,9 +22,9 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     Fachada fachada;
     
     
-    public TelaPrincipalAdm(Administrador admUser, Fachada fachada) {
+    public TelaPrincipalAdm(Administrador admUser) {
         this.admUser = admUser;
-        this.fachada = fachada;
+        this.fachada = Fachada.getInstance();
         initComponents();
         jtNomeAdm.setText(admUser.getNome());
     }
@@ -229,14 +229,14 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
     private void jmiCadProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadProfActionPerformed
         // TODO add your handling code here:
-        jofCadastroProfessor telaCadastroProfessor = new jofCadastroProfessor(fachada);
+        jofCadastroProfessor telaCadastroProfessor = new jofCadastroProfessor();
         jdpPrincipalAdm.add(telaCadastroProfessor);
         telaCadastroProfessor.setVisible(true);
     }//GEN-LAST:event_jmiCadProfActionPerformed
 
     private void jmiCnsuAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCnsuAdmActionPerformed
         // TODO add your handling code here:
-        jofConsultaAMD telaConsultaAdm = new jofConsultaAMD(fachada, 1);
+        jofConsultaAMD telaConsultaAdm = new jofConsultaAMD(1);
         jdpPrincipalAdm.add(telaConsultaAdm);
         telaConsultaAdm.setVisible(true);
     }//GEN-LAST:event_jmiCnsuAdmActionPerformed
@@ -252,7 +252,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     private void jmiCadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadAlunoActionPerformed
         // TODO add your handling code here:
         
-        jofCadastroAluno telaCadastroAluno = new jofCadastroAluno(fachada);
+        jofCadastroAluno telaCadastroAluno = new jofCadastroAluno();
         jdpPrincipalAdm.add(telaCadastroAluno);
         telaCadastroAluno.setVisible(true);
         
@@ -265,35 +265,35 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
     private void jmiCadDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadDiscActionPerformed
         // TODO add your handling code here:
-        jofCadastroDisciplina telaCadDisciplina = new jofCadastroDisciplina(fachada);
+        jofCadastroDisciplina telaCadDisciplina = new jofCadastroDisciplina();
         jdpPrincipalAdm.add(telaCadDisciplina);
         telaCadDisciplina.setVisible(true);
     }//GEN-LAST:event_jmiCadDiscActionPerformed
 
     private void jmiCadTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadTurmaActionPerformed
         // TODO add your handling code here:
-        jofCadastroTurma telaCadastroTurma = new jofCadastroTurma(fachada);
+        jofCadastroTurma telaCadastroTurma = new jofCadastroTurma();
         jdpPrincipalAdm.add(telaCadastroTurma);
         telaCadastroTurma.setVisible(true);
     }//GEN-LAST:event_jmiCadTurmaActionPerformed
 
     private void jmiCadAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadAdmActionPerformed
         // TODO add your handling code here:
-        jofCadastroAdm telaCadastroAdm = new jofCadastroAdm(fachada);
+        jofCadastroAdm telaCadastroAdm = new jofCadastroAdm();
         jdpPrincipalAdm.add(telaCadastroAdm);
         telaCadastroAdm.setVisible(true);
     }//GEN-LAST:event_jmiCadAdmActionPerformed
 
     private void jmiConsuAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsuAlunoActionPerformed
         // TODO add your handling code here:
-        jofConsultaAluno telaConsultaAluno = new jofConsultaAluno(fachada, 1);
+        jofConsultaAluno telaConsultaAluno = new jofConsultaAluno(1);
         jdpPrincipalAdm.add(telaConsultaAluno);
         telaConsultaAluno.setVisible(true);
     }//GEN-LAST:event_jmiConsuAlunoActionPerformed
 
     private void jmiConsDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsDiscActionPerformed
         // TODO add your handling code here:
-        jofConsultaDisciplina telaConsultaDisciplina = new jofConsultaDisciplina(fachada, 1);
+        jofConsultaDisciplina telaConsultaDisciplina = new jofConsultaDisciplina(1);
         jdpPrincipalAdm.add(telaConsultaDisciplina); 
         telaConsultaDisciplina.setVisible(true);
     }//GEN-LAST:event_jmiConsDiscActionPerformed
@@ -301,7 +301,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
     private void jmiConsProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsProfActionPerformed
         // TODO add your handling code here:
         
-        jofConsultaProfessor telaConsultaProfessor = new jofConsultaProfessor(fachada, 1);
+        jofConsultaProfessor telaConsultaProfessor = new jofConsultaProfessor(1);
         jdpPrincipalAdm.add(telaConsultaProfessor);
         telaConsultaProfessor.setVisible(true);
         
@@ -309,42 +309,42 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
     private void jmiConsTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsTurmaActionPerformed
         // TODO add your handling code here:
-        jofConsultaTurma telaConsultaTurma = new jofConsultaTurma(fachada, 1);
+        jofConsultaTurma telaConsultaTurma = new jofConsultaTurma(1);
         jdpPrincipalAdm.add(telaConsultaTurma); 
         telaConsultaTurma.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jmiConsTurmaActionPerformed
 
     private void jmiManuProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuProfActionPerformed
         // TODO add your handling code here:
-        jofConsultaProfessor telaConsultaProfessor = new jofConsultaProfessor(fachada, 2);
+        jofConsultaProfessor telaConsultaProfessor = new jofConsultaProfessor(2);
         jdpPrincipalAdm.add(telaConsultaProfessor);
         telaConsultaProfessor.setVisible(true);
     }//GEN-LAST:event_jmiManuProfActionPerformed
 
     private void jmiManuAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuAlunoActionPerformed
         // TODO add your handling code here:
-        jofConsultaAluno tleaAlteraAluno =  new jofConsultaAluno(fachada, 2);
+        jofConsultaAluno tleaAlteraAluno =  new jofConsultaAluno(2);
         jdpPrincipalAdm.add(tleaAlteraAluno);
         tleaAlteraAluno.setVisible(true);
     }//GEN-LAST:event_jmiManuAlunoActionPerformed
 
     private void jmiManuDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuDiscActionPerformed
         // TODO add your handling code here:
-        jofConsultaDisciplina telaConsultaDisciplina = new jofConsultaDisciplina(fachada, 2);
+        jofConsultaDisciplina telaConsultaDisciplina = new jofConsultaDisciplina(2);
         jdpPrincipalAdm.add(telaConsultaDisciplina); 
         telaConsultaDisciplina.setVisible(true);
     }//GEN-LAST:event_jmiManuDiscActionPerformed
 
     private void jmiManuAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuAdmActionPerformed
         // TODO add your handling code here:
-        jofConsultaAMD telaConsultaAdm = new jofConsultaAMD(fachada, 2);
+        jofConsultaAMD telaConsultaAdm = new jofConsultaAMD(2);
         jdpPrincipalAdm.add(telaConsultaAdm);
         telaConsultaAdm.setVisible(true);
     }//GEN-LAST:event_jmiManuAdmActionPerformed
 
     private void jmiManuTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManuTurmaActionPerformed
         // TODO add your handling code here:
-        jofConsultaTurma telaConsultaTurma = new jofConsultaTurma(fachada, 2);
+        jofConsultaTurma telaConsultaTurma = new jofConsultaTurma(2);
         jdpPrincipalAdm.add(telaConsultaTurma); 
         telaConsultaTurma.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jmiManuTurmaActionPerformed
