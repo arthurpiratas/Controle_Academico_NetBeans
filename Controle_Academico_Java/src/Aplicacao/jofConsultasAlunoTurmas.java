@@ -365,10 +365,10 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
                     jtnotaAtv4.setText(rendEsco.getTrabalhos()[3].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[3]));
                     jtnota1.setText(String.valueOf(rendEsco.getNota1()));
                     jtnota2.setText(String.valueOf(rendEsco.getNota2()));
-                    jtMedia.setText(String.valueOf(rendEsco.getMedia()));
+                    jtMedia.setText(rendEsco.getMedia() == -1 ? " " : String.valueOf(rendEsco.getMedia()));
                     jtSituacao.setText(rendEsco.getStatus());
                 }catch(NullPointerException e){
-                    
+                    JOptionPane.showMessageDialog(rootPane, e);
                 }
             }
         }
@@ -389,10 +389,10 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
                     jtnotaAtv4.setText(rendEsco.getTrabalhos()[3].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[3]));
                     jtnota1.setText(String.valueOf(rendEsco.getNota1()));
                     jtnota2.setText(String.valueOf(rendEsco.getNota2()));
-                    jtMedia.setText(String.valueOf(rendEsco.getMedia()));
+                    jtMedia.setText(rendEsco.getMedia() == -1 ? " " : String.valueOf(rendEsco.getMedia()));
                     jtSituacao.setText(rendEsco.getStatus());
                 }catch(NullPointerException e){
-                    
+                    JOptionPane.showMessageDialog(rootPane, e);
                 }
                 
             }

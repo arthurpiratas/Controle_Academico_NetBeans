@@ -3,6 +3,7 @@ package Negocio;
 import java.util.ArrayList;
 
 import Basicas.*;
+import Excecoes.ExcecaoAtividade;
 import Excecoes.ExcecaoNota;
 
 public class Fachada {
@@ -368,7 +369,7 @@ public class Fachada {
                 ctrRendimentoEscolar.insereAtividadeAluno(idAluno, idTurma, atividade, atividadeTxt);
         }
         
-        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota) throws ExcecaoNota{
+        public void insereNotaAtividadeAluno(int idAluno, int idTurma, int atividade, float nota) throws ExcecaoNota, ExcecaoAtividade{
                ctrRendimentoEscolar.insereNotaAtividadeAluno(idAluno, idTurma, atividade, nota);
         }
         
@@ -390,6 +391,18 @@ public class Fachada {
         
         public void calculaMediaAluno(int idTurma, int IdAluno){
                 ctrRendimentoEscolar.calculaMediaAluno(idTurma, IdAluno);
+        }
+        
+        public float retornaPercentualAlunosAprovados(int idTurma){
+                return ctrRendimentoEscolar.retornaPercentualAlunosAprovados(idTurma);
+        }
+        
+        public float retornaPercentualAlunosFinal(int idTurma){
+                return ctrRendimentoEscolar.retornaPercentualAlunosFinal(idTurma);
+        }
+        
+        public float retornaPercentualAlunosReprovado(int idTurma){
+                return ctrRendimentoEscolar.retornaPercentualAlunosReprovado(idTurma);
         }
         
 }

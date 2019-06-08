@@ -11,6 +11,7 @@ import Basicas.Disciplina;
 import Basicas.Professor;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoAtividade;
 import Excecoes.ExcecaoNota;
 import Negocio.Fachada;
 import java.util.logging.Level;
@@ -91,6 +92,9 @@ public class TelaLogin extends javax.swing.JFrame {
             } catch (ExcecaoNota ex) {
                 Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(rootPane, ex);
+            }  catch (ExcecaoAtividade exA) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, exA);
+                JOptionPane.showMessageDialog(rootPane, exA);
             }
             try {
                 rend3.setNota2(10.0f);

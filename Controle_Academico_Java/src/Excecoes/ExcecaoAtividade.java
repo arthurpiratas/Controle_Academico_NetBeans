@@ -9,15 +9,14 @@ package Excecoes;
  *
  * @author Arthur
  */
-public class ExcecaoNota extends Exception{
-
-    public ExcecaoNota() {
+public class ExcecaoAtividade extends Exception{
+    
+    public ExcecaoAtividade() {
         super();
     }
     @Override
     public String getMessage(){
-        return "As nota(s) deve ser de 0 à 10";
+        return " não pode ser avaliada, pois não foi entregue!";
     }
     
-   
 }

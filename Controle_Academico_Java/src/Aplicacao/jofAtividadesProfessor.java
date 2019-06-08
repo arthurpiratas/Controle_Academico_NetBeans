@@ -9,7 +9,11 @@ import Basicas.Aluno;
 import Basicas.Professor;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoAtividade;
+import Excecoes.ExcecaoNota;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -101,6 +105,10 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
         jbEnviar = new javax.swing.JButton();
         jbSair = new javax.swing.JButton();
         jbMedia1 = new javax.swing.JButton();
+        jbAvalia2 = new javax.swing.JButton();
+        jbAvalia3 = new javax.swing.JButton();
+        jbAvalia4 = new javax.swing.JButton();
+        jbAvalia1 = new javax.swing.JButton();
 
         setTitle("Atividades e Notas ");
         getContentPane().setLayout(null);
@@ -243,19 +251,19 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Atividade 4");
         jpNotas.add(jLabel3);
-        jLabel3.setBounds(630, 10, 70, 14);
+        jLabel3.setBounds(590, 10, 70, 14);
 
         jLabel4.setText("Atividade 1");
         jpNotas.add(jLabel4);
-        jLabel4.setBounds(44, 10, 70, 14);
+        jLabel4.setBounds(10, 10, 70, 14);
 
         jLabel5.setText("Atividade 2");
         jpNotas.add(jLabel5);
-        jLabel5.setBounds(250, 10, 70, 14);
+        jLabel5.setBounds(210, 10, 70, 14);
 
         jLabel6.setText("Atividade 3");
         jpNotas.add(jLabel6);
-        jLabel6.setBounds(440, 10, 70, 14);
+        jLabel6.setBounds(400, 10, 70, 14);
 
         jtNotaAtv2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jpNotas.add(jtNotaAtv2);
@@ -340,9 +348,14 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
         jbAtualizar.setBounds(660, 170, 70, 23);
 
         jbEnviar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jbEnviar.setText("Enviar");
+        jbEnviar.setText("Avaliar Notas");
+        jbEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEnviarActionPerformed(evt);
+            }
+        });
         jpNotas.add(jbEnviar);
-        jbEnviar.setBounds(560, 140, 70, 21);
+        jbEnviar.setBounds(549, 140, 100, 21);
 
         jbSair.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jbSair.setText("Sair");
@@ -352,12 +365,53 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
             }
         });
         jpNotas.add(jbSair);
-        jbSair.setBounds(560, 170, 70, 21);
+        jbSair.setBounds(550, 170, 100, 21);
 
         jbMedia1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jbMedia1.setText("Média");
+        jbMedia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMedia1ActionPerformed(evt);
+            }
+        });
         jpNotas.add(jbMedia1);
         jbMedia1.setBounds(660, 140, 70, 21);
+
+        jbAvalia2.setText("Avaliar");
+        jbAvalia2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAvalia2ActionPerformed(evt);
+            }
+        });
+        jpNotas.add(jbAvalia2);
+        jbAvalia2.setBounds(290, 5, 65, 20);
+
+        jbAvalia3.setText("Avaliar");
+        jbAvalia3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAvalia3ActionPerformed(evt);
+            }
+        });
+        jpNotas.add(jbAvalia3);
+        jbAvalia3.setBounds(470, 5, 65, 20);
+
+        jbAvalia4.setText("Avaliar");
+        jbAvalia4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAvalia4ActionPerformed(evt);
+            }
+        });
+        jpNotas.add(jbAvalia4);
+        jbAvalia4.setBounds(660, 5, 65, 20);
+
+        jbAvalia1.setText("Avaliar");
+        jbAvalia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAvalia1ActionPerformed(evt);
+            }
+        });
+        jpNotas.add(jbAvalia1);
+        jbAvalia1.setBounds(80, 5, 65, 20);
 
         getContentPane().add(jpNotas);
         jpNotas.setBounds(10, 10, 740, 200);
@@ -446,6 +500,189 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
         ativaCampos();
         
     }//GEN-LAST:event_jbAtualizarActionPerformed
+
+    private void jbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviarActionPerformed
+        // TODO add your handling code here:
+        
+        if(jtRendimentoEscolar.getSelectedRow() != -1){
+            
+             
+            
+            Aluno alunoAux = fachada.buscaAluno(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 1).toString());
+            Turma turmaAux = fachada.buscaTurma(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 2).toString()); 
+
+            try {
+
+		Rendimento_Escolar rendimentoEscolar = fachada.buscaRendimentoEscolar(alunoAux.getId(),turmaAux.getId());
+                rendimentoEscolar.setNota1(Float.parseFloat(jtNota1.getText()));
+                rendimentoEscolar.setNota2(Float.parseFloat(jtNota2.getText()));
+                
+                fachada.alteraRendimentoEscolar(rendimentoEscolar);
+                
+                limpaTabelaRendimentoEscolar();
+                limpaCampos();
+                
+                JOptionPane.showMessageDialog(rootPane, "Nota(s) inserida(s)!");
+
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            
+                
+            
+		
+        }
+        
+    }//GEN-LAST:event_jbEnviarActionPerformed
+
+    private void jbAvalia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAvalia1ActionPerformed
+        // TODO add your handling code here:
+        
+        if(jtRendimentoEscolar.getSelectedRow() != -1){
+                       
+            Aluno alunoAux = fachada.buscaAluno(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 1).toString());
+            Turma turmaAux = fachada.buscaTurma(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 2).toString()); 
+
+             
+            try {
+                
+            fachada.insereNotaAtividadeAluno(alunoAux.getId(), turmaAux.getId(), 0, Float.parseFloat(jtNotaAtv1.getText()));
+            limpaTabelaRendimentoEscolar();
+            limpaCampos();
+                
+            JOptionPane.showMessageDialog(rootPane, "Nota) inserida!");
+               
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            } catch (ExcecaoAtividade exA){
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
+                JOptionPane.showMessageDialog(rootPane, exA);
+            }
+            
+		
+        }
+        
+        
+    }//GEN-LAST:event_jbAvalia1ActionPerformed
+
+    private void jbAvalia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAvalia2ActionPerformed
+        // TODO add your handling code here:
+        
+        if(jtRendimentoEscolar.getSelectedRow() != -1){
+                        
+            Aluno alunoAux = fachada.buscaAluno(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 1).toString());
+            Turma turmaAux = fachada.buscaTurma(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 2).toString()); 
+
+            
+            try {
+                
+		fachada.insereNotaAtividadeAluno(alunoAux.getId(), turmaAux.getId(), 1, Float.parseFloat(jtNotaAtv2.getText()));
+                limpaTabelaRendimentoEscolar();
+                limpaCampos();
+                
+                JOptionPane.showMessageDialog(rootPane, "Nota inserida!");
+                
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            } catch (ExcecaoAtividade exA){
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
+                JOptionPane.showMessageDialog(rootPane, exA);
+            }
+				
+        }
+        
+        
+    }//GEN-LAST:event_jbAvalia2ActionPerformed
+
+    private void jbAvalia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAvalia3ActionPerformed
+        // TODO add your handling code here:
+        
+        if(jtRendimentoEscolar.getSelectedRow() != -1){
+            
+             
+            
+            Aluno alunoAux = fachada.buscaAluno(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 1).toString());
+            Turma turmaAux = fachada.buscaTurma(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 2).toString()); 
+
+            	
+            try {
+                
+		fachada.insereNotaAtividadeAluno(alunoAux.getId(), turmaAux.getId(), 2, Float.parseFloat(jtNotaAtv3.getText()));
+                limpaTabelaRendimentoEscolar();
+                limpaCampos();
+                
+                JOptionPane.showMessageDialog(rootPane, "Nota inserida!");
+                
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            } catch (ExcecaoAtividade exA){
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
+                JOptionPane.showMessageDialog(rootPane, exA);
+            }
+				
+        }
+        
+        
+    }//GEN-LAST:event_jbAvalia3ActionPerformed
+
+    private void jbAvalia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAvalia4ActionPerformed
+        // TODO add your handling code here:
+        
+        if(jtRendimentoEscolar.getSelectedRow() != -1){
+            
+            
+            Aluno alunoAux = fachada.buscaAluno(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 1).toString());
+            Turma turmaAux = fachada.buscaTurma(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 2).toString()); 
+
+            
+            try {
+                
+            	fachada.insereNotaAtividadeAluno(alunoAux.getId(), turmaAux.getId(), 3, Float.parseFloat(jtNotaAtv4.getText()));
+                limpaTabelaRendimentoEscolar();
+                limpaCampos();
+                
+                JOptionPane.showMessageDialog(rootPane, "Nota(s) inserida(s)!");
+                
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            } catch (ExcecaoAtividade exA){
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
+                JOptionPane.showMessageDialog(rootPane, exA);
+            }
+             
+		
+        }
+        
+        
+    }//GEN-LAST:event_jbAvalia4ActionPerformed
+
+    private void jbMedia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMedia1ActionPerformed
+        // TODO add your handling code here:
+        
+        if(jtRendimentoEscolar.getSelectedRow() != -1){
+            
+            
+            Aluno alunoAux = fachada.buscaAluno(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 1).toString());
+            Turma turmaAux = fachada.buscaTurma(jtRendimentoEscolar.getValueAt(jtRendimentoEscolar.getSelectedRow(), 2).toString()); 
+            Rendimento_Escolar rendimentoEscolar = fachada.buscaRendimentoEscolar(alunoAux.getId(),turmaAux.getId());
+            
+            fachada.calculaMediaAluno(turmaAux.getId(), alunoAux.getId());
+            rendimentoEscolar.setStatus(fachada.retornaSituacaoAluno(turmaAux.getId(), alunoAux.getId()));
+            
+            fachada.alteraRendimentoEscolar(rendimentoEscolar);
+            
+            limpaTabelaRendimentoEscolar();
+            limpaCampos();
+                
+            JOptionPane.showMessageDialog(rootPane, "Média Calculada!");
+        }
+        
+    }//GEN-LAST:event_jbMedia1ActionPerformed
     
     
     private void limpaTabelaTurma(){
@@ -492,6 +729,10 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
         jtNotaAtv3.setEditable(false);
         jtNotaAtv4.setEditable(false);
         jbEnviar.setEnabled(false);
+        jbAvalia1.setEnabled(false);
+        jbAvalia2.setEnabled(false);
+        jbAvalia3.setEnabled(false);
+        jbAvalia4.setEnabled(false);
         
     }
     
@@ -505,6 +746,10 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
         jtNotaAtv3.setEditable(true);
         jtNotaAtv4.setEditable(true);
         jbEnviar.setEnabled(true);
+        jbAvalia1.setEnabled(true);
+        jbAvalia2.setEnabled(true);
+        jbAvalia3.setEnabled(true);
+        jbAvalia4.setEnabled(true);
         
     }
     
@@ -549,6 +794,10 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton jbAtualizar;
+    private javax.swing.JButton jbAvalia1;
+    private javax.swing.JButton jbAvalia2;
+    private javax.swing.JButton jbAvalia3;
+    private javax.swing.JButton jbAvalia4;
     private javax.swing.JButton jbEnviar;
     private javax.swing.JButton jbMedia1;
     private javax.swing.JButton jbSair;

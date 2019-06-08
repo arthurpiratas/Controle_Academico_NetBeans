@@ -112,17 +112,8 @@ public class RepositorioRendimentoEscolarArray implements IRepositorioRendimento
 		
 	}
 
-	@Override
-	public Rendimento_Escolar[] retornaListaRendimento_EscolarAluno(int aluno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rendimento_Escolar[] retornaListaRendimento_EscolarTurma(int turma) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 
 	@Override
 	public boolean verificaRendimentoEscolarPossuiAluno(int aluno) {

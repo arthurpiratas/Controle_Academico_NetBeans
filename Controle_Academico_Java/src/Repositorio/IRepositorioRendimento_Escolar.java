@@ -14,8 +14,6 @@ public interface IRepositorioRendimento_Escolar {
 	public boolean verificaRendimento_Escolar(int aluno, int turma); 
 	public void listaRendimento_EscolarAluno(int aluno); 
 	public void listaRendimento_EscolarTurma(int turma); 
-	public Rendimento_Escolar[] retornaListaRendimento_EscolarAluno(int aluno);
-	public Rendimento_Escolar[] retornaListaRendimento_EscolarTurma(int turma);
 	public boolean verificaRendimentoEscolarPossuiAluno(int aluno); 
 	public boolean verificaRendimentoEscolarPossuiTurma(int turma); 
 	public void removeRendimentoEscolarPorAluno(String matricula); 

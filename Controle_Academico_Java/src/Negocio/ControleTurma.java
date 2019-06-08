@@ -92,19 +92,16 @@ public class ControleTurma {
 		String alunos[] = turma.getAlunoTurma(); 
 		
 		for (int i = 0; i < turma.getQtdAlunoTurma(); i++) {
-			if(alunos[i].equals(aluno.getMatricula())) {
-				
-				
-					alunos[i] = alunos[turma.getQtdAlunoTurma()-1];
-					turma.setQtdAlunoTurma(turma.getQtdAlunoTurma()-1);
-				
-			}
+                    if(alunos[i].equals(aluno.getMatricula())) {
+                        
+                        alunos[i] = alunos[turma.getQtdAlunoTurma()-1];
+                        turma.setQtdAlunoTurma(turma.getQtdAlunoTurma()-1);
+			
+                    }
 		}
 		
-		
-		
-		turma.setAlunoTurma(alunos);
-		alteraTurma(turma);
+            turma.setAlunoTurma(alunos);
+            alteraTurma(turma);
 	}
 	
 	public ArrayList<Turma> retornaListaTurmaAluno(Aluno aluno){
