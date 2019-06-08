@@ -40,7 +40,7 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
         }
         
         if(tipoTela == 1){
-            this.title = "Altera Aluno"; 
+            this.title = "Consulta Aluno"; 
             jpAlteraAluno.setEnabled(false);
             jpAlteraAluno.setVisible(false);
         }else{

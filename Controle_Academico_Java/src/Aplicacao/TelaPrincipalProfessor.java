@@ -67,6 +67,11 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jmConsultas.setText("Consultas");
 
         jmiTurma.setText("Turmas");
+        jmiTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTurmaActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiTurma);
 
         jmiAtividadesNotas.setText("Atividades e Notas");
@@ -78,6 +83,11 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jmConsultas.add(jmiAtividadesNotas);
 
         jmStatus.setText("Status Turma");
+        jmStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmStatusActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmStatus);
 
         jMenuBar1.add(jmConsultas);
@@ -144,6 +154,20 @@ public class TelaPrincipalProfessor extends javax.swing.JFrame {
         jdpProfessor.add(telaAtividadeNota);
         telaAtividadeNota.setVisible(true);
     }//GEN-LAST:event_jmiAtividadesNotasActionPerformed
+
+    private void jmiTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTurmaActionPerformed
+        // TODO add your handling code here:
+        jofTelaTurmaGeral telaTurmaGeral = new jofTelaTurmaGeral(professorUser, 1); 
+        jdpProfessor.add(telaTurmaGeral); 
+        telaTurmaGeral.setVisible(true);
+    }//GEN-LAST:event_jmiTurmaActionPerformed
+
+    private void jmStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmStatusActionPerformed
+        // TODO add your handling code here:
+        jofTelaTurmaGeral telaTurmaGeral = new jofTelaTurmaGeral(professorUser, 2); 
+        jdpProfessor.add(telaTurmaGeral); 
+        telaTurmaGeral.setVisible(true);
+    }//GEN-LAST:event_jmStatusActionPerformed
 
     /**
      * @param args the command line arguments

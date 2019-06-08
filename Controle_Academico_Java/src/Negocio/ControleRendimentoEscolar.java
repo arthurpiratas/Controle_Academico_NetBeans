@@ -111,12 +111,12 @@ public class ControleRendimentoEscolar {
         public float retornaPercentualAlunosAprovados(int idTurma){
             
             int qtdAlunosAprovados = retornaQtdAlunosAprovados(idTurma);
-            int qtdAlunosTurma = repRendimentoEscolar.retornaListaRendimentoTurma(idTurma).size();
+            int qtdAlunosTurma =  repRendimentoEscolar.retornaListaRendimentoTurma(idTurma).size() ;
             float total; 
             
             
             
-            total = ((float)(qtdAlunosAprovados*100)/qtdAlunosTurma);
+            total = ((float)(qtdAlunosAprovados*100)/(qtdAlunosTurma == 0? 1: qtdAlunosTurma));
             NumberFormat formatter = new DecimalFormat("0.0");
             total = Float.parseFloat(formatter.format(total));
             
@@ -129,9 +129,9 @@ public class ControleRendimentoEscolar {
             int qtdAlunosTurma = repRendimentoEscolar.retornaListaRendimentoTurma(idTurma).size();
             float total; 
             
-             
             
-            total = ((float)(qtdAlunosFinal*100)/qtdAlunosTurma);
+            
+            total = ((float)(qtdAlunosFinal*100)/(qtdAlunosTurma == 0? 1: qtdAlunosTurma));
             NumberFormat formatter = new DecimalFormat("0.0");
             total = Float.parseFloat(formatter.format(total));
             
@@ -146,7 +146,7 @@ public class ControleRendimentoEscolar {
             
              
             
-            total = ((float)(qtdAlunosReprovado*100)/qtdAlunosTurma);
+            total = ((float)(qtdAlunosReprovado*100)/(qtdAlunosTurma == 0? 1: qtdAlunosTurma));
             NumberFormat formatter = new DecimalFormat("0.0");
             total = Float.parseFloat(formatter.format(total));
             
@@ -176,8 +176,10 @@ public class ControleRendimentoEscolar {
             
             
             for (Rendimento_Escolar renEsc : repRendimentoEscolar.retornaListaRendimentoTurma(idTurma)) {
-                if(renEsc.getMedia() < 3){
-                    cont++;
+                if(renEsc.getMedia() != -1){
+                    if(renEsc.getMedia() <= 3){
+                        cont++;   
+                    }
                 }
                 
             }

@@ -356,10 +356,24 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             if(fachada.verificaDisciplinaExiste(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString())){
                 Disciplina disciplina = fachada.buscaDisciplina(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString());
                 jtEmenta.setText(disciplina.getEmenta());
-                try{
+                
                     limpaCampos();
-                    Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId());
-                    jtnotaAtv1.setText(rendEsco.getTrabalhos()[0].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[0]));
+                    try{
+                        Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId());
+                        preencheCampos(rendEsco);
+                    }catch (NullPointerException e){
+                        
+                    }
+                    
+                
+                   
+            }
+        }
+    }//GEN-LAST:event_jtTurmaKeyReleased
+    
+    
+    public void preencheCampos(Rendimento_Escolar rendEsco){
+        jtnotaAtv1.setText(rendEsco.getTrabalhos()[0].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[0]));
                     jtnotaAtv2.setText(rendEsco.getTrabalhos()[1].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[1]));
                     jtnotaAtv3.setText(rendEsco.getTrabalhos()[2].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[2]));
                     jtnotaAtv4.setText(rendEsco.getTrabalhos()[3].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[3]));
@@ -367,13 +381,9 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
                     jtnota2.setText(String.valueOf(rendEsco.getNota2()));
                     jtMedia.setText(rendEsco.getMedia() == -1 ? " " : String.valueOf(rendEsco.getMedia()));
                     jtSituacao.setText(rendEsco.getStatus());
-                }catch(NullPointerException e){
-                    JOptionPane.showMessageDialog(rootPane, e);
-                }
-            }
-        }
-    }//GEN-LAST:event_jtTurmaKeyReleased
-
+    }
+    
+    
     private void jtTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTurmaMouseClicked
         // TODO add your handling code here:
         if(jtTurma.getSelectedRow() != -1){
@@ -381,18 +391,10 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
                 Disciplina disciplina = fachada.buscaDisciplina(jtTurma.getValueAt(jtTurma.getSelectedRow(), 2).toString());
                 jtEmenta.setText(disciplina.getEmenta());
                 try{
-                    limpaCampos();
                     Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId());
-                    jtnotaAtv1.setText(rendEsco.getTrabalhos()[0].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[0]));
-                    jtnotaAtv2.setText(rendEsco.getTrabalhos()[1].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[1]));
-                    jtnotaAtv3.setText(rendEsco.getTrabalhos()[2].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[2]));
-                    jtnotaAtv4.setText(rendEsco.getTrabalhos()[3].equals("Não Entregue") ? "Não Entregue" : String.valueOf(rendEsco.getNotasTrabalhos()[3]));
-                    jtnota1.setText(String.valueOf(rendEsco.getNota1()));
-                    jtnota2.setText(String.valueOf(rendEsco.getNota2()));
-                    jtMedia.setText(rendEsco.getMedia() == -1 ? " " : String.valueOf(rendEsco.getMedia()));
-                    jtSituacao.setText(rendEsco.getStatus());
-                }catch(NullPointerException e){
-                    JOptionPane.showMessageDialog(rootPane, e);
+                    preencheCampos(rendEsco);
+                }catch (NullPointerException e){
+                        
                 }
                 
             }
