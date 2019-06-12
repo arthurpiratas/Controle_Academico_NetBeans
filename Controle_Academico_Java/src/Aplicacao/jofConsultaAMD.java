@@ -6,7 +6,11 @@
 package Aplicacao;
 
 import Basicas.Administrador;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -73,8 +77,6 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jtNomeUsuario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jrNAlteraNome = new javax.swing.JRadioButton();
-        jrAlteraNome = new javax.swing.JRadioButton();
         jtData = new javax.swing.JTextField();
         jbSair2 = new javax.swing.JButton();
         jbAtualizar2 = new javax.swing.JButton();
@@ -176,15 +178,13 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jpConsultaADM);
-        jpConsultaADM.setBounds(0, 120, 660, 50);
+        jpConsultaADM.setBounds(10, 120, 660, 50);
 
         jpAlteraADM.setLayout(null);
 
         jLabel1.setText("Senha");
         jpAlteraADM.add(jLabel1);
         jLabel1.setBounds(200, 60, 60, 14);
-
-        jtNome.setEditable(false);
         jpAlteraADM.add(jtNome);
         jtNome.setBounds(80, 50, 100, 30);
 
@@ -211,16 +211,6 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
         jLabel5.setText("Nome Usuário");
         jpAlteraADM.add(jLabel5);
         jLabel5.setBounds(370, 20, 80, 14);
-
-        btgNome.add(jrNAlteraNome);
-        jrNAlteraNome.setText("Ñ Altera Nome");
-        jpAlteraADM.add(jrNAlteraNome);
-        jrNAlteraNome.setBounds(360, 80, 100, 23);
-
-        btgNome.add(jrAlteraNome);
-        jrAlteraNome.setText("Altera Nome");
-        jpAlteraADM.add(jrAlteraNome);
-        jrAlteraNome.setBounds(360, 50, 85, 23);
         jpAlteraADM.add(jtData);
         jtData.setBounds(250, 10, 100, 30);
 
@@ -231,7 +221,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraADM.add(jbSair2);
-        jbSair2.setBounds(590, 80, 80, 20);
+        jbSair2.setBounds(590, 60, 80, 30);
 
         jbAtualizar2.setText("Atualizar");
         jbAtualizar2.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +230,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraADM.add(jbAtualizar2);
-        jbAtualizar2.setBounds(590, 47, 80, 23);
+        jbAtualizar2.setBounds(590, 10, 80, 30);
 
         jbLimpar.setText("Limpar");
         jbLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +239,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraADM.add(jbLimpar);
-        jbLimpar.setBounds(590, 10, 80, 23);
+        jbLimpar.setBounds(480, 50, 100, 30);
 
         jbAlterar.setText("Alterar");
         jbAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -258,7 +248,7 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraADM.add(jbAlterar);
-        jbAlterar.setBounds(470, 60, 110, 30);
+        jbAlterar.setBounds(360, 50, 110, 30);
 
         getContentPane().add(jpAlteraADM);
         jpAlteraADM.setBounds(0, 0, 680, 110);
@@ -322,25 +312,21 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
 
-        if(jtADM.getSelectedRow() != -1 && admAux != null ){
-            admAux.setSenha(jtSenha.getText());
-            if(jrAlteraNome.isSelected()){
-                if(!(fachada.verificaLoginAdmExiste(jtNomeUsuario.getText()))){
-                    admAux.setNomeUsuario(jtNomeUsuario.getText());
-                    fachada.alteraADM(admAux);
-                    limpaTabela();
-                    JOptionPane.showMessageDialog(rootPane, "Administrador Alterado, favor Atualizar a Tabela!!!");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Nome já existe!!");
-                }
-            }else if(jrNAlteraNome.isSelected()){
+        if(jtADM.getSelectedRow() != -1){
+            
+            admAux = new Administrador(admAux.getId(), jtNome.getText(), null, jtNomeUsuario.getText(), jtSenha.getText());
+            try {
                 fachada.alteraADM(admAux);
                 limpaTabela();
+                limpaCampos();
                 JOptionPane.showMessageDialog(rootPane, "Administrador Alterado, favor Atualizar a Tabela!!!");
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Selecione uma opção");
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(jofConsultaAMD.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            } catch (ExcecaoNomeUsuario ex) {
+                Logger.getLogger(jofConsultaAMD.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
-            limpaCampos();
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
         }
@@ -407,8 +393,6 @@ public class jofConsultaAMD extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpAlteraADM;
     private javax.swing.JPanel jpConsultaADM;
     private javax.swing.JPanel jpTabela;
-    private javax.swing.JRadioButton jrAlteraNome;
-    private javax.swing.JRadioButton jrNAlteraNome;
     private javax.swing.JTable jtADM;
     private javax.swing.JTextField jtData;
     private javax.swing.JTextField jtID;

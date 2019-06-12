@@ -6,7 +6,11 @@
 package Aplicacao;
 
 import Basicas.Professor;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -127,10 +131,10 @@ public class jofCadastroProfessor extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 312, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 16, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,7 +162,7 @@ public class jofCadastroProfessor extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 16, Short.MAX_VALUE)))
         );
 
         pack();
@@ -176,17 +180,14 @@ public class jofCadastroProfessor extends javax.swing.JInternalFrame {
             nome = jtNome.getText();
             usuario = jtUsuario.getText();
             senha = jtSenha.getText();
-            if(!(fachada.verificaProfessorExiste(nome)) && !(fachada.verificaLoginProfessorExiste(usuario))){
-                if(senha.length() > 0){
+            if(senha.length() > 0){
                     professor = new Professor(fachada.retornaProximoIdProfessor(), nome, cargo, null, usuario, senha);
                     jbCriar.setEnabled(true);
                     jbLimpar.setEnabled(true);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Senha Não pode ser vazia");
-                }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Nome ou Login Já cadastrados");
+                JOptionPane.showMessageDialog(rootPane, "Senha Não pode ser vazia");
             }
+            
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(rootPane, "Erro " + e);
         }
@@ -194,17 +195,26 @@ public class jofCadastroProfessor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarActionPerformed
-        // TODO add your handling code here:
-        fachada.insereProfessor(professor);
-        JOptionPane.showMessageDialog(rootPane, "Professor Cadastrado");
-        professor = null;
-        jtNome.setText("");
-        jtCargo.setText("");
-        jtSenha.setText("");
-        jtUsuario.setText("");
-        jtfData.setText("");
-        jbCriar.setEnabled(false);
-        jbLimpar.setEnabled(false);
+        try {
+            // TODO add your handling code here:
+            fachada.insereProfessor(professor);
+            JOptionPane.showMessageDialog(rootPane, "Professor Cadastrado");
+            professor = null;
+            jtNome.setText("");
+            jtCargo.setText("");
+            jtSenha.setText("");
+            jtUsuario.setText("");
+            jtfData.setText("");
+            jbLimpar.setEnabled(false);
+        } catch (ExcecaoNome ex) {
+            Logger.getLogger(jofCadastroProfessor.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } catch (ExcecaoNomeUsuario ex) {
+            Logger.getLogger(jofCadastroProfessor.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } finally{
+            jbCriar.setEnabled(false);
+        }
     }//GEN-LAST:event_jbCriarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed

@@ -6,7 +6,11 @@
 package Aplicacao;
 
 import Basicas.Aluno;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -124,7 +128,7 @@ public class jofCadastroAluno extends javax.swing.JInternalFrame {
         getContentPane().add(jtSenha);
         jtSenha.setBounds(80, 170, 140, 30);
 
-        setBounds(0, 0, 257, 341);
+        setBounds(0, 0, 257, 350);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
@@ -141,36 +145,42 @@ public class jofCadastroAluno extends javax.swing.JInternalFrame {
           nome = jtNome.getText();
           usuario = jtUsuario.getText();
           senha = jtSenha.getText();
-          if(!(fachada.verificaAlunoExisteNome(nome)) && !(fachada.verificaLoginAlunoExiste(usuario))){
-              if(senha.length() > 0){
+          if(senha.length() > 0){
                   aluno = new Aluno(fachada.retornaProximoIDAluno(), nome, null, periodo, usuario, senha, fachada.retornaMatricula(String.valueOf(periodo)));
                   jbCriar.setEnabled(true);
                   jbLimpar.setEnabled(true);
-              }else{
-                  JOptionPane.showMessageDialog(rootPane, "Senha Não pode ser vazia");
-              }
           }else{
-              JOptionPane.showMessageDialog(rootPane, "Nome ou Login Já cadastrados");
+            JOptionPane.showMessageDialog(rootPane, "Senha Não pode ser vazia");
           }
+          
         }catch(IllegalArgumentException e){
-            JOptionPane.showMessageDialog(rootPane, "Erro " + e);
+            JOptionPane.showMessageDialog(rootPane, "Digite um número!");
         }
         
         
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarActionPerformed
-        // TODO add your handling code here:
-        fachada.insereAluno(aluno);
-        JOptionPane.showMessageDialog(rootPane, "Aluno Cadastrado, sua matricula é: " + aluno.getMatricula());
-        aluno = null; 
-        jtNome.setText("");
-        jtPeriodo.setText("");
-        jtSenha.setText("");
-        jtUsuario.setText("");
-        jtfData.setText("");
-        jbCriar.setEnabled(false);
-        jbLimpar.setEnabled(false);
+        try {
+            // TODO add your handling code here:
+            fachada.insereAluno(aluno);
+            JOptionPane.showMessageDialog(rootPane, "Aluno Cadastrado, sua matricula é: " + aluno.getMatricula());
+            aluno = null;
+            jtNome.setText("");
+            jtPeriodo.setText("");
+            jtSenha.setText("");
+            jtUsuario.setText("");
+            jtfData.setText("");
+            jbLimpar.setEnabled(false);
+        } catch (ExcecaoNome ex) {
+            Logger.getLogger(jofCadastroAluno.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } catch (ExcecaoNomeUsuario ex) {
+            Logger.getLogger(jofCadastroAluno.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } finally{
+            jbCriar.setEnabled(false);
+        }
     }//GEN-LAST:event_jbCriarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed

@@ -9,7 +9,10 @@ import Basicas.Aluno;
 import Basicas.Disciplina;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,8 +48,12 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             this.title = "Consultas Aluno";
             
             for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
-                Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
-                dtmTurmas.addRow(dados);
+                try {
+                    Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
+                    dtmTurmas.addRow(dados);
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultasAlunoTurmas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             
@@ -58,8 +65,12 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             this.title = "Matrículas";
             
             for (Turma turma : fachada.RetornaTurmaDisponivelParaAluno(aluno)) {
-                Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Não Matriculado"};
-                dtmTurmas.addRow(dados);
+                try {
+                    Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Não Matriculado"};
+                    dtmTurmas.addRow(dados);
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultasAlunoTurmas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
         }else{
@@ -71,8 +82,12 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
             this.title = "Consulta Notas";
             
             for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
-                Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
-                dtmTurmas.addRow(dados);
+                try {
+                    Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
+                    dtmTurmas.addRow(dados);
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultasAlunoTurmas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         
@@ -335,8 +350,12 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         
         limpaTabela(); 
         for (Turma turma : fachada.RetornaTurmaDisponivelParaAluno(aluno)) {
+            try {
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Não Matriculado"};
                 dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultasAlunoTurmas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }//GEN-LAST:event_jbAtualizar2ActionPerformed
@@ -345,8 +364,12 @@ public class jofConsultasAlunoTurmas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpaTabela(); 
         for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
+            try {
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), "Matriculado"};
                 dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultasAlunoTurmas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jbAtualizarActionPerformed
 

@@ -64,10 +64,10 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtNomeAluno);
 
         jdpAlunos.add(jScrollPane1);
-        jScrollPane1.setBounds(630, 10, 150, 30);
+        jScrollPane1.setBounds(680, 10, 150, 30);
 
         getContentPane().add(jdpAlunos);
-        jdpAlunos.setBounds(0, 0, 790, 470);
+        jdpAlunos.setBounds(0, 0, 840, 510);
 
         jmConsultas.setText("Consultas");
 
@@ -123,7 +123,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(810, 536));
+        setSize(new java.awt.Dimension(863, 571));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

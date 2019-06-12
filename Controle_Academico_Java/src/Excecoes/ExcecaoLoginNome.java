@@ -9,14 +9,14 @@ package Excecoes;
  *
  * @author Arthur
  */
-public class ExcecaoAtividade extends Exception{
+public class ExcecaoLoginNome  extends Exception{
     
-    public ExcecaoAtividade() {
+    public ExcecaoLoginNome() {
         super();
+         
     }
     @Override
     public String getMessage(){
-        return "Atividade não pode ser avaliada, pois não foi entregue!";
+        return "Login não existe. Favor solicitar cadastro!";
     }
-    
 }

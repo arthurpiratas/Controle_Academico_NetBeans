@@ -7,17 +7,21 @@ import java.util.ArrayList;
 
 import Basicas.Aluno;
 import Basicas.Turma;
+import Excecoes.ExcecaoLogin;
+import Excecoes.ExcecaoLoginNome;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 
 public class ControleAluno {
 	
 	IRepositorioAluno repAluno = new RepositorioAlunoArray();
 		
 	
-	public void insereAluno(Aluno aluno) {
+	public void insereAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario {
 			repAluno.insereAluno(aluno);	
 	}
 	
-	public void atualizaAluno(Aluno aluno) {
+	public void atualizaAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario {
 			repAluno.alteraAluno(aluno);
 	}
 	
@@ -56,13 +60,16 @@ public class ControleAluno {
 	}
 	
 	
-	public Aluno retornaAlunoLogado(String login, String senha) {
+	public Aluno retornaAlunoLogado(String login, String senha) throws ExcecaoLogin, ExcecaoLoginNome {
 		Aluno aluno = null; 
 		
 		if(verificaLoginAluno(login, senha)) {
-			aluno = repAluno.buscaAlunoLogin(login);
-                        
-		}
+			aluno = repAluno.buscaAlunoLogin(login);   
+		}else if(verificaLoginAlunoExiste(login)){
+                    throw new ExcecaoLogin();
+                }else{
+                    throw new ExcecaoLoginNome();
+                }
 		
 		return aluno; 
 	}

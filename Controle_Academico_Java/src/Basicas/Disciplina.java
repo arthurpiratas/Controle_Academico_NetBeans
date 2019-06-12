@@ -13,6 +13,13 @@ public class Disciplina {
 		this.nome = nome;
 		this.ementa = ementa;
 	}
+        
+        public Disciplina() {
+
+		this.codigo = -1;
+		this.nome = "";
+		this.ementa = "";
+	}
 	
 	public int getcodigo() {
 		return codigo;

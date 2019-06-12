@@ -6,7 +6,11 @@
 package Aplicacao;
 
 import Basicas.Aluno;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -79,8 +83,6 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
         jtData = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jtMatricula = new javax.swing.JTextField();
-        jrNaoAltera = new javax.swing.JRadioButton();
-        jrAltera = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jtSenha = new javax.swing.JTextField();
         jpConsultaAluno = new javax.swing.JPanel();
@@ -148,7 +150,7 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraAluno.add(jbSair2);
-        jbSair2.setBounds(620, 100, 90, 30);
+        jbSair2.setBounds(570, 100, 90, 30);
 
         jbAtualizar2.setText("Atualizar");
         jbAtualizar2.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +159,7 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraAluno.add(jbAtualizar2);
-        jbAtualizar2.setBounds(500, 100, 100, 30);
+        jbAtualizar2.setBounds(200, 100, 100, 30);
 
         jbAlterar.setText("Alterar");
         jbAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +168,7 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraAluno.add(jbAlterar);
-        jbAlterar.setBounds(620, 20, 90, 30);
+        jbAlterar.setBounds(30, 100, 90, 30);
 
         jbLimpar.setText("Limpar");
         jbLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -175,33 +177,31 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraAluno.add(jbLimpar);
-        jbLimpar.setBounds(620, 60, 90, 30);
+        jbLimpar.setBounds(390, 100, 90, 30);
 
         jLabel1.setText("Matrícula");
         jpAlteraAluno.add(jLabel1);
         jLabel1.setBounds(10, 10, 60, 14);
         jpAlteraAluno.add(jtPeriodo);
-        jtPeriodo.setBounds(100, 120, 120, 30);
+        jtPeriodo.setBounds(550, 10, 120, 30);
 
         jLabel2.setText("Data ");
         jpAlteraAluno.add(jLabel2);
-        jLabel2.setBounds(10, 90, 40, 14);
+        jLabel2.setBounds(490, 60, 40, 14);
         jpAlteraAluno.add(jtNomeUsuario);
         jtNomeUsuario.setBounds(340, 10, 120, 30);
 
         jLabel3.setText("Nome");
         jpAlteraAluno.add(jLabel3);
         jLabel3.setBounds(10, 50, 50, 14);
-
-        jtNome.setEditable(false);
         jpAlteraAluno.add(jtNome);
         jtNome.setBounds(100, 40, 120, 30);
 
         jLabel4.setText("Período");
         jpAlteraAluno.add(jLabel4);
-        jLabel4.setBounds(10, 120, 50, 14);
+        jLabel4.setBounds(490, 20, 50, 14);
         jpAlteraAluno.add(jtData);
-        jtData.setBounds(100, 80, 120, 30);
+        jtData.setBounds(550, 50, 120, 30);
 
         jLabel5.setText("Nome Usuário");
         jpAlteraAluno.add(jLabel5);
@@ -211,21 +211,11 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
         jpAlteraAluno.add(jtMatricula);
         jtMatricula.setBounds(100, 0, 120, 30);
 
-        btgGrupoBotaoAlterar.add(jrNaoAltera);
-        jrNaoAltera.setText("Não Alterar User");
-        jpAlteraAluno.add(jrNaoAltera);
-        jrNaoAltera.setBounds(380, 50, 140, 23);
-
-        btgGrupoBotaoAlterar.add(jrAltera);
-        jrAltera.setText("Alterar User");
-        jpAlteraAluno.add(jrAltera);
-        jrAltera.setBounds(260, 50, 110, 23);
-
         jLabel6.setText("Senha");
         jpAlteraAluno.add(jLabel6);
-        jLabel6.setBounds(270, 100, 50, 14);
+        jLabel6.setBounds(260, 60, 50, 14);
         jpAlteraAluno.add(jtSenha);
-        jtSenha.setBounds(330, 90, 110, 30);
+        jtSenha.setBounds(340, 50, 120, 30);
 
         getContentPane().add(jpAlteraAluno);
         jpAlteraAluno.setBounds(0, 0, 720, 150);
@@ -343,36 +333,24 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
 
-        if(jtAluno.getSelectedRow() != -1 && alunoAUX != null ){
+        if(jtAluno.getSelectedRow() != -1){
             
-            if(jrAltera.isSelected()  || jrNaoAltera.isSelected()){
-                try{
-                    alunoAUX.setSenha(jtSenha.getText());
-                    alunoAUX.setPerido(Integer.parseInt(jtPeriodo.getText()));
-                    alunoAUX.setSenha(jtSenha.getText());
-                    if(jrAltera.isSelected()){
-                        if(!(fachada.verificaLoginAlunoExiste(jtNomeUsuario.getText()))){
-                            alunoAUX.setNomeUsuario(jtNomeUsuario.getText());
-                            fachada.atualizaAluno(alunoAUX);
-                            limpaTabela();
-                            limpaCampos();
-                            JOptionPane.showMessageDialog(rootPane, "Aluno Alterado, favor Atualizar a Tabela!!!");
-                        }else{
-                            JOptionPane.showMessageDialog(rootPane, "Nome de Usuário já existe, favor inserir um outro!!!");
-                        }
-                    }else if(jrNaoAltera.isSelected()){
-                        fachada.atualizaAluno(alunoAUX);
-                        limpaTabela();
-                        limpaCampos();
-                        JOptionPane.showMessageDialog(rootPane, "Aluno Alterado, favor Atualizar a Tabela!!!");
-                    }
-                }catch(IllegalArgumentException e){
+            
+                alunoAUX = new Aluno(alunoAUX.getId(), jtNome.getText(), null, Integer.parseInt(jtPeriodo.getText()), jtNomeUsuario.getText(), jtSenha.getText(), jtMatricula.getText());
                 
-                    JOptionPane.showMessageDialog(rootPane,  e);
+                try {
+                    fachada.atualizaAluno(alunoAUX);
+                    limpaTabela();
+                    limpaCampos();
+                    JOptionPane.showMessageDialog(rootPane, "Aluno Alterado, favor Atualizar a Tabela!!!");
+                } catch (ExcecaoNome ex) {
+                    Logger.getLogger(jofConsultaAluno.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                } catch (ExcecaoNomeUsuario ex) {
+                    Logger.getLogger(jofConsultaAluno.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
                 }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Selecione uma botão");
-            }
+           
             
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
@@ -442,8 +420,6 @@ public class jofConsultaAluno extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSair2;
     private javax.swing.JPanel jpAlteraAluno;
     private javax.swing.JPanel jpConsultaAluno;
-    private javax.swing.JRadioButton jrAltera;
-    private javax.swing.JRadioButton jrNaoAltera;
     private javax.swing.JTable jtAluno;
     private javax.swing.JTextField jtData;
     private javax.swing.JTextField jtMatricula;

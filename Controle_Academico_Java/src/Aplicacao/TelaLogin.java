@@ -12,6 +12,10 @@ import Basicas.Professor;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
 import Excecoes.ExcecaoAtividade;
+import Excecoes.ExcecaoLogin;
+import Excecoes.ExcecaoLoginNome;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Excecoes.ExcecaoNota;
 import Negocio.Fachada;
 import java.util.logging.Level;
@@ -33,85 +37,14 @@ public class TelaLogin extends javax.swing.JFrame {
     
     
     public TelaLogin() {
+        
         fachada = Fachada.getInstance();
         
         if(!(fachada.verificaADMExise("pedro"))){
-            Aluno aluno1 = new Aluno(12346, "Arthur", null, 2, "arthur1", "1234", "223456");
-            Aluno aluno2 = new Aluno(12347, "Ana", null, 1, "ana1", "1234", "123456");
-            Professor professor = new Professor(0, "joão", "Matemática", null, "joao1", "1234"); 
-            Professor professor2 = new Professor(1, "Caio", "Geografia", null, "joao2", "1234");
-            Administrador adm = new Administrador(0, "pedro", null, "pedro1", "1234");
-            Disciplina disciplina = new Disciplina(0, "Português", "Nada");
-            Disciplina disciplina2 = new Disciplina(1, "Inglês", "Sabe");
-            Disciplina disciplina3 = new Disciplina(2, "Francês", "Três");
-            Turma turma = new Turma(0, "TM01", 2, 0);
-            Turma turma2 = new Turma(1, "TM02", 50, 1);
-            Turma turma3 = new Turma(2, "TM03", 10, 2);
-            Turma turma4 = new Turma(3, "TM04", 1, 2, 0);
-            Turma turma5 = new Turma(4, "TM05", 0, 10, 0);
-            Turma turma6 = new Turma(5, "TM06", 0, 50, 2);
-            Turma turma7 = new Turma(6, "TM07", 1, 1, 1);
-            Turma turma8 = new Turma(7, "TM08", 0, 25, 1);
-            fachada.insereAluno(aluno1);
-            fachada.insereAluno(aluno2);
-            fachada.insereProfessor(professor);
-            fachada.insereProfessor(professor2);
-            fachada.insereADM(adm);
-            fachada.insereDisciplina(disciplina);
-            fachada.insereDisciplina(disciplina2);
-            fachada.insereDisciplina(disciplina3);
-            fachada.insereTurma(turma);
-            fachada.insereTurma(turma2);
-            fachada.insereTurma(turma3);
-            fachada.insereTurma(turma4);
-            fachada.insereTurma(turma5);
-            fachada.insereTurma(turma6);
-            fachada.insereTurma(turma7);
-            fachada.insereTurma(turma8);
-            fachada.insereAlunoEmTurma(turma7, aluno1);
-            fachada.insereAlunoEmTurma(turma5, aluno1);
-            fachada.insereAlunoEmTurma(turma4, aluno1);
-            fachada.insereAlunoEmTurma(turma6, aluno2);
-            fachada.insereAlunoEmTurma(turma5, aluno2);
-            fachada.insereAlunoEmTurma(turma4, aluno2);
-            Rendimento_Escolar rend1 = new Rendimento_Escolar(turma7.getId(), aluno1.getId()); 
-            Rendimento_Escolar rend2 = new Rendimento_Escolar(turma5.getId(), aluno1.getId());
-            Rendimento_Escolar rend3 = new Rendimento_Escolar(turma4.getId(), aluno1.getId());
-            Rendimento_Escolar rend4 = new Rendimento_Escolar(turma6.getId(), aluno2.getId());
-            Rendimento_Escolar rend5 = new Rendimento_Escolar(turma5.getId(), aluno2.getId());
-            Rendimento_Escolar rend6 = new Rendimento_Escolar(turma4.getId(), aluno2.getId());
-            fachada.insereRendimentoEscola(rend1);
-            fachada.insereRendimentoEscola(rend2);
-            fachada.insereRendimentoEscola(rend3);
-            fachada.insereRendimentoEscola(rend4);
-            fachada.insereRendimentoEscola(rend5);
-            fachada.insereRendimentoEscola(rend6);
-            fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 2, "Fiz nada");
-            try {
-                fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 2, 10.0f);
-            } catch (ExcecaoNota ex) {
-                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
-            }  catch (ExcecaoAtividade exA) {
-                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, exA);
-                JOptionPane.showMessageDialog(rootPane, exA);
-            }
-            try {
-                rend3.setNota2(10.0f);
-            } catch (ExcecaoNota ex) {
-                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
-            }
-            fachada.alteraRendimentoEscolar(rend3);
-            
+            inicializaDados();            
         }
          
-         /*fachada.listaDisciplina();
-         fachada.listaADM();   
-         fachada.listaProfessor();
-         fachada.listaAlunos();
-         fachada.listaTurma();*/
-        initComponents();
+         initComponents();
         
     }
     
@@ -203,68 +136,58 @@ public class TelaLogin extends javax.swing.JFrame {
         senha = jpSenha.getText();
         
         if(jrAluno.isSelected()){            
-            
-            
-            Aluno aluno ; /*= new Aluno(2, "arthur", null,2, jtUsuario.getText(), jpSenha.getText(), "aaaa1234");*/
-            
-            
-            if(fachada.verificaLoginAlunoExiste(login)){
-                if(fachada.verificaLoginAluno(login, senha)){
-                    aluno = fachada.retornaAlunoLogado(login, senha);
-                    
-                    JOptionPane.showMessageDialog(rootPane, "Aluno: " + aluno.getNome() + " logado");
-                    TelaPrincipalAluno telaAluno = new TelaPrincipalAluno(aluno);
-                    
-                    telaAluno.setVisible(true);
-                    this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Senha inválidos");
-                }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Login não existe");
+ 
+            try {
+                Aluno aluno = fachada.retornaAlunoLogado(login, senha);
+                JOptionPane.showMessageDialog(rootPane, "Aluno: " + aluno.getNome() + " logado!");
+                TelaPrincipalAluno telaAluno = new TelaPrincipalAluno(aluno);
+                telaAluno.setVisible(true);
+                this.dispose();
+            } catch (ExcecaoLogin ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            } catch (ExcecaoLoginNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
-            
-            
-            
-           
-            
+
+
         }else if(jrProfessor.isSelected()){
                      
-            
-            if(fachada.verificaLoginProfessorExiste(login)){
-                if(fachada.verificaLoginProfessor(login, senha)){
-                    Professor professor1 = fachada.retornaProfessorLogado(login, senha); 
-                    TelaPrincipalProfessor telaProfessor = new TelaPrincipalProfessor(professor1);
-                    telaProfessor.setVisible(true);
-                    this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Senha inválidos");
-                }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Login não existe");
+
+            try {
+                Professor professor1 = fachada.retornaProfessorLogado(login, senha);
+                JOptionPane.showMessageDialog(rootPane, "Professor: " + professor1.getNome() + " logado!");
+                TelaPrincipalProfessor telaProfessor = new TelaPrincipalProfessor(professor1);
+                telaProfessor.setVisible(true);
+                this.dispose();
+            } catch (ExcecaoLogin ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            } catch (ExcecaoLoginNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
-            
-            
+
+
             
         }else if(jrAdministrador.isSelected()){
             
-            
-            
-            if(fachada.verificaLoginAdmExiste(login)){
-                if(fachada.verificaLoginAdm(login, senha)){
-                   Administrador admin = fachada.buscaADMLogin(login, senha);
-                   TelaPrincipalAdm telaAdm = new TelaPrincipalAdm(admin);
-                   telaAdm.setVisible(true);
-                   this.dispose();
-                }else{
-                   JOptionPane.showMessageDialog(rootPane, "Senha inválidos");
-                }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Login não existe");
+ 
+            try {
+                Administrador admin = fachada.buscaADMLogin(login, senha);
+                JOptionPane.showMessageDialog(rootPane, "Administrador: " + admin.getNome() + " logado!");
+                TelaPrincipalAdm telaAdm = new TelaPrincipalAdm(admin);
+                telaAdm.setVisible(true);
+                this.dispose();
+            } catch (ExcecaoLoginNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            } catch (ExcecaoLogin ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
-            
-            
-            
+
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione a Opção de Usuário");
         }
@@ -272,10 +195,115 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSairMouseClicked
         // TODO add your handling code here:
-        
         System.exit(0);
     }//GEN-LAST:event_jbSairMouseClicked
-
+    
+    
+    private void inicializaDados(){
+        Aluno aluno1 = new Aluno(12346, "Arthur", null, 2, "arthur1", "1234", "223456");
+            Aluno aluno2 = new Aluno(12347, "Ana", null, 1, "ana1", "1234", "123456");
+            Professor professor = new Professor(0, "joão", "Matemática", null, "joao1", "1234"); 
+            Professor professor2 = new Professor(1, "Caio", "Geografia", null, "joao2", "1234");
+            Administrador adm = new Administrador(0, "pedro", null, "pedro1", "1234");
+            Disciplina disciplina = new Disciplina(0, "Português", "Nada");
+            Disciplina disciplina2 = new Disciplina(1, "Inglês", "Sabe");
+            Disciplina disciplina3 = new Disciplina(2, "Francês", "Três");
+            Turma turma = new Turma(0, "TM01", 2, 0);
+            Turma turma2 = new Turma(1, "TM02", 50, 1);
+            Turma turma3 = new Turma(2, "TM03", 10, 2);
+            Turma turma4 = new Turma(3, "TM04", 1, 2, 0);
+            Turma turma5 = new Turma(4, "TM05", 0, 10, 0);
+            Turma turma6 = new Turma(5, "TM06", 0, 50, 2);
+            Turma turma7 = new Turma(6, "TM07", 1, 1, 1);
+            Turma turma8 = new Turma(7, "TM08", 0, 25, 1);
+            try {
+                fachada.insereAluno(aluno1);
+                fachada.insereAluno(aluno2);
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcecaoNomeUsuario ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fachada.insereProfessor(professor);
+                fachada.insereProfessor(professor2);
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcecaoNomeUsuario ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fachada.insereADM(adm);
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcecaoNomeUsuario ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                fachada.insereDisciplina(disciplina);
+                fachada.insereDisciplina(disciplina2);
+                fachada.insereDisciplina(disciplina3);
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            fachada.insereTurma(turma);
+            fachada.insereTurma(turma2);
+            fachada.insereTurma(turma3);
+            fachada.insereTurma(turma4);
+            fachada.insereTurma(turma5);
+            fachada.insereTurma(turma6);
+            fachada.insereTurma(turma7);
+            fachada.insereTurma(turma8);
+            fachada.insereAlunoEmTurma(turma7, aluno1);
+            fachada.insereAlunoEmTurma(turma5, aluno1);
+            fachada.insereAlunoEmTurma(turma4, aluno1);
+            fachada.insereAlunoEmTurma(turma6, aluno2);
+            fachada.insereAlunoEmTurma(turma5, aluno2);
+            fachada.insereAlunoEmTurma(turma4, aluno2);
+            Rendimento_Escolar rend1 = new Rendimento_Escolar(turma7.getId(), aluno1.getId()); 
+            Rendimento_Escolar rend2 = new Rendimento_Escolar(turma5.getId(), aluno1.getId());
+            Rendimento_Escolar rend3 = new Rendimento_Escolar(turma4.getId(), aluno1.getId());
+            Rendimento_Escolar rend4 = new Rendimento_Escolar(turma6.getId(), aluno2.getId());
+            Rendimento_Escolar rend5 = new Rendimento_Escolar(turma5.getId(), aluno2.getId());
+            Rendimento_Escolar rend6 = new Rendimento_Escolar(turma4.getId(), aluno2.getId());
+            fachada.insereRendimentoEscola(rend1);
+            fachada.insereRendimentoEscola(rend2);
+            fachada.insereRendimentoEscola(rend3);
+            fachada.insereRendimentoEscola(rend4);
+            fachada.insereRendimentoEscola(rend5);
+            fachada.insereRendimentoEscola(rend6);
+            fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 2, "Feito");
+            fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 0, "Atividade concluida");
+            fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 1, "Preciso desse ponto");
+            fachada.insereAtividadeAluno(aluno1.getId(), turma5.getId(), 3, "Entregue");
+            try {
+                fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 2, 10.0f);
+                fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 0, 5.0f);
+                fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 1, 10.0f);
+                fachada.insereNotaAtividadeAluno(aluno1.getId(), turma5.getId(), 3, 8.0f);
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }  catch (ExcecaoAtividade exA) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, exA);
+                JOptionPane.showMessageDialog(rootPane, exA);
+            }
+            try {
+                rend3.setNota2(10.0f);
+                rend2.setNota2(10.0f);
+                rend2.setNota1(8.5f);
+                fachada.alteraRendimentoEscolar(rend3);
+                fachada.alteraRendimentoEscolar(rend2);
+            } catch (ExcecaoNota ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            
+    }
+    
     /**
      * @param args the command line arguments
      */

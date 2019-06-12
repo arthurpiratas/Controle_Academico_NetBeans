@@ -3,6 +3,7 @@ package Repositorio;
 import java.util.ArrayList;
 
 import Basicas.Disciplina;
+import Excecoes.ExcecaoNome;
 
 public class RepositorioDisciplinaArray implements IRepositorioDisciplina{
 	
@@ -19,20 +20,33 @@ public class RepositorioDisciplinaArray implements IRepositorioDisciplina{
 	}
 
 	@Override
-	public void insereDisciplina(Disciplina disciplina) {
+	public void insereDisciplina(Disciplina disciplina) throws ExcecaoNome{
 		// TODO Auto-generated method stub
 		
-		this.listaDisciplina[index] = disciplina; 
-		this.index += 1; 
+                if(verificaDisciplinaExise(disciplina.getNome())){
+                    throw new ExcecaoNome();
+                }else{
+                    this.listaDisciplina[index] = disciplina; 
+                    this.index += 1; 
+                }
+                
+		
 		
 	}
 
 	@Override
-	public void alteraDisciplina(Disciplina disciplina) {
+	public void alteraDisciplina(Disciplina disciplina) throws ExcecaoNome{
 		// TODO Auto-generated method stub
-		for (int i = 0; i < index; i++) {
-			if(listaDisciplina[i].getcodigo() == disciplina.getcodigo()) {
-				listaDisciplina[i] = disciplina; 
+		          
+                for (int i = index-1; i >= 0; i--) {                    
+			if(listaDisciplina[i].getcodigo() == disciplina.getcodigo()) {                         
+                            if(listaDisciplina[i].getNome().equals(disciplina.getNome()) || (!verificaDisciplinaExise(disciplina.getNome()))){
+                                listaDisciplina[i] = disciplina; 
+                            }else{
+                               throw new ExcecaoNome();  
+                                
+                            }
+                            break;
 			}
 		}
 		

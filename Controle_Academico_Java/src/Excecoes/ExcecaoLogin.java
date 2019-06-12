@@ -9,14 +9,15 @@ package Excecoes;
  *
  * @author Arthur
  */
-public class ExcecaoAtividade extends Exception{
+public class ExcecaoLogin extends Exception{
     
-    public ExcecaoAtividade() {
+    
+    public ExcecaoLogin() {
         super();
+         
     }
     @Override
     public String getMessage(){
-        return "Atividade não pode ser avaliada, pois não foi entregue!";
+        return "Senha errada. Favor tentar novamente!";
     }
-    
 }

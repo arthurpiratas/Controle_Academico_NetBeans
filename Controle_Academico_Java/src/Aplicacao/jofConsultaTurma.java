@@ -8,7 +8,10 @@ package Aplicacao;
 import Basicas.Disciplina;
 import Basicas.Professor;
 import Basicas.Turma;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,8 +44,12 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
         turmaAUX = null;
         
         for (Turma turma : fachada.retornaListaTurma()) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultaTurma.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(TipodeTela == 1){
             jpAtualizaTurma.setEnabled(false);
@@ -293,10 +300,10 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
                 if(fachada.verificaTurmaExiste(jtTurmas.getValueAt(jtTurmas.getSelectedRow(), 1).toString())){
                 fachada.removeTurma(jtTurmas.getValueAt(jtTurmas.getSelectedRow(), 1).toString());
                 dtmTurmas.removeRow(jtTurmas.getSelectedRow());
-                JOptionPane.showMessageDialog(rootPane, "Aluno Excluido com Sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Turma Excluido com Sucesso!");
                 
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Este Aluno não existe, favor atualizar a Tabela");
+                JOptionPane.showMessageDialog(rootPane, "Este Turma não existe, favor atualizar a Tabela");
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
@@ -314,8 +321,12 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
 
         limpaTabela();
         for (Turma turma : fachada.retornaListaTurma()) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultaTurma.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }//GEN-LAST:event_jbAtualizarActionPerformed
@@ -329,8 +340,12 @@ public class jofConsultaTurma extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpaTabela();
         for (Turma turma : fachada.retornaListaTurma()) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultaTurma.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jbAtualizar2ActionPerformed
 

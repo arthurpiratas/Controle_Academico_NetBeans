@@ -2,11 +2,13 @@ package Repositorio;
 import java.util.ArrayList;
 
 import Basicas.Aluno;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 
 public interface IRepositorioAluno {
 	
-	public void insereAluno(Aluno aluno); 
-	public void alteraAluno(Aluno aluno); 
+	public void insereAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario; 
+	public void alteraAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario;
 	public void removeAluno(String matricula); 
 	public Aluno buscaAluno(String matricula); 
 	public boolean verificaAlunoExise(String matricula); 

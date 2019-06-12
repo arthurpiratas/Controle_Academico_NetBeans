@@ -4,7 +4,13 @@ import java.util.ArrayList;
 
 import Basicas.*;
 import Excecoes.ExcecaoAtividade;
+import Excecoes.ExcecaoExclusaoIndevida;
+import Excecoes.ExcecaoLogin;
+import Excecoes.ExcecaoLoginNome;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Excecoes.ExcecaoNota;
+import Excecoes.ExcecaoObjetoVazio;
 
 public class Fachada {
 	
@@ -33,11 +39,11 @@ public class Fachada {
 		return Fachada.instance;
 	}
 	
-	public void insereADM(Administrador adm) {
+	public void insereADM(Administrador adm) throws ExcecaoNome, ExcecaoNomeUsuario {
 		ctrAdm.insereADM(adm);
 	}
 	
-	public void alteraADM(Administrador adm) {
+	public void alteraADM(Administrador adm) throws ExcecaoNome, ExcecaoNomeUsuario {
 		ctrAdm.alteraADM(adm);
 	}
 	
@@ -65,7 +71,7 @@ public class Fachada {
 		return ctrAdm.verificaLoginAdm(login, senha); 
 	}
 	
-	public Administrador buscaADMLogin(String login, String senha) {
+	public Administrador buscaADMLogin(String login, String senha) throws ExcecaoLoginNome, ExcecaoLogin  {
 		return ctrAdm.buscaADMLogin(login, senha);
 	}
 	
@@ -77,11 +83,11 @@ public class Fachada {
 		return ctrAdm.retornaProximoIdADM();
 	}
 	
-	public void insereAluno(Aluno aluno) {
+	public void insereAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario {
 		ctrAluno.insereAluno(aluno);
 	}
 	
-	public void atualizaAluno(Aluno aluno) {
+	public void atualizaAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario {
 		ctrAluno.atualizaAluno(aluno);
 	}
 	
@@ -105,7 +111,7 @@ public class Fachada {
 		return ctrAluno.verificaLoginAlunoExiste(login); 
 	}
 	
-	public Aluno retornaAlunoLogado(String login, String senha) {
+	public Aluno retornaAlunoLogado(String login, String senha) throws ExcecaoLogin, ExcecaoLoginNome {
 		return ctrAluno.retornaAlunoLogado(login, senha);
 	}
 	
@@ -137,19 +143,19 @@ public class Fachada {
                 return ctrAluno.buscaAluno(idAluno); 
         }
 	
-	public void insereDisciplina(Disciplina disciplina) {
+	public void insereDisciplina(Disciplina disciplina) throws ExcecaoNome {
 		ctrDisciplina.insereDisciplina(disciplina);
 	}
 	
-	public void alteraDisciplina(Disciplina disciplina) {
+	public void alteraDisciplina(Disciplina disciplina) throws ExcecaoNome {
 		ctrDisciplina.alteraDisciplina(disciplina);
 	}
 	
-	public void removeDisciplina(int codigo) {
-		ctrDisciplina.removeDisciplina(codigo);
+	public void removeDisciplina(int codigo) throws ExcecaoExclusaoIndevida {
+		ctrDisciplina.removeDisciplina(codigo, ctrturma);
 	}
 	
-	public Disciplina buscaDisciplina(int codigo) {
+	public Disciplina buscaDisciplina(int codigo) throws ExcecaoObjetoVazio {
 		return ctrDisciplina.buscaDisciplina(codigo);
 	}
         
@@ -173,11 +179,11 @@ public class Fachada {
 		return ctrDisciplina.retornaProximoCodigoDisciplina();
 	}
 	
-	public void insereProfessor(Professor professor) {
+	public void insereProfessor(Professor professor) throws ExcecaoNome, ExcecaoNomeUsuario {
 		ctrProfessor.insereProfessor(professor);
 	}
 	
-	public void alteraProfessor(Professor professor) {
+	public void alteraProfessor(Professor professor) throws ExcecaoNome, ExcecaoNomeUsuario {
 		ctrProfessor.alteraProfessor(professor);
 	}
 	
@@ -213,7 +219,7 @@ public class Fachada {
 		return ctrProfessor.verificaLoginProfessorExiste(login);
 	}
 	
-	public Professor retornaProfessorLogado(String login, String senha) {
+	public Professor retornaProfessorLogado(String login, String senha) throws ExcecaoLogin, ExcecaoLoginNome {
 		return ctrProfessor.retornaProfessorLogado(login, senha);
 	}
 	

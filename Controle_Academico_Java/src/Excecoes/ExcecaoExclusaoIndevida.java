@@ -9,14 +9,16 @@ package Excecoes;
  *
  * @author Arthur
  */
-public class ExcecaoAtividade extends Exception{
+public class ExcecaoExclusaoIndevida extends Exception{
     
-    public ExcecaoAtividade() {
+    String objeto; 
+    
+    public ExcecaoExclusaoIndevida(String objeto) {
         super();
+        this.objeto = objeto;
     }
     @Override
     public String getMessage(){
-        return "Atividade não pode ser avaliada, pois não foi entregue!";
+        return "Exclusão Indevida! " + objeto + " está relacionado a uma turma!";
     }
-    
 }

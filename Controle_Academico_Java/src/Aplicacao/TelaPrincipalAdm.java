@@ -71,10 +71,10 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtNomeAdm);
 
         jdpPrincipalAdm.add(jScrollPane1);
-        jScrollPane1.setBounds(610, 10, 140, 30);
+        jScrollPane1.setBounds(660, 10, 140, 30);
 
         getContentPane().add(jdpPrincipalAdm);
-        jdpPrincipalAdm.setBounds(0, 0, 760, 480);
+        jdpPrincipalAdm.setBounds(0, 0, 810, 500);
 
         jmCadastro.setText("Cadastro");
         jmCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +223,7 @@ public class TelaPrincipalAdm extends javax.swing.JFrame {
 
         setJMenuBar(jmbTelaAdm);
 
-        setSize(new java.awt.Dimension(778, 539));
+        setSize(new java.awt.Dimension(834, 564));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

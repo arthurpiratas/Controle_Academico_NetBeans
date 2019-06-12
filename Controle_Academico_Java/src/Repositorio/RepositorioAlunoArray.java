@@ -3,6 +3,8 @@ package Repositorio;
 import java.util.ArrayList;
 
 import Basicas.Aluno;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import javax.swing.JOptionPane;
 
 public class RepositorioAlunoArray implements IRepositorioAluno{
@@ -25,20 +27,35 @@ public class RepositorioAlunoArray implements IRepositorioAluno{
 
 
 	@Override
-	public void insereAluno(Aluno aluno) {
+	public void insereAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario{
 		// TODO Auto-generated method stub
-		this.listaAluno[index] =  aluno; 
-		this.index += 1; 
+                
+                if(verificaAlunoExisteNome(aluno.getNome())){
+                    throw new ExcecaoNome();
+                }else if(verifiaAlunoLogin(aluno.getNomeUsuario())){
+                    throw  new ExcecaoNomeUsuario();
+                }else{
+                    this.listaAluno[index] =  aluno; 
+                    this.index += 1;
+                }
 		
 	}
 
 	@Override
-	public void alteraAluno(Aluno aluno) {
+	public void alteraAluno(Aluno aluno) throws ExcecaoNome, ExcecaoNomeUsuario{
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
                     
 			if(listaAluno[i].getId() == aluno.getId()) {
-				listaAluno[i] = aluno; 
+                            
+                            if(!(listaAluno[i].getNome().equals(aluno.getNome())) && verificaAlunoExisteNome(aluno.getNome())){
+                                throw new ExcecaoNome();
+                            }else if(!(listaAluno[i].getNomeUsuario().equals(aluno.getNomeUsuario())) && verifiaAlunoLogin(aluno.getNomeUsuario())){
+                                throw  new ExcecaoNomeUsuario();
+                            }else{
+                                listaAluno[i] = aluno; 
+                            }
+                            
 			}
 		}
 		

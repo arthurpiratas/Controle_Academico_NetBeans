@@ -6,7 +6,11 @@
 package Aplicacao;
 
 import Basicas.Professor;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -201,8 +205,6 @@ public class jofConsultaProfessor extends javax.swing.JInternalFrame {
         jLabel2.setText("Nome Usuário");
         jpAlteraProfessor.add(jLabel2);
         jLabel2.setBounds(10, 100, 100, 20);
-
-        jtNome.setEditable(false);
         jpAlteraProfessor.add(jtNome);
         jtNome.setBounds(90, 60, 120, 30);
 
@@ -321,13 +323,22 @@ public class jofConsultaProfessor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         if(jtprofessor.getSelectedRow() != -1 && professorAUX != null ){
+           
+           professorAUX = new Professor(professorAUX.getId(), jtNome.getText(), jtCargo.getText(), null, jtNomeUsuario.getText(), jtSenha.getText());
             
-            professorAUX.setCargo(jtCargo.getText());
-            professorAUX.setNomeUsuario(jtNomeUsuario.getText());
-            professorAUX.setSenha(jtSenha.getText());
-            limpaTabela();
-            limpaCampos();
-             JOptionPane.showMessageDialog(rootPane, "Professor Alterado, favor Atualizar a Tabela!!!");
+            try {
+                fachada.alteraProfessor(professorAUX);
+                limpaTabela();
+                limpaCampos();
+                JOptionPane.showMessageDialog(rootPane, "Professor Alterado, favor Atualizar a Tabela!!!");
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(jofConsultaProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            } catch (ExcecaoNomeUsuario ex) {
+                Logger.getLogger(jofConsultaProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            }
+            
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
         }

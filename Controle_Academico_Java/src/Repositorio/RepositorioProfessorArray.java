@@ -4,6 +4,8 @@ package Repositorio;
 import java.util.ArrayList;
 
 import Basicas.Professor;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 
 public class RepositorioProfessorArray implements IRepositorioProfessor{
 	
@@ -24,20 +26,33 @@ public class RepositorioProfessorArray implements IRepositorioProfessor{
 	}
 
 	@Override
-	public void insereProfessor(Professor professor) {
+	public void insereProfessor(Professor professor) throws ExcecaoNome, ExcecaoNomeUsuario{
 		// TODO Auto-generated method stub
-		this.listaProfessor[index] = professor; 
-		this.index += 1; 
-		
+                
+                if(verificaProfessorExiste(professor.getNome())){
+                    throw new ExcecaoNome();
+                }else if(verifiaProfessorLogin(professor.getNomeUsuario())){
+                    throw new ExcecaoNomeUsuario();
+                }else{
+                    this.listaProfessor[index] = professor; 
+                    this.index += 1;
+                }
+                
 	}
 
 	@Override
-	public void alteraProfessor(Professor professor) {
+	public void alteraProfessor(Professor professor) throws ExcecaoNome, ExcecaoNomeUsuario{
 		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < index; i++) {
 			if(listaProfessor[i].getId() == professor.getId()) {
-				listaProfessor[i] = professor; 
+                            if(!(listaProfessor[i].getNome().equals(professor.getNome()))  && verificaProfessorExiste(professor.getNome())){
+                                throw new ExcecaoNome();
+                            }else if(!(listaProfessor[i].getNomeUsuario().equals(professor.getNomeUsuario())) && verifiaProfessorLogin(professor.getNomeUsuario())){
+                                throw new ExcecaoNomeUsuario();
+                            }else{
+                                listaProfessor[i] = professor;
+                            }
 			}
 		}
 		

@@ -9,14 +9,12 @@ package Excecoes;
  *
  * @author Arthur
  */
-public class ExcecaoAtividade extends Exception{
-    
-    public ExcecaoAtividade() {
+public class ExcecaoNome extends Exception{
+    public ExcecaoNome() {
         super();
     }
     @Override
     public String getMessage(){
-        return "Atividade não pode ser avaliada, pois não foi entregue!";
+        return "Nome Já existe, favor incluir um nome diferente!";
     }
-    
 }

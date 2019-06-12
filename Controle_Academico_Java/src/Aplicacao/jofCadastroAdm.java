@@ -6,7 +6,11 @@
 package Aplicacao;
 
 import Basicas.Administrador;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -121,7 +125,7 @@ public class jofCadastroAdm extends javax.swing.JInternalFrame {
         getContentPane().add(jtSenha);
         jtSenha.setBounds(80, 130, 140, 30);
 
-        setBounds(0, 0, 251, 316);
+        setBounds(0, 0, 251, 324);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
@@ -134,16 +138,12 @@ public class jofCadastroAdm extends javax.swing.JInternalFrame {
             nome = jtNome.getText();
             usuario = jtUsuario.getText();
             senha = jtSenha.getText();
-            if(!(fachada.verificaADMExise(nome)) && !(fachada.verificaLoginAdmExiste(usuario))){
-                if(senha.length() > 0 && usuario.length() > 0){
-                    adm = new Administrador(fachada.retornaProximoIdADM(), nome, null, usuario, senha);
-                    jbCriar.setEnabled(true);
-                    jbLimpar.setEnabled(true);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Senha/Login Não pode ser vazia");
-                }
+            if(senha.length() > 0 && usuario.length() > 0){
+                adm = new Administrador(fachada.retornaProximoIdADM(), nome, null, usuario, senha);
+                jbCriar.setEnabled(true);
+                jbLimpar.setEnabled(true);
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Nome ou Login Já cadastrados");
+                JOptionPane.showMessageDialog(rootPane, "Senha/Login Não pode ser vazia");
             }
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(rootPane, "Erro " + e);
@@ -152,16 +152,25 @@ public class jofCadastroAdm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarActionPerformed
-        // TODO add your handling code here:
-        fachada.insereADM(adm);
-        JOptionPane.showMessageDialog(rootPane, "Adm Cadastrado");
-        adm = null;
-        jtNome.setText("");
-        jtSenha.setText("");
-        jtUsuario.setText("");
-        jtfData.setText("");
-        jbCriar.setEnabled(false);
-        jbLimpar.setEnabled(false);
+        try {
+            // TODO add your handling code here:
+            fachada.insereADM(adm);
+            JOptionPane.showMessageDialog(rootPane, "Adm Cadastrado");
+            adm = null;
+            jtNome.setText("");
+            jtSenha.setText("");
+            jtUsuario.setText("");
+            jtfData.setText("");
+            jbLimpar.setEnabled(false);
+        } catch (ExcecaoNome ex) {
+            Logger.getLogger(jofCadastroAdm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } catch (ExcecaoNomeUsuario ex) {
+            Logger.getLogger(jofCadastroAdm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        } finally{
+            jbCriar.setEnabled(false);
+        }
     }//GEN-LAST:event_jbCriarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed

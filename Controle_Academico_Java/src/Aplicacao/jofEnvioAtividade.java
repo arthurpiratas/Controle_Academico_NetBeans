@@ -9,7 +9,10 @@ import Basicas.Aluno;
 import Basicas.Disciplina;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,9 +43,13 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
         ativaBotao();
         
         for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
+            try {
                 Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), turma.getId());
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), rendEsco.getStatus()};
                 dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofEnvioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
@@ -264,9 +271,13 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
         
                
         for (Turma turma : fachada.retornaListaTurmaAluno(aluno)) {
+            try {
                 Rendimento_Escolar rendEsco = fachada.buscaRendimentoEscolar(aluno.getId(), turma.getId());
                 Object[] dados = {turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), rendEsco.getStatus()};
                 dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofEnvioAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }//GEN-LAST:event_jbAtualizarActionPerformed
@@ -279,18 +290,22 @@ public class jofEnvioAtividade extends javax.swing.JInternalFrame {
                 fachada.insereAtividadeAluno(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId(), 0, jtAtv1.getText());
                 limpaCampos();
                 limpaTabela();
+                JOptionPane.showMessageDialog(rootPane, "Atividade enviada!");
             }else if(jrbEnviar2.isSelected()){
                 fachada.insereAtividadeAluno(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId(), 1, jtAtv2.getText());
                 limpaCampos();
                 limpaTabela();
+                JOptionPane.showMessageDialog(rootPane, "Atividade enviada!");
             }else if(jrbEnviar3.isSelected()){
                 fachada.insereAtividadeAluno(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId(), 2, jtAtv3.getText());
                 limpaCampos();
                 limpaTabela();
+                JOptionPane.showMessageDialog(rootPane, "Atividade enviada!");
             }else if(jrbEnviar4.isSelected()){
                 fachada.insereAtividadeAluno(aluno.getId(), fachada.buscaTurma(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()).getId(), 3, jtAtv4.getText());
                 limpaCampos();
                 limpaTabela();
+                JOptionPane.showMessageDialog(rootPane, "Atividade enviada!");
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Selecione uma Opção");
             }

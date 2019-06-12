@@ -11,6 +11,7 @@ import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
 import Excecoes.ExcecaoAtividade;
 import Excecoes.ExcecaoNota;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,8 +50,12 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
         
         
         for (Turma turma : fachada.retornaListaTurmaProfessor(professor)) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         
@@ -526,7 +531,9 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
 
             } catch (ExcecaoNota ex) {
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            } catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, "A nota deve ser um decimal!");
             }
             
                 
@@ -551,14 +558,16 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
             limpaTabelaRendimentoEscolar();
             limpaCampos();
                 
-            JOptionPane.showMessageDialog(rootPane, "Nota) inserida!");
+            JOptionPane.showMessageDialog(rootPane, "Nota inserida!");
                
             } catch (ExcecaoNota ex) {
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             } catch (ExcecaoAtividade exA){
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
-                JOptionPane.showMessageDialog(rootPane, exA);
+                JOptionPane.showMessageDialog(rootPane, exA.getMessage());
+            } catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, "A nota deve ser um decimal!");
             }
             
 		
@@ -586,10 +595,12 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
                 
             } catch (ExcecaoNota ex) {
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             } catch (ExcecaoAtividade exA){
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
-                JOptionPane.showMessageDialog(rootPane, exA);
+                JOptionPane.showMessageDialog(rootPane, exA.getMessage());
+            } catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, "A nota deve ser um decimal!");
             }
 				
         }
@@ -618,10 +629,12 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
                 
             } catch (ExcecaoNota ex) {
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             } catch (ExcecaoAtividade exA){
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
-                JOptionPane.showMessageDialog(rootPane, exA);
+                JOptionPane.showMessageDialog(rootPane, exA.getMessage());
+            } catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, "A nota deve ser um decimal!");
             }
 				
         }
@@ -649,10 +662,12 @@ public class jofAtividadesProfessor extends javax.swing.JInternalFrame {
                 
             } catch (ExcecaoNota ex) {
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             } catch (ExcecaoAtividade exA){
                 Logger.getLogger(jofAtividadesProfessor.class.getName()).log(Level.SEVERE, null, exA);
-                JOptionPane.showMessageDialog(rootPane, exA);
+                JOptionPane.showMessageDialog(rootPane, exA.getMessage());
+            } catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, "A nota deve ser um decimal!");
             }
              
 		

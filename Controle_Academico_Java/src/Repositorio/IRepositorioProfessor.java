@@ -3,12 +3,14 @@ package Repositorio;
 
 import java.util.ArrayList;
 
-import Basicas.Professor;;
+import Basicas.Professor;import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
+;
 
 public interface IRepositorioProfessor {
 	
-	public void insereProfessor(Professor professor); 
-	public void alteraProfessor(Professor professor); 
+	public void insereProfessor(Professor professor) throws ExcecaoNome, ExcecaoNomeUsuario;
+	public void alteraProfessor(Professor professor) throws ExcecaoNome, ExcecaoNomeUsuario; 
 	public void removeProfessor(int id); 
 	public Professor buscaProfessor(int id); 
 	public Professor buscaProfessor(String nome); 

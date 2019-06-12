@@ -7,7 +7,10 @@ package Aplicacao;
 
 import Basicas.Professor;
 import Basicas.Turma;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,15 +40,23 @@ public class jofConsultaTurmaDisponivel extends javax.swing.JInternalFrame {
         
         if(tipoDeTela == 1){
             for (Turma turma : fachada.retornaListaTurmaSemProfessor()) {
-                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-                dtmTurmas.addRow(dados);
+                try {
+                    Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                    dtmTurmas.addRow(dados);
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultaTurmaDisponivel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             jpSairTurma.setEnabled(false);
             jpSairTurma.setVisible(false);
         }else{
             for (Turma turma : fachada.retornaListaTurmaProfessor(professor)) {
-                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-                dtmTurmas.addRow(dados);
+                try {
+                    Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                    dtmTurmas.addRow(dados);
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultaTurmaDisponivel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             jpEntrarTurma.setEnabled(false);
             jpEntrarTurma.setVisible(false);
@@ -222,8 +233,12 @@ public class jofConsultaTurmaDisponivel extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpaTabela();
         for (Turma turma : fachada.retornaListaTurmaProfessor(professor)) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultaTurmaDisponivel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }        
     }//GEN-LAST:event_jbAtualizar2ActionPerformed
 
@@ -253,8 +268,12 @@ public class jofConsultaTurmaDisponivel extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpaTabela();
         for (Turma turma : fachada.retornaListaTurmaSemProfessor()) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofConsultaTurmaDisponivel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jbAtualizarActionPerformed
 

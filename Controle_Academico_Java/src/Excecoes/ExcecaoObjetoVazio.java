@@ -9,14 +9,16 @@ package Excecoes;
  *
  * @author Arthur
  */
-public class ExcecaoAtividade extends Exception{
+public class ExcecaoObjetoVazio extends Exception{
     
-    public ExcecaoAtividade() {
+    String objeto;
+    
+    public ExcecaoObjetoVazio(String objeto) {
         super();
+        this.objeto = objeto;
     }
     @Override
     public String getMessage(){
-        return "Atividade não pode ser avaliada, pois não foi entregue!";
+        return objeto + " não localizado, favor atualizar a tabela!";
     }
-    
 }

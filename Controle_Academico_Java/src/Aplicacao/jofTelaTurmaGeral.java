@@ -10,8 +10,17 @@ import Basicas.Disciplina;
 import Basicas.Professor;
 import Basicas.Rendimento_Escolar;
 import Basicas.Turma;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
+import java.awt.Color;
+import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,8 +56,12 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         
         
         for (Turma turma : fachada.retornaListaTurmaProfessor(professor)) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofTelaTurmaGeral.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if(tipoTela == 1){
@@ -255,7 +268,7 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         jtPercentualReprovados.setEditable(false);
         jtPercentualReprovados.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jpTelaStatus.add(jtPercentualReprovados);
-        jtPercentualReprovados.setBounds(310, 140, 90, 19);
+        jtPercentualReprovados.setBounds(310, 140, 90, 20);
 
         jLabel6.setText("Alunos Reprovados");
         jpTelaStatus.add(jLabel6);
@@ -282,7 +295,7 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         jtPercentualAprovado.setEditable(false);
         jtPercentualAprovado.setFont(new java.awt.Font("MV Boli", 0, 10)); // NOI18N
         jpTelaStatus.add(jtPercentualAprovado);
-        jtPercentualAprovado.setBounds(20, 140, 90, 23);
+        jtPercentualAprovado.setBounds(20, 140, 90, 20);
 
         jLabel9.setText("Alunos na Final");
         jpTelaStatus.add(jLabel9);
@@ -300,7 +313,7 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         jtPercentualFinal.setEditable(false);
         jtPercentualFinal.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jpTelaStatus.add(jtPercentualFinal);
-        jtPercentualFinal.setBounds(170, 140, 90, 19);
+        jtPercentualFinal.setBounds(170, 140, 100, 20);
 
         getContentPane().add(jpTelaStatus);
         jpTelaStatus.setBounds(310, 10, 440, 190);
@@ -347,7 +360,7 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
                 
             }
             preencheCampos(fachada.buscaTurma(Integer.parseInt(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString())));
-            
+            coloreLinha();
         }
     }//GEN-LAST:event_jtTurmaMouseClicked
 
@@ -360,21 +373,22 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
             for (Rendimento_Escolar rendimento_Escolar : fachada.retornaListaRendimentoTurma(Integer.parseInt(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString()))) {
                 Object[] dados = {fachada.buscaAluno(rendimento_Escolar.getAluno()).getNome(), fachada.buscaAluno(rendimento_Escolar.getAluno()).getMatricula(),fachada.buscaTurma(rendimento_Escolar.getTurma()).getNome(), rendimento_Escolar.getStatus()};
                 dtmRendimentoEscolar.addRow(dados);
-                
+               
             }
             preencheCampos(fachada.buscaTurma(Integer.parseInt(jtTurma.getValueAt(jtTurma.getSelectedRow(), 0).toString())));
-            
+            coloreLinha();
         }
     }//GEN-LAST:event_jtTurmaKeyReleased
 
     private void jtRendimentoEscolarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRendimentoEscolarMouseClicked
         // TODO add your handling code here:
-
+       
+        
     }//GEN-LAST:event_jtRendimentoEscolarMouseClicked
 
     private void jtRendimentoEscolarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtRendimentoEscolarKeyReleased
         // TODO add your handling code here:
-
+        
     }//GEN-LAST:event_jtRendimentoEscolarKeyReleased
 
     private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
@@ -391,8 +405,12 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         limpaCampos();
         
         for (Turma turma : fachada.retornaListaTurmaProfessor(professor)) {
-            Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
-            dtmTurmas.addRow(dados);
+            try {
+                Object[] dados = {turma.getId(), turma.getNome(), turma.getProfessor() != -1 ? fachada.buscaProfessor(turma.getProfessor()).getNome() : " ", fachada.buscaDisciplina(turma.getDisciplina()).getNome(), turma.getCapacidadeDaTurma(), turma.getQtdAlunoTurma()};
+                dtmTurmas.addRow(dados);
+            } catch (ExcecaoObjetoVazio ex) {
+                Logger.getLogger(jofTelaTurmaGeral.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
@@ -402,11 +420,16 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         if(jtTurma.getSelectedRow() != -1){
             Disciplina disciplinaAux = fachada.buscaDisciplina(jtTurma.getValueAt(jtTurma.getSelectedRow(), 3).toString());
             disciplinaAux.setEmenta(jtEmenta.getText());
-            fachada.alteraDisciplina(disciplinaAux);
-            JOptionPane.showMessageDialog(rootPane, "Ementa Alterada!");
-            limpaTabelaRendimentoEscolar();
-            limpaTabelaTurma();
-            limpaCampos();
+            try {
+                fachada.alteraDisciplina(disciplinaAux);
+                JOptionPane.showMessageDialog(rootPane, "Ementa Alterada!");
+                limpaTabelaRendimentoEscolar();
+                limpaTabelaTurma();
+                limpaCampos();
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(jofTelaTurmaGeral.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
         
@@ -447,6 +470,35 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
        
     }
     
+    
+    private void coloreLinha(){
+        jtRendimentoEscolar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JLabel label1 = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); //To change body of generated methods, choose Tools | Templates.
+                 
+                Color c = Color.BLACK;
+                Object situacao = jtRendimentoEscolar.getValueAt(row, 3); 
+                if (situacao.equals("Aprovado")){ 
+                    c = Color.GREEN;
+                }else if(situacao.equals("Final")){
+                     c = Color.ORANGE;
+                }else if(situacao.equals("Reprovado")){
+                    c = Color.RED;
+                }else{
+                    c = Color.GRAY;
+                }
+                label1.setBackground(c);
+                return label1;
+            }
+            
+            
+            
+            
+        });
+    }
+    
     private void preencheCampos(Turma turma){
          
         
@@ -457,7 +509,11 @@ public class jofTelaTurmaGeral extends javax.swing.JInternalFrame {
         jtQtdAprovados.setText(String.valueOf(fachada.retornaQtdAlunosAprovados(turma.getId())));
         jtQtdFinal.setText(String.valueOf(fachada.retornaQtdAlunosFinal(turma.getId())));
         jtQtdReprovados.setText(String.valueOf(fachada.retornaQtdAlunosReprovados(turma.getId())));
-        jtEmenta.setText(fachada.buscaDisciplina(turma.getDisciplina()).getEmenta());
+        try {
+            jtEmenta.setText(fachada.buscaDisciplina(turma.getDisciplina()).getEmenta());
+        } catch (ExcecaoObjetoVazio ex) {
+            Logger.getLogger(jofTelaTurmaGeral.class.getName()).log(Level.SEVERE, null, ex);
+        }
                  
     }
     

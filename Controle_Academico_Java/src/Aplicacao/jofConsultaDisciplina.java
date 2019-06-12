@@ -6,7 +6,12 @@
 package Aplicacao;
 
 import Basicas.Disciplina;
+import Excecoes.ExcecaoExclusaoIndevida;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoObjetoVazio;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,8 +76,6 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         jtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jtCodigo = new javax.swing.JTextField();
-        jrNaoAltera = new javax.swing.JRadioButton();
-        jrAltera = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtDisciplina = new javax.swing.JTable();
@@ -95,7 +98,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraDisciplina.add(jbSair2);
-        jbSair2.setBounds(450, 73, 100, 30);
+        jbSair2.setBounds(380, 60, 100, 30);
 
         jbAtualizar2.setText("Atualizar");
         jbAtualizar2.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +107,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraDisciplina.add(jbAtualizar2);
-        jbAtualizar2.setBounds(450, 20, 100, 30);
+        jbAtualizar2.setBounds(380, 10, 100, 30);
 
         jbLimpar.setText("Limpar");
         jbLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +116,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraDisciplina.add(jbLimpar);
-        jbLimpar.setBounds(310, 20, 110, 30);
+        jbLimpar.setBounds(220, 10, 110, 30);
 
         jbAlterar.setText("Alterar");
         jbAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +125,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
             }
         });
         jpAlteraDisciplina.add(jbAlterar);
-        jbAlterar.setBounds(310, 70, 110, 30);
+        jbAlterar.setBounds(220, 60, 110, 30);
 
         jLabel1.setText("Código");
         jpAlteraDisciplina.add(jLabel1);
@@ -137,16 +140,6 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         jtCodigo.setEditable(false);
         jpAlteraDisciplina.add(jtCodigo);
         jtCodigo.setBounds(70, 10, 100, 30);
-
-        btgNome.add(jrNaoAltera);
-        jrNaoAltera.setText("Ñ Altera Nome");
-        jpAlteraDisciplina.add(jrNaoAltera);
-        jrNaoAltera.setBounds(190, 60, 110, 23);
-
-        btgNome.add(jrAltera);
-        jrAltera.setText("Altera Nome");
-        jpAlteraDisciplina.add(jrAltera);
-        jrAltera.setBounds(190, 20, 100, 23);
 
         getContentPane().add(jpAlteraDisciplina);
         jpAlteraDisciplina.setBounds(0, 10, 560, 110);
@@ -259,19 +252,21 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
          
         if(jtDisciplina.getSelectedRow() != -1){
 
-            if(fachada.verificaDisciplinaExiste(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 1).toString())){
-                Disciplina disciplinaAUX = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
-                if(fachada.verificaDesciplinaPossuiTurma(disciplinaAUX.getcodigo())){
-                    JOptionPane.showMessageDialog(rootPane, "Disciplina Não Pode ser excluida, pois está vinculada a uma Turma!");
-                }else{
-                fachada.removeDisciplina(disciplinaAUX.getcodigo());
-                dtmDisciplina.removeRow(jtDisciplina.getSelectedRow());
-                jtaEmenta.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Disciplina Excluida com Sucesso!");
-                }               
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Esta Disciplina não existe, favor atualizar a Tabela!");
-            }
+                try {
+                    Disciplina disciplinaAUX = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
+                    
+                    fachada.removeDisciplina(disciplinaAUX.getcodigo());
+                    dtmDisciplina.removeRow(jtDisciplina.getSelectedRow());
+                    jtaEmenta.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Disciplina Excluida com Sucesso!");
+                } catch (ExcecaoExclusaoIndevida ex) {
+                    Logger.getLogger(jofConsultaDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultaDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                }
+
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha!");
         }
@@ -287,10 +282,8 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         limpaTabela();
-        for (Disciplina disciplina : fachada.retornaListaDisciplina()) {
-            Object[] dados = {disciplina.getcodigo(), disciplina.getNome()};
-            dtmDisciplina.addRow(dados);
-        }
+        preencheTabela();
+        
 
     }//GEN-LAST:event_jbAtualizarActionPerformed
 
@@ -299,10 +292,15 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         
         if(jtDisciplina.getSelectedRow() != -1){
             if(fachada.verificaDisciplinaExiste(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 1).toString())){
-                disciplinaAux = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
-                jtaEmenta.setText(disciplinaAux.getEmenta());
-                jtCodigo.setText(String.valueOf(disciplinaAux.getcodigo()));
-                jtNome.setText(disciplinaAux.getNome());
+                try {
+                    //disciplinaAux = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
+                    jtaEmenta.setText(fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString())).getEmenta());
+                    jtCodigo.setText(String.valueOf(fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString())).getcodigo()));
+                    jtNome.setText(fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString())).getNome());
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultaDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         }
         
@@ -313,10 +311,14 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         
         if(jtDisciplina.getSelectedRow() != -1){
             if(fachada.verificaDisciplinaExiste(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 1).toString())){
-                disciplinaAux = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
-                jtaEmenta.setText(disciplinaAux.getEmenta());
-                jtCodigo.setText(String.valueOf(disciplinaAux.getcodigo()));
-                jtNome.setText(disciplinaAux.getNome());
+                try {
+                    //disciplinaAux = fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString()));
+                    jtaEmenta.setText(fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString())).getEmenta());
+                    jtCodigo.setText(String.valueOf(fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString())).getcodigo()));
+                    jtNome.setText(fachada.buscaDisciplina(Integer.parseInt(jtDisciplina.getValueAt(jtDisciplina.getSelectedRow(), 0).toString())).getNome());
+                } catch (ExcecaoObjetoVazio ex) {
+                    Logger.getLogger(jofConsultaDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         }
@@ -333,10 +335,7 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
         limpaTabela();
         limpaCampos();
         disciplinaAux = null;
-        for (Disciplina disciplina : fachada.retornaListaDisciplina()) {
-            Object[] dados = {disciplina.getcodigo(), disciplina.getNome()};
-            dtmDisciplina.addRow(dados);
-        }
+        preencheTabela();
     }//GEN-LAST:event_jbAtualizar2ActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
@@ -347,26 +346,21 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         // TODO add your handling code here:
-
-        if(jtDisciplina.getSelectedRow() != -1 && disciplinaAux != null ){
-            disciplinaAux.setEmenta(jtaEmenta.getText());
-            if(jrAltera.isSelected()){
-                if(!(fachada.verificaDisciplinaExiste(jtNome.getText()))){
-                    disciplinaAux.setNome(jtNome.getText());
-                    fachada.alteraDisciplina(disciplinaAux);
-                    limpaTabela();
-                    JOptionPane.showMessageDialog(rootPane, "Disciplina Alterado, favor Atualizar a Tabela!!!");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Nome já existe!!");
-                }
-            }else if(jrNaoAltera.isSelected()){
+        
+        if(jtDisciplina.getSelectedRow() != -1){
+            disciplinaAux = new Disciplina(Integer.parseInt(jtCodigo.getText()), jtNome.getText(), jtaEmenta.getText());
+            try {
                 fachada.alteraDisciplina(disciplinaAux);
+                limpaCampos();
                 limpaTabela();
-                JOptionPane.showMessageDialog(rootPane, "Disciplina Alterado, favor Atualizar a Tabela!!!");
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Selecione uma opção");
+                preencheTabela();
+                //JOptionPane.showMessageDialog(rootPane, "Disciplina Alterado, favor Atualizar a Tabela!!!");
+            } catch (ExcecaoNome ex) {
+                Logger.getLogger(jofConsultaDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
-            limpaCampos();
+            
+            
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
         }
@@ -374,11 +368,18 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void limpaTabela(){
-        
+        disciplinaAux = null; 
         if (dtmDisciplina.getRowCount() >= 0){
             for (int i=dtmDisciplina.getRowCount();i >0;i--){
                 dtmDisciplina.removeRow(0);
             }            
+        }
+    }
+    
+    private void preencheTabela(){
+        for (Disciplina disciplina : fachada.retornaListaDisciplina()) {
+            Object[] dados = {disciplina.getcodigo(), disciplina.getNome()};
+            dtmDisciplina.addRow(dados);
         }
     }
     
@@ -404,8 +405,6 @@ public class jofConsultaDisciplina extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSair2;
     private javax.swing.JPanel jpAlteraDisciplina;
     private javax.swing.JPanel jpConsultaDisciplina;
-    private javax.swing.JRadioButton jrAltera;
-    private javax.swing.JRadioButton jrNaoAltera;
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTable jtDisciplina;
     private javax.swing.JTextField jtNome;

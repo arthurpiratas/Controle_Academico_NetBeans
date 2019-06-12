@@ -6,7 +6,10 @@
 package Aplicacao;
 
 import Basicas.Disciplina;
+import Excecoes.ExcecaoNome;
 import Negocio.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -106,7 +109,7 @@ public class jofCadastroDisciplina extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(70, 60, 150, 150);
 
-        setBounds(0, 0, 248, 338);
+        setBounds(0, 0, 248, 349);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
@@ -117,32 +120,35 @@ public class jofCadastroDisciplina extends javax.swing.JInternalFrame {
         try{
             nome = jtNome.getText();
             ementa = jtEmenta.getText();
-            if(!(fachada.verificaDisciplinaExiste(nome))){
-                if(ementa.length() > 0){
-                    disciplina = new Disciplina(fachada.retornaProximoCodigoDisciplina(), nome, ementa);
-                    jbCriar.setEnabled(true);
-                    jbLimpar.setEnabled(true);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Ementa não pode ser vazia");
-                }
+            if(ementa.length() > 0){
+                disciplina = new Disciplina(fachada.retornaProximoCodigoDisciplina(), nome, ementa);
+                jbCriar.setEnabled(true);
+                jbLimpar.setEnabled(true);
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Disciplina já cadastrada");
+                JOptionPane.showMessageDialog(rootPane, "Ementa não pode ser vazia");
             }
+            
         }catch(IllegalArgumentException e){
-            JOptionPane.showMessageDialog(rootPane, "Erro " + e);
+            JOptionPane.showMessageDialog(rootPane, "A disciplina não pode está vazia");
         }
 
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarActionPerformed
-        // TODO add your handling code here:
-        fachada.insereDisciplina(disciplina);
-        JOptionPane.showMessageDialog(rootPane, "Disciplina "+ disciplina.getNome() + "criada com sucesso");
-        disciplina = null;
-        jtNome.setText("");
-        jtEmenta.setText("");
-        jbCriar.setEnabled(false);
-        jbLimpar.setEnabled(false);
+        try {
+            // TODO add your handling code here:
+            fachada.insereDisciplina(disciplina);
+            JOptionPane.showMessageDialog(rootPane, "Disciplina "+ disciplina.getNome() + "criada com sucesso");
+            disciplina = null;
+            jtNome.setText("");
+            jtEmenta.setText("");
+            jbCriar.setEnabled(false);
+            jbLimpar.setEnabled(false);
+        } catch (ExcecaoNome ex) {
+            Logger.getLogger(jofCadastroDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            
+        }
     }//GEN-LAST:event_jbCriarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed

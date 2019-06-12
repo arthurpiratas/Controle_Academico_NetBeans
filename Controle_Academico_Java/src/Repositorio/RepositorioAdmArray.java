@@ -3,6 +3,8 @@ package Repositorio;
 import java.util.ArrayList;
 
 import Basicas.Administrador;
+import Excecoes.ExcecaoNome;
+import Excecoes.ExcecaoNomeUsuario;
 
 
 public class RepositorioAdmArray implements IRepositorioAdm{
@@ -21,20 +23,33 @@ public class RepositorioAdmArray implements IRepositorioAdm{
 	}
 
 	@Override
-	public void insereADM(Administrador adm) {
+	public void insereADM(Administrador adm) throws ExcecaoNome, ExcecaoNomeUsuario{
 		// TODO Auto-generated method stub
 		
-		this.listaADM[index] = adm;
-		this.index += 1; 
+                if(verificaADMExise(adm.getNome())){
+                    throw new ExcecaoNome();
+                }else if(verifiaADMLogin(adm.getNomeUsuario())){
+                    throw new ExcecaoNomeUsuario(); 
+                }else{ 
+                    this.listaADM[index] = adm;
+                    this.index += 1; 
+                }                
+		 
 		
 	}
 
 	@Override
-	public void alteraADM(Administrador adm) {
+	public void alteraADM(Administrador adm) throws ExcecaoNome, ExcecaoNomeUsuario{
 		// TODO Auto-generated method stub
 		for (int i = 0; i < index; i++) {
 			if(listaADM[i].getId() == adm.getId()) {
-				listaADM[i] = adm;
+                            if(!(listaADM[i].getNome().equals(adm.getNome())) && verificaADMExise(adm.getNome())){
+                                throw new ExcecaoNome();
+                            }else if(!(listaADM[i].getNomeUsuario().equals(adm.getNomeUsuario())) && verifiaADMLogin(adm.getNomeUsuario())){
+                                throw  new ExcecaoNomeUsuario();
+                            }else{
+                                listaADM[i] = adm;
+                            } 
 			}
 		}
 		
